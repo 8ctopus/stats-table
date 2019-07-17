@@ -5,8 +5,9 @@ namespace Tests\Dumper;
 use IgraalOSL\StatsTable\Aggregation\StaticAggregation;
 use IgraalOSL\StatsTable\Dumper\Format;
 use IgraalOSL\StatsTable\StatsTableBuilder;
+use PHPUnit\Framework\TestCase;
 
-class DumperTestAbstract extends \PHPUnit_Framework_TestCase
+class DumperTestAbstract extends TestCase
 {
     public function getData()
     {

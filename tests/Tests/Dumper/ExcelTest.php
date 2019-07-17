@@ -13,7 +13,7 @@ class ExcelTest extends DumperTestAbstract
         $headers = ['date' => 'Date', 'hits' => 'Nb de visites', 'subscribers' => 'Nb inscrits', 'ratio' => 'Taux de transfo', 'revenues' => 'Revenus générés'];
         $data = [
             ['date' => '2014-01-01', 'hits' => '10', 'subscribers' => 2, 'ratio' => .2, 'revenues' => 45.321],
-            ['date' => '2014-01-01', 'hits' => '20', 'subscribers' => 7, 'ratio' => .35, 'revenues' => 80.754],
+            ['date' => '2014-02-01', 'hits' => '20', 'subscribers' => 7, 'ratio' => .35, 'revenues' => 80.754],
         ];
         $dataTypes = [
             'date' => Format::DATE,
@@ -50,5 +50,7 @@ class ExcelTest extends DumperTestAbstract
         $excelContents = $excelDumper->dump($statsTable);
 
         file_put_contents('/tmp/test2.xls', $excelContents);
+
+        $this->markTestSkipped();
     }
 }

@@ -5,8 +5,9 @@ namespace Tests\DynamicColumn;
 use IgraalOSL\StatsTable\DynamicColumn\SumColumnBuilder;
 use IgraalOSL\StatsTable\StatsColumnBuilder;
 use IgraalOSL\StatsTable\StatsTableBuilder;
+use PHPUnit\Framework\TestCase;
 
-class SumColumnBuilderTest extends \PHPUnit_Framework_TestCase
+class SumColumnBuilderTest extends TestCase
 {
     public function test()
     {

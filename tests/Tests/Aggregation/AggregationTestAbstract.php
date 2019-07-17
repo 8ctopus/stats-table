@@ -3,8 +3,9 @@
 namespace Tests\Aggregation;
 
 use IgraalOSL\StatsTable\StatsTableBuilder;
+use PHPUnit\Framework\TestCase;
 
-class AggregationTestAbstract extends \PHPUnit_Framework_TestCase
+class AggregationTestAbstract extends TestCase
 {
     /**
      * @return StatsTableBuilder
