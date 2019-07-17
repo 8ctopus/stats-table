@@ -17,6 +17,8 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ExcelDumper extends Dumper
 {
+    private const FIRST_COLUMN = 1;
+
     const OPTION_ZEBRA = 'zebra';
     const OPTION_ZEBRA_COLOR_ODD = 'zebra_color_odd';
     const OPTION_ZEBRA_COLOR_EVEN = 'zebra_color_even';
@@ -78,12 +80,12 @@ class ExcelDumper extends Dumper
             $headerStyle = new Style();
             $headerStyle->applyFromArray($this->getHeadersStyleArray());
 
-            $col = 0;
+            $col = self::FIRST_COLUMN;
             foreach ($statsTable->getHeaders() as $header) {
                 $sheet->setCellValueByColumnAndRow($col, $row, $header);
                 $col++;
             }
-            $sheet->duplicateStyle($headerStyle, 'A1:'. Coordinate::stringFromColumnIndex($width-1).'1');
+            $sheet->duplicateStyle($headerStyle, 'A1:'. Coordinate::stringFromColumnIndex($width).'1');
             $row++;
         }
 
@@ -99,7 +101,7 @@ class ExcelDumper extends Dumper
         }
 
         // FINAL FORMATTING //
-        for ($col = 0; $col < $width; $col++) {
+        for ($col = self::FIRST_COLUMN; $col < self::FIRST_COLUMN + $width; $col++) {
             $sheet
                 ->getColumnDimension(Coordinate::stringFromColumnIndex($col))
                 ->setAutoSize(true);
@@ -247,7 +249,7 @@ class ExcelDumper extends Dumper
      */
     protected function applyValues(Worksheet $sheet, $row, $values, $formats, $styleArray = [])
     {
-        $col = 0;
+        $col = self::FIRST_COLUMN;
         foreach ($values as $index => $value) {
             $this->applyValue($sheet, $col, $row, $value, array_key_exists($index, $formats) ? $formats[$index] : Format::STRING, $styleArray);
             $col++;
