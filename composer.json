@@ -21,6 +21,9 @@
     "suggest": {
         "phpoffice/phpspreadsheet": "Allow to export to Excel file. req phpoffice/phpspreadsheet:^1.0"
     },
+    "conflict": {
+        "igraal/stats-table": "*"
+    },
     "require-dev": {
         "ext-json": "*",
         "phpoffice/phpspreadsheet": "^1.0",
