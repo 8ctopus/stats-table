@@ -8,8 +8,9 @@ use IgraalOSL\StatsTable\Dumper\Format;
 use IgraalOSL\StatsTable\StatsColumnBuilder;
 use IgraalOSL\StatsTable\StatsTable;
 use IgraalOSL\StatsTable\StatsTableBuilder;
+use PHPUnit\Framework\TestCase;
 
-class StatsTableBuilderTests extends \PHPUnit_Framework_TestCase
+class StatsTableBuilderTests extends TestCase
 {
     public function testGetters()
     {
@@ -194,11 +195,10 @@ class StatsTableBuilderTests extends \PHPUnit_Framework_TestCase
         $this->assertEquals(new StatsColumnBuilder($wishedColumn, 'Hits'), $statsTable->getColumn('hits'));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testInvalidColumn()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $table = [['hits' => 0]];
         $statsTable = new StatsTableBuilder($table);
 

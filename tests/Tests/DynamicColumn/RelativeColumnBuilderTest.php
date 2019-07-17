@@ -4,8 +4,9 @@ namespace Tests\DynamicColumn;
 
 use IgraalOSL\StatsTable\DynamicColumn\RelativeColumnBuilder;
 use IgraalOSL\StatsTable\StatsTableBuilder;
+use PHPUnit\Framework\TestCase;
 
-class RelativeColumnBuilderTest extends \PHPUnit_Framework_TestCase
+class RelativeColumnBuilderTest extends TestCase
 {
     public function testWithData()
     {

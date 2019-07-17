@@ -4,8 +4,9 @@ namespace Tests;
 
 use IgraalOSL\StatsTable\Aggregation\AggregationInterface;
 use IgraalOSL\StatsTable\StatsColumnBuilder;
+use PHPUnit\Framework\TestCase;
 
-class StatsColumnBuilderTest extends \PHPUnit_Framework_TestCase
+class StatsColumnBuilderTest extends TestCase
 {
     public function testCreation()
     {

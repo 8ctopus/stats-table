@@ -50,5 +50,7 @@ class ExcelTest extends DumperTestAbstract
         $excelContents = $excelDumper->dump($statsTable);
 
         file_put_contents('/tmp/test2.xls', $excelContents);
+
+        $this->markTestSkipped();
     }
 }

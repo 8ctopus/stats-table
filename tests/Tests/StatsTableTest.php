@@ -3,8 +3,9 @@
 namespace Tests;
 
 use IgraalOSL\StatsTable\StatsTable;
+use PHPUnit\Framework\TestCase;
 
-class StatsTableTest extends \PHPUnit_Framework_TestCase
+class StatsTableTest extends TestCase
 {
     public function testRemoveColumn()
     {

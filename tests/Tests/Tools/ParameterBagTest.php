@@ -3,8 +3,9 @@
 namespace Tests\Tools;
 
 use IgraalOSL\StatsTable\Tools\ParameterBag;
+use PHPUnit\Framework\TestCase;
 
-class ParameterBagTest extends \PHPUnit_Framework_TestCase
+class ParameterBagTest extends TestCase
 {
     private function getSampleData()
     {

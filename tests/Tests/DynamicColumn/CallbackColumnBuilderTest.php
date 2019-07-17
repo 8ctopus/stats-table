@@ -4,8 +4,9 @@ namespace Tests\DynamicColumn;
 
 use IgraalOSL\StatsTable\DynamicColumn\CallbackColumnBuilder;
 use IgraalOSL\StatsTable\StatsTableBuilder;
+use PHPUnit\Framework\TestCase;
 
-class CallbackColumnBuilderTest extends \PHPUnit_Framework_TestCase
+class CallbackColumnBuilderTest extends TestCase
 {
     public function test()
     {
