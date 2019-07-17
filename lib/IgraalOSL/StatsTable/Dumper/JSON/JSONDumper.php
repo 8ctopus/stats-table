@@ -60,7 +60,7 @@ class JSONDumper extends Dumper
         switch ($format) {
             case Format::DATE:
             case Format::DATETIME:
-                if ($value instanceof \DateTime) {
+                if ($value instanceof \DateTimeInterface) {
                     return $value->format('c');
                 }
                 break;

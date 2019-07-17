@@ -102,13 +102,13 @@ class HTMLDumper extends Dumper
 
         switch ($format) {
             case Format::DATE:
-                if ($value instanceof \DateTime) {
+                if ($value instanceof \DateTimeInterface) {
                     return $value->format('d/m/Y');
                 }
                 break;
 
             case Format::DATETIME:
-                if ($value instanceof \DateTime) {
+                if ($value instanceof \DateTimeInterface) {
                     return $value->format('d/m/Y H:i:s');
                 }
                 break;
