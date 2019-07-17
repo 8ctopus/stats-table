@@ -23,7 +23,8 @@
     },
     "require-dev": {
         "twig/twig": "1.x@stable",
-        "phpunit/phpunit": "^8.2"
+        "phpunit/phpunit": "^8.2",
+        "phpoffice/phpspreadsheet": "^1.0"
     },
     "require": {
         "php": "^7.2"
