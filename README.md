@@ -1,3 +1,5 @@
+***This package is a fork of [igraal/stats-table](https://github.com/igraal/stats-table)***
+
 stats-table
 ===========
 
