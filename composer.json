@@ -22,11 +22,15 @@
         "phpoffice/phpspreadsheet": "Allow to export to Excel file. req phpoffice/phpspreadsheet:^1.0"
     },
     "require-dev": {
-        "twig/twig": "1.x@stable",
+        "ext-json": "*",
+        "phpoffice/phpspreadsheet": "^1.0",
         "phpunit/phpunit": "^8.2",
-        "phpoffice/phpspreadsheet": "^1.0"
+        "twig/twig": "1.x@stable"
     },
     "require": {
         "php": "^7.2"
+    },
+    "config": {
+        "sort-packages": true
     }
 }

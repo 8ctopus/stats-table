@@ -277,8 +277,8 @@ class ExcelDumper extends Dumper
 
         switch ($format) {
             case Format::DATE:
-                if (!($value instanceof \DateTime)) {
-                    $date = new \DateTime($value);
+                if (!($value instanceof \DateTimeInterface)) {
+                    $date = new \DateTimeImmutable($value);
                 } else {
                     $date = $value;
                 }
@@ -287,8 +287,8 @@ class ExcelDumper extends Dumper
                 break;
 
             case Format::DATETIME:
-                if (!($value instanceof \DateTime)) {
-                    $date = new \DateTime($value);
+                if (!($value instanceof \DateTimeInterface)) {
+                    $date = new \DateTimeImmutable($value);
                 } else {
                     $date = $value;
                 }

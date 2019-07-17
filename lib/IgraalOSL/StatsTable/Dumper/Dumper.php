@@ -35,7 +35,7 @@ abstract class Dumper implements DumperInterface
     {
         switch ($format) {
             case Format::DATE:
-                if ($value instanceof \DateTime) {
+                if ($value instanceof \DateTimeInterface) {
                     return $value->format('Y-m-d');
                 }
                 break;

@@ -24,7 +24,7 @@ class CSVTest extends DumperTestAbstract
         // DATETIME
         $this->assertEquals(
             "\"2014-01-01 00:00:00\"\n\"2014-01-01 00:00:00\"\n",
-            $csvDumper->dump(new StatsTable([['date' => '2014-01-01 00:00:00'], ['date' => new \DateTime('2014-01-01 00:00:00')]], [], [], ['date' => Format::DATETIME]))
+            $csvDumper->dump(new StatsTable([['date' => '2014-01-01 00:00:00'], ['date' => new \DateTimeImmutable('2014-01-01 00:00:00')]], [], [], ['date' => Format::DATETIME]))
         );
 
         // INTEGER
