@@ -16,7 +16,7 @@
         }
     ],
     "autoload": {
-        "psr-4": {"": "lib"}
+        "psr-4": {"IgraalOSL\\StatsTable\\": "lib/IgraalOSL/StatsTable"}
     },
     "suggest": {
         "phpoffice/phpspreadsheet": "Allow to export to Excel file. req phpoffice/phpspreadsheet:^1.0"
