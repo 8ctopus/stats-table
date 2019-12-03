@@ -53,4 +53,12 @@ class ExcelTest extends DumperTestAbstract
 
         $this->markTestSkipped();
     }
+
+    public function testEmpty()
+    {
+        $statsTable = new StatsTable([], []);
+        $excelDumper = new ExcelDumper();
+        $excelDumper->dump($statsTable);
+        $this->markTestSkipped();
+    }
 }
