@@ -28,7 +28,7 @@
         "ext-json": "*",
         "phpoffice/phpspreadsheet": "^1.0",
         "phpunit/phpunit": "^8.2",
-        "twig/twig": "1.x@stable"
+        "twig/twig": "^1.0|^2.0|^3.0"
     },
     "require": {
         "php": "^7.2"

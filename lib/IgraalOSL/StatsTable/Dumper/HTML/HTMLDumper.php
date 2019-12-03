@@ -6,6 +6,8 @@ use IgraalOSL\StatsTable\Dumper\Dumper;
 use IgraalOSL\StatsTable\Dumper\Format;
 use IgraalOSL\StatsTable\StatsTable;
 use IgraalOSL\StatsTable\Tools\ParameterBag;
+use Twig\Environment as Twig;
+use Twig\Loader\FilesystemLoader as TwigFilesystemLoader;
 
 class HTMLDumper extends Dumper
 {
@@ -25,7 +27,7 @@ class HTMLDumper extends Dumper
     protected $templateOptions;
 
     /**
-     * @var \Twig_Environment
+     * @var Twig
      */
     protected $twig;
 
@@ -35,11 +37,11 @@ class HTMLDumper extends Dumper
 
         $this->template = $options->get('template', $this->getDefaultTemplate());
         $this->templateFolder = $options->get('templateFolder', $this->getDefaultTemplateFolder());
-        $this->twig     = new \Twig_Environment(new \Twig_Loader_Filesystem($this->templateFolder));
+        $this->twig     = new Twig(new TwigFilesystemLoader($this->templateFolder));
         $this->templateOptions = $options->get('templateOptions',[]);
     }
 
-    public function setTwig(\Twig_Environment $twig)
+    public function setTwig(Twig $twig)
     {
         $this->twig = $twig;
     }
