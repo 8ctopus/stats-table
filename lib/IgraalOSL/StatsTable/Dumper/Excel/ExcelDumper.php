@@ -73,7 +73,7 @@ class ExcelDumper extends Dumper
 
         $row = 1;
         $data = $statsTable->getData();
-        $width = count(reset($data));
+        $width = max(count(reset($data) ?: []), count($statsTable->getHeaders() ?: []));
 
         // HEADERS //
         if ($this->enableHeaders) {
