@@ -26,12 +26,12 @@
     },
     "require-dev": {
         "ext-json": "*",
-        "phpoffice/phpspreadsheet": "^1.0",
+        "phpoffice/phpspreadsheet": "^1.9.0",
         "phpunit/phpunit": "^8.2",
         "twig/twig": "^1.0|^2.0|^3.0"
     },
     "require": {
-        "php": "^7.2"
+        "php": "^7.2|^8.0"
     },
     "config": {
         "sort-packages": true
