@@ -3,7 +3,7 @@
 stats-table
 ===========
 
-PHP Libary to handle statistics tables and CSV, JSON and Excel exports. [![Build Status](https://travis-ci.org/igraal/stats-table.png?branch=master)](https://travis-ci.org/paxal/stats-table)
+PHP Libary to handle statistics tables and CSV, JSON and Excel exports. [![Build Status](https://travis-ci.org/paxal/stats-table.png?branch=master)](https://travis-ci.org/paxal/stats-table)
 
 Summary
 -------
@@ -21,7 +21,7 @@ Using composer, just add the following require to your composer.json :
 
     "require": {
         ... ,
-        "igraal/stats-table": "dev-master"
+        "paxal/stats-table": "dev-master"
     }
 
 Usage
