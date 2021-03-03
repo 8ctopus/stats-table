@@ -3,7 +3,7 @@
 stats-table
 ===========
 
-PHP Libary to handle statistics tables and CSV, JSON and Excel exports. [![Build Status](https://travis-ci.org/igraal/stats-table.png?branch=master)](https://travis-ci.org/paxal/stats-table)
+PHP Libary to handle statistics tables and CSV, JSON and Excel exports. [![Build Status](https://travis-ci.org/paxal/stats-table.png?branch=master)](https://travis-ci.org/paxal/stats-table)
 
 Summary
 -------
@@ -17,12 +17,11 @@ Installation
 
 ### Using composer
 
-Using composer, just add the following require to your composer.json :
+Using composer, just run the following to require the latest stable :
 
-    "require": {
-        ... ,
-        "igraal/stats-table": "dev-master"
-    }
+```bash
+composer req paxal/stats-table
+```
 
 Usage
 -----
