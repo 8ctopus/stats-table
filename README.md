@@ -17,12 +17,11 @@ Installation
 
 ### Using composer
 
-Using composer, just add the following require to your composer.json :
+Using composer, just run the following to require the latest stable :
 
-    "require": {
-        ... ,
-        "paxal/stats-table": "dev-master"
-    }
+```bash
+composer req paxal/stats-table
+```
 
 Usage
 -----
