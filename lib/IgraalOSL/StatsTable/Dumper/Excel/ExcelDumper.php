@@ -6,6 +6,7 @@ use IgraalOSL\StatsTable\Dumper\Dumper;
 use IgraalOSL\StatsTable\Dumper\Format;
 use IgraalOSL\StatsTable\StatsTable;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Border;
@@ -318,12 +319,24 @@ class ExcelDumper extends Dumper
                 break;
 
             case Format::STRING:
+            case Format::LINK:
                 $style->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_TEXT);
                 break;
         }
 
-        $sheet->setCellValueByColumnAndRow($col, $row, $value);
         $sheet->duplicateStyle($style, Coordinate::stringFromColumnIndex($col).$row);
+
+        switch ($format) {
+            case Format::STRING:
+                $sheet->setCellValueExplicitByColumnAndRow($col, $row, $value, DataType::TYPE_STRING);
+            case Format::LINK:
+                $sheet->setCellValueByColumnAndRow($col, $row, $value);
+                $sheet->getCellByColumnAndRow($col, $row)->getHyperlink()->setUrl($value);
+                break;
+            default:
+                $sheet->setCellValueByColumnAndRow($col, $row, $value);
+                break;
+        }
     }
 
     public function getMimeType()

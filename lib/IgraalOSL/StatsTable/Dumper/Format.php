@@ -13,4 +13,5 @@ class Format
     const PCT      = 'percent';
     const PCT2     = 'percent2';
     const STRING   = 'string';
+    const LINK     = 'link';
 }
