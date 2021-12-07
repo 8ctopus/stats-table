@@ -319,6 +319,7 @@ class ExcelDumper extends Dumper
                 break;
 
             case Format::STRING:
+            case Format::LINK:
                 $style->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_TEXT);
                 break;
         }
@@ -328,6 +329,10 @@ class ExcelDumper extends Dumper
         switch ($format) {
             case Format::STRING:
                 $sheet->setCellValueExplicitByColumnAndRow($col, $row, $value, DataType::TYPE_STRING);
+            case Format::LINK:
+                $sheet->setCellValueByColumnAndRow($col, $row, $value);
+                $sheet->getCellByColumnAndRow($col, $row)->getHyperlink()->setUrl($value);
+                break;
             default:
                 $sheet->setCellValueByColumnAndRow($col, $row, $value);
                 break;
