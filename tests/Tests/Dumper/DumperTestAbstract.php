@@ -3,13 +3,16 @@
 namespace Tests\Dumper;
 
 use IgraalOSL\StatsTable\Aggregation\StaticAggregation;
+use IgraalOSL\StatsTable\Dumper\DumperInterface;
+use IgraalOSL\StatsTable\Dumper\Excel\ExcelDumper;
 use IgraalOSL\StatsTable\Dumper\Format;
+use IgraalOSL\StatsTable\StatsTable;
 use IgraalOSL\StatsTable\StatsTableBuilder;
 use PHPUnit\Framework\TestCase;
 
-class DumperTestAbstract extends TestCase
+abstract class DumperTestAbstract extends TestCase
 {
-    public function getData()
+    protected function getData(): array
     {
         $table = [
             '2014-01-01' => ['hits' => 12],
@@ -19,28 +22,43 @@ class DumperTestAbstract extends TestCase
         return $table;
     }
 
-    public function getHeaders()
+    protected function getHeaders(): array
     {
         return ['hits' => 'Hits'];
     }
 
-    public function getFormats()
+    protected function getFormats(): array
     {
         return ['hits' => Format::INTEGER];
     }
 
-    public function getAggregations()
+    protected function getAggregations(): array
     {
         return ['hits' => new StaticAggregation('value')];
     }
 
-    public function getStatsTableBuilder()
+    protected function getStatsTableBuilder(): StatsTableBuilder
     {
         return new StatsTableBuilder($this->getData(), $this->getHeaders(), $this->getFormats(), $this->getAggregations());
     }
 
-    public function getStatsTable()
+    protected function getStatsTable(): StatsTable
     {
         return $this->getStatsTableBuilder()->build();
+    }
+
+    abstract protected function getDumper(): DumperInterface;
+
+    public function testLink(): void
+    {
+        self::expectNotToPerformAssertions();
+        $dumper = $this->getDumper();
+
+        $statsTable = new StatsTable([['http://example.org']], ['link'], [''], [Format::LINK], [Format::STRING]);
+        $dumper->dump($statsTable);
+
+        // Should not fail if link is not valid
+        $statsTable = new StatsTable([['']], ['link'], [''], [Format::LINK], [Format::STRING]);
+        $dumper->dump($statsTable);
     }
 }

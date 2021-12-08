@@ -2,6 +2,7 @@
 
 namespace Tests\Dumper;
 
+use IgraalOSL\StatsTable\Dumper\DumperInterface;
 use IgraalOSL\StatsTable\Dumper\Format;
 use IgraalOSL\StatsTable\Dumper\JSON\JSONDumper;
 use IgraalOSL\StatsTable\StatsTable;
@@ -63,5 +64,10 @@ class JSONTest extends DumperTestAbstract
             'aggregationsFormats' => [],
             'formats' => ['pct' => Format::PCT2]
         ), json_decode($jsonDumper->dump($statsTable), true));
+    }
+
+    protected function getDumper(): DumperInterface
+    {
+        return new JSONDumper();
     }
 }

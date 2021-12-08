@@ -3,6 +3,7 @@
 namespace Tests\Dumper;
 
 use IgraalOSL\StatsTable\Dumper\CSV\CSVDumper;
+use IgraalOSL\StatsTable\Dumper\DumperInterface;
 use IgraalOSL\StatsTable\Dumper\Format;
 use IgraalOSL\StatsTable\StatsTable;
 
@@ -79,5 +80,10 @@ class CSVTest extends DumperTestAbstract
                 ['date' => 'Total', 'hits' => 3]
             ))
         );
+    }
+
+    protected function getDumper(): DumperInterface
+    {
+        return new CSVDumper();
     }
 }

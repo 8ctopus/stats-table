@@ -2,6 +2,7 @@
 
 namespace Tests\Dumper;
 
+use IgraalOSL\StatsTable\Dumper\DumperInterface;
 use IgraalOSL\StatsTable\Dumper\Format;
 use IgraalOSL\StatsTable\Dumper\HTML\HTMLDumper;
 use IgraalOSL\StatsTable\StatsTable;
@@ -68,5 +69,10 @@ class HTMLTest extends DumperTestAbstract
         $expectedDoc->load(__DIR__.'/Fixtures/test-custom.html');
 
         $this->assertEquals($expectedDoc, $doc);
+    }
+
+    protected function getDumper(): DumperInterface
+    {
+        return new HTMLDumper();
     }
 }

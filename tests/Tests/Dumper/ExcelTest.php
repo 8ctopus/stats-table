@@ -2,6 +2,7 @@
 
 namespace Tests\Dumper;
 
+use IgraalOSL\StatsTable\Dumper\DumperInterface;
 use IgraalOSL\StatsTable\Dumper\Excel\ExcelDumper;
 use IgraalOSL\StatsTable\Dumper\Format;
 use IgraalOSL\StatsTable\StatsTable;
@@ -63,19 +64,8 @@ class ExcelTest extends DumperTestAbstract
         $excelDumper->dump($statsTable);
     }
 
-    public function testLink()
+    protected function getDumper(): DumperInterface
     {
-        self::expectNotToPerformAssertions();
-
-        $statsTable = new StatsTable([['http://example.org']], ['link'], [], [Format::LINK], []);
-        $dumper = new ExcelDumper();
-        $dumper->enableAggregation(false);
-        $dumper->dump($statsTable);
-
-        // Should not fail if link is not valid
-        $statsTable = new StatsTable([['']], ['link'], [], [Format::LINK], []);
-        $dumper = new ExcelDumper();
-        $dumper->enableAggregation(false);
-        $dumper->dump($statsTable);
+        return new ExcelDumper();
     }
 }
