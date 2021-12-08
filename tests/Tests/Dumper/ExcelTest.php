@@ -2,6 +2,7 @@
 
 namespace Tests\Dumper;
 
+use IgraalOSL\StatsTable\Dumper\DumperInterface;
 use IgraalOSL\StatsTable\Dumper\Excel\ExcelDumper;
 use IgraalOSL\StatsTable\Dumper\Format;
 use IgraalOSL\StatsTable\StatsTable;
@@ -10,6 +11,8 @@ class ExcelTest extends DumperTestAbstract
 {
     public function test()
     {
+        self::expectNotToPerformAssertions();
+
         $headers = ['date' => 'Date', 'hits' => 'Nb de visites', 'subscribers' => 'Nb inscrits', 'ratio' => 'Taux de transfo', 'revenues' => 'Revenus générés'];
         $data = [
             ['date' => '2014-01-01', 'hits' => '10', 'subscribers' => 2, 'ratio' => .2, 'revenues' => 45.321],
@@ -50,15 +53,19 @@ class ExcelTest extends DumperTestAbstract
         $excelContents = $excelDumper->dump($statsTable);
 
         file_put_contents('/tmp/test2.xls', $excelContents);
-
-        $this->markTestSkipped();
     }
 
     public function testEmpty()
     {
+        self::expectNotToPerformAssertions();
+
         $statsTable = new StatsTable([], []);
         $excelDumper = new ExcelDumper();
         $excelDumper->dump($statsTable);
-        $this->markTestSkipped();
+    }
+
+    protected function getDumper(): DumperInterface
+    {
+        return new ExcelDumper();
     }
 }

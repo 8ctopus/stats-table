@@ -331,7 +331,9 @@ class ExcelDumper extends Dumper
                 $sheet->setCellValueExplicitByColumnAndRow($col, $row, $value, DataType::TYPE_STRING);
             case Format::LINK:
                 $sheet->setCellValueByColumnAndRow($col, $row, $value);
-                $sheet->getCellByColumnAndRow($col, $row)->getHyperlink()->setUrl($value);
+                if (filter_var($value, FILTER_VALIDATE_URL)) {
+                    $sheet->getCellByColumnAndRow($col, $row)->getHyperlink()->setUrl($value);
+                }
                 break;
             default:
                 $sheet->setCellValueByColumnAndRow($col, $row, $value);
