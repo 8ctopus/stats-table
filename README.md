@@ -3,7 +3,7 @@
 stats-table
 ===========
 
-PHP Libary to handle statistics tables and CSV, JSON and Excel exports. [![Build Status](https://travis-ci.org/paxal/stats-table.png?branch=master)](https://travis-ci.org/paxal/stats-table)
+PHP Libary to handle statistics tables and CSV, JSON and Excel exports. [![Build status](https://github.com/paxal/stats-table/actions/workflows/main.yml/badge.svg)](https://github.com/paxal/stats-table/actions/workflows/main.yml)
 
 Summary
 -------
