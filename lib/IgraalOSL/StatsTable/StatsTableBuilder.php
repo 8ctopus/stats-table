@@ -15,6 +15,9 @@ class StatsTableBuilder
     /** @var mixed[] The lines indexes */
     private $indexes;
 
+    /** @var array */
+    private $defaultValues;
+
     /**
      * @param $table
      * @param array $headers
