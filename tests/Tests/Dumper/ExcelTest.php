@@ -44,7 +44,8 @@ class ExcelTest extends DumperTestAbstract
         $excelDumper->setOption(ExcelDumper::OPTION_ZEBRA_COLOR_ODD, 'eeeeee');
 
         $excelContents = $excelDumper->dump($statsTable);
-        file_put_contents('/tmp/test.xls', $excelContents);
+
+        file_put_contents(sys_get_temp_dir() . '/test.xls', $excelContents);
 
         $dataTypes['date'] = Format::DATETIME;
         $dataTypes['revenues'] = Format::FLOAT2;
@@ -52,7 +53,7 @@ class ExcelTest extends DumperTestAbstract
         $excelDumper->setOptions([ExcelDumper::OPTION_ZEBRA => false]);
         $excelContents = $excelDumper->dump($statsTable);
 
-        file_put_contents('/tmp/test2.xls', $excelContents);
+        file_put_contents(sys_get_temp_dir() . '/test2.xls', $excelContents);
     }
 
     public function testEmpty()
