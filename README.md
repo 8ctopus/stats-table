@@ -28,7 +28,7 @@ Usage
 
 ### Using the class StatsTable
 
-The class `StatsTable` is the class that will hold your data. It takes one mandotary arguments, and 4 options arguments. The simpler way to create a new table is to pass the data itself and its headers (even if headers are optional).
+The class `StatsTable` is the class that will hold your data. It takes one mandatory argument, and 4 optional arguments. The simpler way to create a new table is to pass the data itself and its headers (even if headers are optional).
 
 ```php
 use IgraalOSL\StatsTable\StatsTable;
@@ -54,7 +54,7 @@ $excelDumper = new ExcelDumper();
 $excelContents = $excelDumper->dump($statsTable);
 
 header('Content-type: application/vnd.ms-excel');
-echo $excelContents
+echo $excelContents;
 ```
 
 ### Using stats table builder
@@ -76,4 +76,69 @@ $statsTableBuilder = new StatsTableBuilder(
 $statsTableBuilder->addIndexesAsColumn('date', 'Date');
 
 $statsTable = $statsTableBuilder->build();
+```
+
+#### Advanced example with aggregation and multiple column sorting
+
+```php
+use IgraalOSL\StatsTable\Aggregation\AverageAggregation;
+use IgraalOSL\StatsTable\Aggregation\SumAggregation;
+use IgraalOSL\StatsTable\Dumper\HTML\HTMLDumper;
+use IgraalOSL\StatsTable\Dumper\Format;
+use IgraalOSL\StatsTable\StatsTableBuilder;
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$data = [
+    [
+        'name' => 'Pierre',
+        'age' => 32,
+        'height' => 1.87,
+    ], [
+        'name' => 'Jacques',
+        'age' => 28,
+        'height' => 1.67,
+    ], [
+        'name' => 'Jean',
+        'age' => 32,
+        'height' => 1.98,
+    ], [
+        'name' => 'Paul',
+        'age' => 25,
+        'height' => 1.82,
+    ],
+];
+
+$headers = [
+    'name' => 'Name',
+    'age' => 'Age',
+    'height' => 'Height',
+];
+
+$formats = [
+    'name' => Format::STRING,
+    'age' => Format::INTEGER,
+    'height' => Format::FLOAT2,
+];
+
+$aggregations = [
+    'age' => new SumAggregation('age', Format::INTEGER),
+    'height' => new AverageAggregation('height', Format::FLOAT2),
+];
+
+$aggregationsFormats = [
+    'age' => Format::INTEGER,
+    'height' => Format::FLOAT2,
+];
+
+$table = (new StatsTableBuilder($data, $headers, $formats, $aggregations))
+    ->build();
+
+$table->sortMultipleColumn([
+    'age' => true,
+    'height' => true,
+]);
+
+$dumper = new HTMLDumper();
+echo $dumper->dump($table);
 ```
