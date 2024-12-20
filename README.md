@@ -78,13 +78,14 @@ $statsTableBuilder->addIndexesAsColumn('date', 'Date');
 $statsTable = $statsTableBuilder->build();
 ```
 
-#### Advanced example with aggregation and multiple column sorting
+#### Advanced example with aggregation, dynamic column multiple column sorting
 
 ```php
 use IgraalOSL\StatsTable\Aggregation\AverageAggregation;
 use IgraalOSL\StatsTable\Aggregation\SumAggregation;
-use IgraalOSL\StatsTable\Dumper\HTML\HTMLDumper;
+use IgraalOSL\StatsTable\Dumper\TXT\TXTDumper;
 use IgraalOSL\StatsTable\Dumper\Format;
+use IgraalOSL\StatsTable\DynamicColumn\CallbackColumnBuilder;
 use IgraalOSL\StatsTable\StatsTableBuilder;
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -93,18 +94,22 @@ $data = [
     [
         'name' => 'Pierre',
         'age' => 32,
+        'weight' => 100,
         'height' => 1.87,
     ], [
         'name' => 'Jacques',
         'age' => 28,
+        'weight' => 60,
         'height' => 1.67,
     ], [
         'name' => 'Jean',
         'age' => 32,
+        'weight' => 80,
         'height' => 1.98,
     ], [
         'name' => 'Paul',
         'age' => 25,
+        'weight' => 75,
         'height' => 1.82,
     ],
 ];
@@ -112,12 +117,14 @@ $data = [
 $headers = [
     'name' => 'Name',
     'age' => 'Age',
+    'weight' => 'Weight',
     'height' => 'Height',
 ];
 
 $formats = [
     'name' => Format::STRING,
     'age' => Format::INTEGER,
+    'weight' => Format::FLOAT2,
     'height' => Format::FLOAT2,
 ];
 
@@ -131,8 +138,15 @@ $aggregationsFormats = [
     'height' => Format::FLOAT2,
 ];
 
-$table = (new StatsTableBuilder($data, $headers, $formats, $aggregations))
-    ->build();
+$builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
+
+$dynamicColumn = new CallbackColumnBuilder(function($row) : float {
+    return $row['weight'] / ($row['height'] * $row['height']);
+});
+
+$builder->addDynamicColumn('BMI', $dynamicColumn, 'BMI', Format::FLOAT2);
+
+$table = $builder->build();
 
 $table->sortMultipleColumn([
     'age' => true,
