@@ -3,9 +3,11 @@
     <tr>
 {% for key, name in headers %}
         <th class="stats-table-{{ key }}">
-{% if metaData[key].description is defined %}            <abbr title="{{ metaData[key].description }}">{% endif %}
+{% if metaData[key].description is defined %}
+            <abbr title="{{ metaData[key].description }}">{{ name }}</abbr>
+{% else %}
             {{ name }}
-{% if metaData[key].description is defined %}            </abbr>{% endif %}
+{% endif %}
         </th>
 {% endfor %}
     </tr>
