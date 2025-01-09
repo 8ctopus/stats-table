@@ -37,7 +37,7 @@
     },
     "autoload": {
         "psr-4": {
-            "IgraalOSL\\StatsTable\\": "lib/IgraalOSL/StatsTable"
+            "IgraalOSL\\StatsTable\\": "src"
         }
     },
     "autoload-dev": {
