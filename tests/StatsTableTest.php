@@ -45,8 +45,8 @@ class StatsTableTest extends TestCase
 
 
     /**
-     * @dataProvider dataProviderForOneColumn
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForOneColumn')]
     public function testSortOneColumn($columnName, $asc, $expected)
     {
         $statsTable = $this->_getSimpleTestData();
@@ -98,8 +98,8 @@ class StatsTableTest extends TestCase
     }
 
     /**
-     * @dataProvider dataProviderForMultipleColumn
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForMultipleColumn')]
     public function testSortMultipleColumn($params, $expected)
     {
         $statsTable = $this->_getSimpleTestData();
@@ -165,8 +165,8 @@ class StatsTableTest extends TestCase
     }
 
     /**
-     * @dataProvider dataProviderForMultipleColumnWithFunc
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForMultipleColumnWithFunc')]
     public function testSortMultipleColumnWithFunc($params, $expected)
     {
         $statsTable = $this->_getAdvancedTestData();
@@ -203,8 +203,8 @@ class StatsTableTest extends TestCase
     }
 
     /**
-     * @dataProvider dataProviderForOneColumnWithFunc
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForOneColumnWithFunc')]
     public function testSortOneColumnWithFunc($columnName, $customCompareFunc, $expected)
     {
         $statsTable = $this->_getAdvancedTestData();
