@@ -44,8 +44,6 @@ class StatsTableTest extends TestCase
     }
 
 
-    /**
-     */
     #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForOneColumn')]
     public function testSortOneColumn($columnName, $asc, $expected)
     {
@@ -59,7 +57,8 @@ class StatsTableTest extends TestCase
     {
         return [
             [
-                'age', true,
+                'age',
+                true,
                 [
                     3 => ['name' => 'Paul', 'age' => '25'],
                     1 => ['name' => 'Jacques', 'age' => '28'],
@@ -68,7 +67,8 @@ class StatsTableTest extends TestCase
                 ]
             ],
             [
-                'name', true,
+                'name',
+                true,
                 [
                     1 => ['name' => 'Jacques', 'age' => '28'],
                     2 => ['name' => 'Jean', 'age' => '32'],
@@ -77,7 +77,8 @@ class StatsTableTest extends TestCase
                 ]
             ],
             [
-                'age', false,
+                'age',
+                false,
                 [
                     0 => ['name' => 'Pierre', 'age' => '32'],
                     2 => ['name' => 'Jean', 'age' => '32'],
@@ -86,7 +87,8 @@ class StatsTableTest extends TestCase
                 ]
             ],
             [
-                'name', false,
+                'name',
+                false,
                 [
                     0 => ['name' => 'Pierre', 'age' => '32'],
                     3 => ['name' => 'Paul', 'age' => '25'],
@@ -97,8 +99,6 @@ class StatsTableTest extends TestCase
         ];
     }
 
-    /**
-     */
     #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForMultipleColumn')]
     public function testSortMultipleColumn($params, $expected)
     {
@@ -164,8 +164,6 @@ class StatsTableTest extends TestCase
         );
     }
 
-    /**
-     */
     #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForMultipleColumnWithFunc')]
     public function testSortMultipleColumnWithFunc($params, $expected)
     {
@@ -202,8 +200,6 @@ class StatsTableTest extends TestCase
         ];
     }
 
-    /**
-     */
     #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForOneColumnWithFunc')]
     public function testSortOneColumnWithFunc($columnName, $customCompareFunc, $expected)
     {
