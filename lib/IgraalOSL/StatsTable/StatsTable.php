@@ -131,7 +131,7 @@ class StatsTable
      */
     protected function removeColumnsInLine(array &$line, array $columnsMap)
     {
-        foreach ($line as $k => $v) {
+        foreach (array_keys($line) as $k) {
             if (array_key_exists($k, $columnsMap)) {
                 unset($line[$k]);
             }
@@ -181,13 +181,12 @@ class StatsTable
 
     /**
      * Sort stats table by multiple column with a custom compare function
-     * @param $columns $columns Associative array : KEY=> column name (string), VALUE=> Custom function (function)
+     * @param array $columns Associative array : KEY=> column name (string), VALUE=> Custom function (function)
      * @return $this
      */
     public function uSortMultipleColumn($columns)
     {
-        $dataFormats = $this->dataFormats;
-        $sort = function ($a, $b) use ($columns, $dataFormats) {
+        $sort = function ($a, $b) use ($columns) {
             foreach ($columns as $colName => $fn) {
                 $tmp = $fn($a[$colName], $b[$colName]);
                 if ($tmp !== 0) {
