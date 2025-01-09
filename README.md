@@ -18,8 +18,6 @@ This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-tab
 
 ## Usage
 
-The `StatsTable` class holds the data. It takes one mandatory argument, and 4 optional arguments. The simpler way to create a new table is to pass the data itself and its headers (headers are optional).
-
 ```php
 use Oct8pus\StatsTable\StatsTable;
 
@@ -33,7 +31,16 @@ $headers = [
     'hits' => 'Number of hits'
 ];
 
-$statsTable = new StatsTable($data, $headers);
+$table = new StatsTable($data, $headers);
+
+$dumper = new TXTDumper();
+echo $dumper->dump($table);
+```
+
+```txt
+Date       Number of hits
+ 2014-01-01          32500
+ 2014-01-02          48650
 ```
 
 ### Dumping a table
