@@ -1,7 +1,7 @@
 {
-    "name": "paxal/stats-table",
+    "name": "8ctopus/stats-table",
     "description": "Helper to handle stats table with multiple formatter",
-    "homepage": "https://github.com/paxal/stats-table",
+    "homepage": "https://github.com/8ctopus/stats-table",
     "type": "library",
     "license": "MIT",
     "keywords": ["PHP", "stats", "statistics", "excel", "csv", "json", "xls"],
@@ -13,27 +13,51 @@
         {
             "name": "Cyril Pascal",
             "homepage": "https://github.com/paxal"
+        },
+        {
+            "name": "8ctopus",
+            "email": "hello@octopuslabs.io"
         }
     ],
-    "autoload": {
-        "psr-4": {"IgraalOSL\\StatsTable\\": "lib/IgraalOSL/StatsTable"}
-    },
-    "suggest": {
-        "phpoffice/phpspreadsheet": "Allow to export to Excel file. req phpoffice/phpspreadsheet:^1.0"
-    },
-    "conflict": {
-        "igraal/stats-table": "*"
-    },
-    "require-dev": {
-        "ext-json": "*",
-        "phpoffice/phpspreadsheet": "^1.9.0",
-        "phpunit/phpunit": "^8.2",
-        "twig/twig": "^1.0|^2.0|^3.0"
-    },
     "require": {
         "php": "^7.2|^8.0"
     },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.8",
+        "phpmd/phpmd": "^2.13",
+        "phpoffice/phpspreadsheet": "^1.9.0",
+        "phpstan/phpstan": "^1.9",
+        "phpunit/phpunit": "^9.0|^10.0|^11.0",
+        "twig/twig": "^1.0|^2.0|^3.0"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "config": {
         "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "IgraalOSL\\StatsTable\\": "lib/IgraalOSL/StatsTable"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "conflict": {
+        "paxal/stats-table": "*",
+        "igraal/stats-table": "*"
+    },
+    "replace": {
+        "paxal/stats-table": "*",
+        "igraal/stats-table": "*"
+    },
+    "scripts": {
+        "test": "phpunit --coverage-html=coverage",
+        "fix": "php-cs-fixer fix --verbose",
+        "fix-risky": "php-cs-fixer fix --allow-risky=yes --verbose",
+        "phpstan": "phpstan analyse --level 8 src",
+        "phpmd": "phpmd src ansi phpmd.xml"
     }
 }
