@@ -15,7 +15,7 @@ class RatioAggregationTest extends AggregationTestAbstract
 
         $format = Format::FLOAT2;
         $subscribersRatio = new RatioAggregation('hits', 'subscribers', $format);
-        self::assertSame(13/40, $subscribersRatio->aggregate($statsTable));
+        self::assertSame(13 / 40, $subscribersRatio->aggregate($statsTable));
         self::assertSame($format, $subscribersRatio->getFormat());
     }
 }

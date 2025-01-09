@@ -15,7 +15,7 @@ class RelativeColumnBuilderTest extends TestCase
         $statsTable = new StatsTableBuilder(
             [
                 'first' => ['a' => 1, 'b' => 2, 'c' => 0],
-                'second' => ['a' => 4, 'b' => 5, 'd' => 0]
+                'second' => ['a' => 4, 'b' => 5, 'd' => 0],
             ]
         );
 

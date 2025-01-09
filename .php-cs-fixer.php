@@ -27,6 +27,7 @@ $fixer = (new PhpCsFixer\Config('', ''))
         'no_empty_comment' => false,
         'no_superfluous_phpdoc_tags' => false,
         'no_useless_else' => false,
+        'ordered_class_elements' => false,
         'phpdoc_add_missing_param_annotation' => true,
         'phpdoc_no_empty_return' => false,
         'phpdoc_summary' => false,

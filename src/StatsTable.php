@@ -65,9 +65,10 @@ class StatsTable
 
     /**
      * Constructs a new stats table
+     *
      * @param array $data
-     * @param $headers
-     * @param $aggregations
+     * @param       $headers
+     * @param       $aggregations
      * @param array $dataFormats
      * @param array $aggregationsFormats
      * @param array $metaData
@@ -97,7 +98,7 @@ class StatsTable
      */
     public function removeColumn(mixed $columnName) : self
     {
-        return $this->removeColumns(array($columnName));
+        return $this->removeColumns([$columnName]);
     }
 
     /**
@@ -142,37 +143,43 @@ class StatsTable
 
     /**
      * Sort stats table by one column
+     *
      * @param string $columnName Name of column
-     * @param bool $asc Sort direction : TRUE=>Ascending, FALSE=>Descending
+     * @param bool   $asc        Sort direction : TRUE=>Ascending, FALSE=>Descending
+     *
      * @return StatsTable
      */
     public function sortColumn(string $columnName, bool $asc = true) : self
     {
-        $this->sortMultipleColumn(array($columnName=>$asc));
+        $this->sortMultipleColumn([$columnName => $asc]);
         return $this;
     }
 
     /**
      * Sort stats table by one column with a custom compare function
-     * @param string $columnName Name of column
-     * @param function $compareFunc Custom compare function that should return 0, -1 or 1.
+     *
+     * @param string   $columnName  Name of column
+     * @param function $compareFunc custom compare function that should return 0, -1 or 1
+     *
      * @return StatsTable
      */
     public function uSortColumn(string $columnName, $compareFunc) : self
     {
-        $this->uSortMultipleColumn(array($columnName=>$compareFunc));
+        $this->uSortMultipleColumn([$columnName => $compareFunc]);
         return $this;
     }
 
     /**
      * Sort stats table by multiple column
+     *
      * @param array $columns Associative array : KEY=> column name (string), VALUE=> Sort direction (boolean)
+     *
      * @return $this
      */
     public function sortMultipleColumn(array $columns)
     {
         $compareFuncList = [];
-        foreach($columns as $colName=>$asc) {
+        foreach ($columns as $colName => $asc) {
             $columnFormat = array_key_exists($colName, $this->dataFormats) ? $this->dataFormats[$colName] : Format::STRING;
             $compareFuncList[$colName] = $this->_getFunctionForFormat($columnFormat, $asc);
         }
@@ -183,7 +190,9 @@ class StatsTable
 
     /**
      * Sort stats table by multiple column with a custom compare function
+     *
      * @param array $columns Associative array : KEY=> column name (string), VALUE=> Custom function (function)
+     *
      * @return $this
      */
     public function uSortMultipleColumn(array $columns)
@@ -215,7 +224,6 @@ class StatsTable
             $tmp = strcmp($a, $b);
             return $asc ? $tmp : -$tmp;
         };
-
 
         if (Format::STRING === $format) {
             return $stringCmp;

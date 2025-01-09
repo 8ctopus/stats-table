@@ -16,7 +16,7 @@ class RatioColumnBuilderTest extends TestCase
         $table = [
             '2014-01-01' => ['hits' => 10, 'subscribers' => 5],
             '2014-01-02' => ['hits' => 30, 'subscribers' => 9],
-            '2014-01-03' => ['hits' => 0, 'subscribers' => 0]
+            '2014-01-03' => ['hits' => 0, 'subscribers' => 0],
         ];
 
         $statsTable = new StatsTableBuilder($table);
@@ -28,7 +28,7 @@ class RatioColumnBuilderTest extends TestCase
         $ratioData = [
             '2014-01-01' => .5,
             '2014-01-02' => .3,
-            '2014-01-03' => 'N/A'
+            '2014-01-03' => 'N/A',
         ];
         $ratioColumn = new StatsColumnBuilder($ratioData, 'Ratio');
         self::assertEquals($ratioColumn, $statsTable->getColumn('ratio'));

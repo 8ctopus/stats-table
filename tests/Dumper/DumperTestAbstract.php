@@ -6,7 +6,6 @@ namespace Tests\Dumper;
 
 use Oct8pus\StatsTable\Aggregation\StaticAggregation;
 use Oct8pus\StatsTable\Dumper\DumperInterface;
-use Oct8pus\StatsTable\Dumper\Excel\ExcelDumper;
 use Oct8pus\StatsTable\Dumper\Format;
 use Oct8pus\StatsTable\StatsTable;
 use Oct8pus\StatsTable\StatsTableBuilder;
@@ -16,12 +15,10 @@ abstract class DumperTestAbstract extends TestCase
 {
     protected function getData() : array
     {
-        $table = [
+        return [
             '2014-01-01' => ['hits' => 12],
             '2014-01-03' => ['hits' => 14],
         ];
-
-        return $table;
     }
 
     protected function getHeaders() : array

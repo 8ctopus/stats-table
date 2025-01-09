@@ -28,10 +28,10 @@ class RatioColumnBuilder implements DynamicColumnBuilderInterface
     {
         $column = [];
         $values = $statsTable->getColumn($this->valueInternalName)->getValues();
-        $overs  = $statsTable->getColumn($this->overInternalName)->getValues();
+        $overs = $statsTable->getColumn($this->overInternalName)->getValues();
         foreach ($statsTable->getIndexes() as $index) {
             $value = $values[$index];
-            $over  = $overs[$index];
+            $over = $overs[$index];
             $column[$index] = $over ? $value / $over : $this->defaultValue;
         }
 

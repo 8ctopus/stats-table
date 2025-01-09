@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Oct8pus\StatsTable\Aggregation\SumAggregation;
 use Oct8pus\StatsTable\Dumper\Format;
 use Oct8pus\StatsTable\Dumper\HTML\HTMLDumper;
-use Oct8pus\StatsTable\Dumper\JSON\JSONDumper;
 use Oct8pus\StatsTable\Dumper\Text\TextDumper;
 use Oct8pus\StatsTable\StatsTable;
 

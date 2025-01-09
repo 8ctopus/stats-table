@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests;
 
 use Oct8pus\StatsTable\StatsTable;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class StatsTableTest extends TestCase
@@ -14,7 +15,7 @@ class StatsTableTest extends TestCase
         $statsTable = new StatsTable(
             [
                 ['a' => 'a', 'b' => 'b'],
-                ['a' => 'A', 'b' => 'B']
+                ['a' => 'A', 'b' => 'B'],
             ],
             ['a' => 'Alpha', 'b' => 'Bravo']
         );
@@ -26,7 +27,7 @@ class StatsTableTest extends TestCase
         self::assertSame(
             [
                 ['a' => 'a'],
-                ['a' => 'A']
+                ['a' => 'A'],
             ],
             $statsTable->getData()
         );
@@ -45,8 +46,7 @@ class StatsTableTest extends TestCase
         );
     }
 
-
-    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForOneColumn')]
+    #[DataProvider('dataProviderForOneColumn')]
     public function testSortOneColumn($columnName, $asc, $expected) : void
     {
         $statsTable = $this->_getSimpleTestData();
@@ -54,8 +54,7 @@ class StatsTableTest extends TestCase
         self::assertSame($expected, $statsTable->getData());
     }
 
-
-    static public function dataProviderForOneColumn()
+    public static function dataProviderForOneColumn()
     {
         return [
             [
@@ -66,7 +65,7 @@ class StatsTableTest extends TestCase
                     1 => ['name' => 'Jacques', 'age' => '28'],
                     0 => ['name' => 'Pierre', 'age' => '32'],
                     2 => ['name' => 'Jean', 'age' => '32'],
-                ]
+                ],
             ],
             [
                 'name',
@@ -76,7 +75,7 @@ class StatsTableTest extends TestCase
                     2 => ['name' => 'Jean', 'age' => '32'],
                     3 => ['name' => 'Paul', 'age' => '25'],
                     0 => ['name' => 'Pierre', 'age' => '32'],
-                ]
+                ],
             ],
             [
                 'age',
@@ -86,7 +85,7 @@ class StatsTableTest extends TestCase
                     2 => ['name' => 'Jean', 'age' => '32'],
                     1 => ['name' => 'Jacques', 'age' => '28'],
                     3 => ['name' => 'Paul', 'age' => '25'],
-                ]
+                ],
             ],
             [
                 'name',
@@ -96,12 +95,12 @@ class StatsTableTest extends TestCase
                     3 => ['name' => 'Paul', 'age' => '25'],
                     2 => ['name' => 'Jean', 'age' => '32'],
                     1 => ['name' => 'Jacques', 'age' => '28'],
-                ]
-            ]
+                ],
+            ],
         ];
     }
 
-    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForMultipleColumn')]
+    #[DataProvider('dataProviderForMultipleColumn')]
     public function testSortMultipleColumn($params, $expected) : void
     {
         $statsTable = $this->_getSimpleTestData();
@@ -109,64 +108,63 @@ class StatsTableTest extends TestCase
         self::assertSame($expected, $statsTable->getData());
     }
 
-    static public function dataProviderForMultipleColumn()
+    public static function dataProviderForMultipleColumn()
     {
         return [
             [
-                ['age' => true,'name' => true],
+                ['age' => true, 'name' => true],
                 [
                     3 => ['name' => 'Paul', 'age' => '25'],
                     1 => ['name' => 'Jacques', 'age' => '28'],
                     2 => ['name' => 'Jean', 'age' => '32'],
                     0 => ['name' => 'Pierre', 'age' => '32'],
-                ]
+                ],
             ],
             [
-                ['age' => true,'name' => false],
+                ['age' => true, 'name' => false],
                 [
                     3 => ['name' => 'Paul', 'age' => '25'],
                     1 => ['name' => 'Jacques', 'age' => '28'],
                     0 => ['name' => 'Pierre', 'age' => '32'],
                     2 => ['name' => 'Jean', 'age' => '32'],
-                ]
+                ],
             ],
             [
-                ['age' => false,'name' => true],
+                ['age' => false, 'name' => true],
                 [
                     2 => ['name' => 'Jean', 'age' => '32'],
                     0 => ['name' => 'Pierre', 'age' => '32'],
                     1 => ['name' => 'Jacques', 'age' => '28'],
                     3 => ['name' => 'Paul', 'age' => '25'],
-                ]
+                ],
             ],
             [
-                ['age' => false,'name' => false],
+                ['age' => false, 'name' => false],
                 [
                     0 => ['name' => 'Pierre', 'age' => '32'],
                     2 => ['name' => 'Jean', 'age' => '32'],
                     1 => ['name' => 'Jacques', 'age' => '28'],
                     3 => ['name' => 'Paul', 'age' => '25'],
-                ]
-            ]
+                ],
+            ],
         ];
     }
-
 
     private function _getAdvancedTestData()
     {
         return new StatsTable(
             [
-                ['name' => 'Pierre', 'age' => '32', 'order' => ['nb' => 10,'id' => '4587956']],
-                ['name' => 'Jacques', 'age' => '28', 'order' => ['nb' => 10,'id' => '2479109']],
-                ['name' => 'Jean', 'age' => '32', 'order' => ['nb' => 1,'id' => '9210367']],
-                ['name' => 'Paul', 'age' => '25', 'order' => ['nb' => 24,'id' => '5214681']],
-                ['name' => 'Celine', 'age' => '25', 'order' => ['nb' => 24,'id' => '5214680']],
+                ['name' => 'Pierre', 'age' => '32', 'order' => ['nb' => 10, 'id' => '4587956']],
+                ['name' => 'Jacques', 'age' => '28', 'order' => ['nb' => 10, 'id' => '2479109']],
+                ['name' => 'Jean', 'age' => '32', 'order' => ['nb' => 1, 'id' => '9210367']],
+                ['name' => 'Paul', 'age' => '25', 'order' => ['nb' => 24, 'id' => '5214681']],
+                ['name' => 'Celine', 'age' => '25', 'order' => ['nb' => 24, 'id' => '5214680']],
             ],
             ['name' => 'Name', 'age' => 'Age', 'order' => 'Order']
         );
     }
 
-    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForMultipleColumnWithFunc')]
+    #[DataProvider('dataProviderForMultipleColumnWithFunc')]
     public function testSortMultipleColumnWithFunc($params, $expected) : void
     {
         $statsTable = $this->_getAdvancedTestData();
@@ -174,35 +172,34 @@ class StatsTableTest extends TestCase
         self::assertSame($expected, $statsTable->getData());
     }
 
-    static public function dataProviderForMultipleColumnWithFunc()
+    public static function dataProviderForMultipleColumnWithFunc()
     {
-        $customSort = static function($a, $b){
-            if($a['nb'] === $b['nb']) {
-                if($a['id'] === $b['id']) {
+        $customSort = static function ($a, $b) {
+            if ($a['nb'] === $b['nb']) {
+                if ($a['id'] === $b['id']) {
                     return 0;
                 }
-                return $a['id'] < $b['id']  ? -1 :1;
+                return $a['id'] < $b['id'] ? -1 : 1;
             }
 
-            return $a['nb'] < $b['nb']  ? -1 :1;
+            return $a['nb'] < $b['nb'] ? -1 : 1;
         };
-
 
         return [
             [
                 ['order' => $customSort, 'name' => 'strcmp'],
                 [
-                    2 => ['name' => 'Jean', 'age' => '32', 'order' => ['nb' => 1,'id' => '9210367']],
-                    1 => ['name' => 'Jacques', 'age' => '28', 'order' => ['nb' => 10,'id' => '2479109']],
-                    0 => ['name' => 'Pierre', 'age' => '32', 'order' => ['nb' => 10,'id' => '4587956']],
-                    4 => ['name' => 'Celine', 'age' => '25', 'order' => ['nb' => 24,'id' => '5214680']],
-                    3 => ['name' => 'Paul', 'age' => '25', 'order' => ['nb' => 24,'id' => '5214681']],
-                ]
-            ]
+                    2 => ['name' => 'Jean', 'age' => '32', 'order' => ['nb' => 1, 'id' => '9210367']],
+                    1 => ['name' => 'Jacques', 'age' => '28', 'order' => ['nb' => 10, 'id' => '2479109']],
+                    0 => ['name' => 'Pierre', 'age' => '32', 'order' => ['nb' => 10, 'id' => '4587956']],
+                    4 => ['name' => 'Celine', 'age' => '25', 'order' => ['nb' => 24, 'id' => '5214680']],
+                    3 => ['name' => 'Paul', 'age' => '25', 'order' => ['nb' => 24, 'id' => '5214681']],
+                ],
+            ],
         ];
     }
 
-    #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForOneColumnWithFunc')]
+    #[DataProvider('dataProviderForOneColumnWithFunc')]
     public function testSortOneColumnWithFunc($columnName, $customCompareFunc, $expected) : void
     {
         $statsTable = $this->_getAdvancedTestData();
@@ -215,27 +212,27 @@ class StatsTableTest extends TestCase
         );
     }
 
-    static public function dataProviderForOneColumnWithFunc()
+    public static function dataProviderForOneColumnWithFunc()
     {
-        $customSort = static function($a, $b){
-            if($a === $b) {
-               return 0;
+        $customSort = static function ($a, $b) {
+            if ($a === $b) {
+                return 0;
             }
 
-            return $a < $b  ? 1 : -1;
+            return $a < $b ? 1 : -1;
         };
 
         return [
             [
                 'age', $customSort,
                 [
-                    0 => ['name' => 'Pierre', 'age' => '32', 'order' => ['nb' => 10,'id' => '4587956']],
-                    2 => ['name' => 'Jean', 'age' => '32', 'order' => ['nb' => 1,'id' => '9210367']],
-                    1 => ['name' => 'Jacques', 'age' => '28', 'order' => ['nb' => 10,'id' => '2479109']],
-                    3 => ['name' => 'Paul', 'age' => '25', 'order' => ['nb' => 24,'id' => '5214681']],
-                    4 => ['name' => 'Celine', 'age' => '25', 'order' => ['nb' => 24,'id' => '5214680']],
-                ]
-            ]
+                    0 => ['name' => 'Pierre', 'age' => '32', 'order' => ['nb' => 10, 'id' => '4587956']],
+                    2 => ['name' => 'Jean', 'age' => '32', 'order' => ['nb' => 1, 'id' => '9210367']],
+                    1 => ['name' => 'Jacques', 'age' => '28', 'order' => ['nb' => 10, 'id' => '2479109']],
+                    3 => ['name' => 'Paul', 'age' => '25', 'order' => ['nb' => 24, 'id' => '5214681']],
+                    4 => ['name' => 'Celine', 'age' => '25', 'order' => ['nb' => 24, 'id' => '5214680']],
+                ],
+            ],
         ];
     }
 }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Oct8pus\StatsTable\Dumper;
 
+use DateTimeInterface;
+
 abstract class Dumper implements DumperInterface
 {
     protected $enableHeaders = true;
@@ -11,6 +13,7 @@ abstract class Dumper implements DumperInterface
 
     /**
      * Enable headers
+     *
      * @param bool $enableHeaders
      */
     public function enableHeaders(bool $enableHeaders = true) : void
@@ -20,6 +23,7 @@ abstract class Dumper implements DumperInterface
 
     /**
      * Enable aggregation
+     *
      * @param bool $enableAggregation
      */
     public function enableAggregation(bool $enableAggregation = true) : void
@@ -29,42 +33,44 @@ abstract class Dumper implements DumperInterface
 
     /**
      * Default value formatter
+     *
      * @param $format
      * @param $value
-     * @return string|int|float
+     *
+     * @return float|int|string
      */
-    protected function formatValue($format, $value) : string|int|float
+    protected function formatValue($format, $value) : float|int|string
     {
         switch ($format) {
             case Format::DATE:
-                if ($value instanceof \DateTimeInterface) {
+                if ($value instanceof DateTimeInterface) {
                     return $value->format('Y-m-d');
                 }
                 break;
 
             case Format::DATETIME:
-                if ($value instanceof \DateTimeInterface) {
+                if ($value instanceof DateTimeInterface) {
                     return $value->format('Y-m-d H:i:s');
                 }
                 break;
 
             case Format::FLOAT2:
-                return sprintf("%.2f", $value);
+                return sprintf('%.2f', $value);
 
             case Format::INTEGER:
-                return sprintf("%d", $value);
+                return sprintf('%d', $value);
 
             case Format::PCT:
-                return $this->formatValue(Format::INTEGER, $value)." %";
+                return $this->formatValue(Format::INTEGER, $value) . ' %';
 
             case Format::PCT2:
-                return $this->formatValue(Format::FLOAT2, $value)." %";
+                return $this->formatValue(Format::FLOAT2, $value) . ' %';
 
             case Format::MONEY:
-                return $this->formatValue(Format::INTEGER, $value)." €";
+                return $this->formatValue(Format::INTEGER, $value) . ' €';
 
             case Format::MONEY2:
-                return $this->formatValue(Format::FLOAT2, $value)." €";
+                return $this->formatValue(Format::FLOAT2, $value) . ' €';
         }
 
         return $value;

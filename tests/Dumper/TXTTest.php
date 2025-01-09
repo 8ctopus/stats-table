@@ -37,8 +37,8 @@ class TXTTest extends DumperTestAbstract
         ];
 
         $metaData = [
-            'date' => ['description'=>'Date of the stats'],
-            'hits' => ['description'=>'Number of hits'],
+            'date' => ['description' => 'Date of the stats'],
+            'hits' => ['description' => 'Number of hits'],
         ];
 
         $aggregationsTypes = $dataTypes;
@@ -50,7 +50,7 @@ class TXTTest extends DumperTestAbstract
         $dumper = new TXTDumper();
         $text = $dumper->dump($statsTable);
 
-        $excepted = <<<TXT
+        $excepted = <<<'TXT'
         Date       Nb de visites Nb inscrits Taux de transfo Revenus générés 
          2014-01-01            10           2             20%           45,32€
          2014-01-01            20           7             35%           80,75€

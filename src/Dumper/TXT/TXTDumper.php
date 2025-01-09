@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Oct8pus\StatsTable\Dumper\TXT;
 
+use DateTimeInterface;
 use Oct8pus\StatsTable\Dumper\Dumper;
 use Oct8pus\StatsTable\Dumper\Format;
 use Oct8pus\StatsTable\StatsTable;
@@ -77,8 +78,10 @@ class TXTDumper extends Dumper
 
     /**
      * Format values
+     *
      * @param $format
      * @param $value
+     *
      * @return float|int|string
      */
     protected function formatValue($format, $value) : float|int|string
@@ -89,34 +92,34 @@ class TXTDumper extends Dumper
 
         switch ($format) {
             case Format::DATE:
-                if ($value instanceof \DateTimeInterface) {
+                if ($value instanceof DateTimeInterface) {
                     return $value->format('d/m/Y');
                 }
                 break;
 
             case Format::DATETIME:
-                if ($value instanceof \DateTimeInterface) {
+                if ($value instanceof DateTimeInterface) {
                     return $value->format('d/m/Y H:i:s');
                 }
                 break;
 
             case Format::FLOAT2:
-                return str_replace($dec_point."00", "",number_format((float) $value, $decimals, $dec_point, $thousands_sep));
+                return str_replace($dec_point . '00', '', number_format((float) $value, $decimals, $dec_point, $thousands_sep));
 
             case Format::INTEGER:
                 return number_format((int) $value, 0, $dec_point, $thousands_sep);
 
             case Format::PCT:
-                return $this->formatValue(Format::INTEGER, $value*100)."%";
+                return $this->formatValue(Format::INTEGER, $value * 100) . '%';
 
             case Format::PCT2:
-                return $this->formatValue(Format::FLOAT2, $value*100)."%";
+                return $this->formatValue(Format::FLOAT2, $value * 100) . '%';
 
             case Format::MONEY:
-                return $this->formatValue(Format::INTEGER, $value)."€";
+                return $this->formatValue(Format::INTEGER, $value) . '€';
 
             case Format::MONEY2:
-                return $this->formatValue(Format::FLOAT2, $value)."€";
+                return $this->formatValue(Format::FLOAT2, $value) . '€';
         }
 
         return $value;

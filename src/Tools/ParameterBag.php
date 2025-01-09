@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Oct8pus\StatsTable\Tools;
 
+use InvalidArgumentException;
+
 class ParameterBag
 {
     /**
@@ -13,13 +15,15 @@ class ParameterBag
 
     /**
      * Constructor. Take either an array of a ParameterBag
-     * @param  array|ParameterBag        $bag
-     * @throws \InvalidArgumentException
+     *
+     * @param array|ParameterBag $bag
+     *
+     * @throws InvalidArgumentException
      */
     public function __construct(array|self $bag = [])
     {
         if (!is_array($bag) && !($bag instanceof self)) {
-            throw new \InvalidArgumentException('Bad constructor call');
+            throw new InvalidArgumentException('Bad constructor call');
         }
 
         if ($bag instanceof self) {
@@ -33,7 +37,9 @@ class ParameterBag
 
     /**
      * Check if key exists in bag
-     * @param  string $key
+     *
+     * @param string $key
+     *
      * @return bool
      */
     public function has(string $key) : bool
@@ -43,8 +49,10 @@ class ParameterBag
 
     /**
      * Retrieve value for key $key, returns $defaultValue if not found.
-     * @param  string $key
-     * @param  null   $defaultValue
+     *
+     * @param string $key
+     * @param null   $defaultValue
+     *
      * @return null
      */
     public function get(string $key, $defaultValue = null)

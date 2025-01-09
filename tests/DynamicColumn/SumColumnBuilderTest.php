@@ -28,7 +28,7 @@ class SumColumnBuilderTest extends TestCase
         $sumData = [
             '2014-01-01' => 15,
             '2014-01-02' => 39,
-            '2014-01-03' => 0
+            '2014-01-03' => 0,
         ];
         $sumColumn = new StatsColumnBuilder($sumData, 'Sum');
         self::assertEquals($sumColumn, $statsTable->getColumn('sum'));

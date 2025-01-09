@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Aggregation;
 
 use Oct8pus\StatsTable\Aggregation\CountAggregation;
-use Oct8pus\StatsTable\Aggregation\SumAggregation;
 
 class CountAggregationTest extends AggregationTestAbstract
 {

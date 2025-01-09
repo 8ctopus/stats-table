@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Dumper;
 
+use DOMDocument;
 use Oct8pus\StatsTable\Dumper\DumperInterface;
 use Oct8pus\StatsTable\Dumper\Format;
 use Oct8pus\StatsTable\Dumper\HTML\HTMLDumper;
 use Oct8pus\StatsTable\StatsTable;
-use DOMDocument;
 
 class HTMLTest extends DumperTestAbstract
 {
@@ -36,8 +36,8 @@ class HTMLTest extends DumperTestAbstract
         ];
 
         $metaData = [
-            'date' => ['description'=>'Date of the stats'],
-            'hits' => ['description'=>'Number of hits'],
+            'date' => ['description' => 'Date of the stats'],
+            'hits' => ['description' => 'Number of hits'],
         ];
 
         $aggregationsTypes = $dataTypes;
@@ -56,12 +56,11 @@ class HTMLTest extends DumperTestAbstract
 
         self::assertEquals($expectedDoc, $doc);
 
-
         // Test with a custom template
         $dumper = new HTMLDumper([
-            'template'        => 'custom.html.twig',
-            'templateFolder'  => __DIR__ . '/Fixtures/template',
-            'templateOptions' => ['title' => 'My title test']
+            'template' => 'custom.html.twig',
+            'templateFolder' => __DIR__ . '/Fixtures/template',
+            'templateOptions' => ['title' => 'My title test'],
         ]);
         $html = $dumper->dump($statsTable);
 

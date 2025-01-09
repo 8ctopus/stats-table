@@ -52,7 +52,7 @@ class RelativeColumnBuilder implements DynamicColumnBuilderInterface
         if ($total) {
             $column = array_map(
                 static function ($value) use ($total) {
-                    return $value/$total;
+                    return $value / $total;
                 },
                 $summedData
             );

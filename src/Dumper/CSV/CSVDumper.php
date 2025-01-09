@@ -21,12 +21,13 @@ class CSVDumper extends Dumper
         $bag = new ParameterBag($options);
         $this->delimiter = $bag->get('delimiter', ',');
         $this->enclosure = $bag->get('enclosure', '"');
-        $this->locale    = $bag->get('locale', '');
-        $this->charset   = $bag->get('charset', 'utf-8');
+        $this->locale = $bag->get('locale', '');
+        $this->charset = $bag->get('charset', 'utf-8');
     }
 
     /**
      * The locale to use
+     *
      * @param string $locale
      */
     public function setLocale(string $locale) : void
@@ -63,7 +64,7 @@ class CSVDumper extends Dumper
                 $line[$index] = $this->formatValue($format, $line[$index]);
             }
         }
-        fputcsv($fileHandler, $line, $this->delimiter, $this->enclosure, "\\");
+        fputcsv($fileHandler, $line, $this->delimiter, $this->enclosure, '\\');
     }
 
     public function getMimeType() : string

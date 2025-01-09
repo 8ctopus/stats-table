@@ -9,10 +9,11 @@ use Oct8pus\StatsTable\Aggregation\AggregationInterface;
 class StatsColumnBuilder
 {
     /**
-     * @param array                $values      Associative array like index => { name => value }
-     * @param string               $headerName  Header name
-     * @param ?string               $format      Format
-     * @param AggregationInterface|null $aggregation Aggregation
+     * @param array                     $values      Associative array like index => { name => value }
+     * @param string                    $headerName  Header name
+     * @param ?string                   $format      Format
+     * @param null|AggregationInterface $aggregation Aggregation
+     * @param mixed                     $metaData
      */
     public function __construct(array $values, string $headerName = '', ?string $format = null, ?AggregationInterface $aggregation = null, $metaData = [])
     {
@@ -23,8 +24,8 @@ class StatsColumnBuilder
         $this->metaData = $metaData;
     }
 
-    /** @var Array The raw values */
-    private Array $values;
+    /** @var array The raw values */
+    private array $values;
     /** @var string The format */
     private ?string $format;
     /** @var AggregationInterface The aggregation rule */
@@ -51,7 +52,8 @@ class StatsColumnBuilder
     }
 
     /**
-     * @param  $headerName
+     * @param $headerName
+     *
      * @return $this
      */
     public function setHeaderName($headerName)
@@ -70,7 +72,8 @@ class StatsColumnBuilder
     }
 
     /**
-     * @param  AggregationInterface $aggregation
+     * @param AggregationInterface $aggregation
+     *
      * @return $this
      */
     public function setAggregation(AggregationInterface $aggregation)
@@ -104,10 +107,9 @@ class StatsColumnBuilder
         $this->metaData = $metaData;
     }
 
-
-
     /**
      * Ensure column is filled with given indexes. If not, it will be filled with default values
+     *
      * @param $indexes
      * @param $defaultValue
      */

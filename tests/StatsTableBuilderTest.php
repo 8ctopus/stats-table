@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use InvalidArgumentException;
 use Oct8pus\StatsTable\Aggregation\StaticAggregation;
 use Oct8pus\StatsTable\Aggregation\SumAggregation;
 use Oct8pus\StatsTable\Dumper\Format;
@@ -11,7 +12,6 @@ use Oct8pus\StatsTable\StatsColumnBuilder;
 use Oct8pus\StatsTable\StatsTable;
 use Oct8pus\StatsTable\StatsTableBuilder;
 use PHPUnit\Framework\TestCase;
-use InvalidArgumentException;
 
 class StatsTableBuilderTest extends TestCase
 {
@@ -19,7 +19,7 @@ class StatsTableBuilderTest extends TestCase
     {
         $table = [
             ['hits' => 12, 'subscribers' => 3],
-            ['hits' => 25, 'subscribers' => 4]
+            ['hits' => 25, 'subscribers' => 4],
         ];
 
         $statsTable = new StatsTableBuilder(
@@ -34,7 +34,7 @@ class StatsTableBuilderTest extends TestCase
     {
         $table = [
             '2014-01-01' => ['hits' => 12],
-            '2014-01-03' => ['hits' => 14]
+            '2014-01-03' => ['hits' => 14],
         ];
 
         $defaultValues = ['hits' => 0];
@@ -67,7 +67,7 @@ class StatsTableBuilderTest extends TestCase
     {
         $table = [
             '2014-01-01' => ['hits' => 12],
-            '2014-01-03' => ['hits' => 14]
+            '2014-01-03' => ['hits' => 14],
         ];
 
         $statsTable = new StatsTableBuilder($table);
@@ -76,14 +76,13 @@ class StatsTableBuilderTest extends TestCase
         $dateColumn = new StatsColumnBuilder(
             [
                 '2014-01-01' => '2014-01-01',
-                '2014-01-03' => '2014-01-03'
+                '2014-01-03' => '2014-01-03',
             ],
             'Date'
         );
 
         self::assertEquals($dateColumn, $statsTable->getColumn('date'));
     }
-
 
     private function _getTestData()
     {
@@ -100,7 +99,7 @@ class StatsTableBuilderTest extends TestCase
         $statsTable = new StatsTableBuilder(
             $data,
             ['hits' => 'Hits'],
-            ['hits'=>Format::INTEGER],
+            ['hits' => Format::INTEGER],
             ['hits' => new SumAggregation('hits')]
         );
 
@@ -109,9 +108,9 @@ class StatsTableBuilderTest extends TestCase
             $data,
             ['hits' => 'Hits'],
             ['hits' => 26],
-            ['hits'=>Format::INTEGER],
-            ['hits'=>Format::INTEGER],
-            ['hits'=>[]]
+            ['hits' => Format::INTEGER],
+            ['hits' => Format::INTEGER],
+            ['hits' => []]
         ), $stats);
     }
 
@@ -128,9 +127,9 @@ class StatsTableBuilderTest extends TestCase
             $data,
             ['hits' => 'Hits'],
             ['hits' => null],
-            ['hits'=>  null],
+            ['hits' => null],
             [],
-            ['hits'=>  []]
+            ['hits' => []]
         ), $stats);
     }
 
@@ -146,9 +145,9 @@ class StatsTableBuilderTest extends TestCase
             [],
             ['hits' => 'Hits'],
             ['hits' => null],
-            ['hits'=>  null],
+            ['hits' => null],
             [],
-            ['hits'=>  []]
+            ['hits' => []]
         ), $stats);
     }
 
@@ -157,7 +156,7 @@ class StatsTableBuilderTest extends TestCase
         $statsTable = new StatsTableBuilder(
             [],
             ['hits' => 'Hits'],
-            ['hits'=>Format::INTEGER],
+            ['hits' => Format::INTEGER],
             ['hits' => new SumAggregation('hits')]
         );
 
@@ -166,9 +165,9 @@ class StatsTableBuilderTest extends TestCase
             [],
             ['hits' => 'Hits'],
             ['hits' => 0],
-            ['hits'=>Format::INTEGER],
-            ['hits'=>Format::INTEGER],
-            ['hits'=>[]]
+            ['hits' => Format::INTEGER],
+            ['hits' => Format::INTEGER],
+            ['hits' => []]
         ), $stats);
     }
 
@@ -176,7 +175,7 @@ class StatsTableBuilderTest extends TestCase
     {
         $table = [
             '2014-01-01' => ['hits' => 12],
-            '2014-01-03' => []
+            '2014-01-03' => [],
         ];
 
         $defaultValues = ['hits' => 0];
@@ -192,7 +191,7 @@ class StatsTableBuilderTest extends TestCase
 
         $wishedColumn = [
             '2014-01-01' => 12,
-            '2014-01-03' => 0
+            '2014-01-03' => 0,
         ];
 
         self::assertEquals(new StatsColumnBuilder($wishedColumn, 'Hits'), $statsTable->getColumn('hits'));
@@ -227,7 +226,7 @@ class StatsTableBuilderTest extends TestCase
         $headers = [
             'a' => 'Alpha',
             'b' => 'Bravo',
-            'c' => 'Charly'
+            'c' => 'Charly',
         ];
 
         $statsTableBuilder = new StatsTableBuilder(
@@ -257,7 +256,7 @@ class StatsTableBuilderTest extends TestCase
             [
                 'tag' => new StaticAggregation('Tag'),
                 'subtag' => new StaticAggregation('Sub tag'),
-                'hits' => new SumAggregation('hits', Format::INTEGER)
+                'hits' => new SumAggregation('hits', Format::INTEGER),
             ]
         );
 

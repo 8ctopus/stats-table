@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Oct8pus\StatsTable\Dumper\Excel;
 
+use DateTimeImmutable;
+use DateTimeInterface;
+use Exception;
 use Oct8pus\StatsTable\Dumper\Dumper;
 use Oct8pus\StatsTable\Dumper\Format;
 use Oct8pus\StatsTable\StatsTable;
@@ -22,18 +25,19 @@ class ExcelDumper extends Dumper
 {
     private const FIRST_COLUMN = 1;
 
-    const OPTION_ZEBRA = 'zebra';
-    const OPTION_ZEBRA_COLOR_ODD = 'zebra_color_odd';
-    const OPTION_ZEBRA_COLOR_EVEN = 'zebra_color_even';
-    const OPTION_HEADER_FORMAT = 'header_format';
+    public const OPTION_ZEBRA = 'zebra';
+    public const OPTION_ZEBRA_COLOR_ODD = 'zebra_color_odd';
+    public const OPTION_ZEBRA_COLOR_EVEN = 'zebra_color_even';
+    public const OPTION_HEADER_FORMAT = 'header_format';
 
-    const FORMAT_EUR = '# ##0.00 €';
-    const FORMAT_DATETIME = 'dd/mm/yy hh:mm';
+    public const FORMAT_EUR = '# ##0.00 €';
+    public const FORMAT_DATETIME = 'dd/mm/yy hh:mm';
 
     protected $options = [];
 
     /**
      * Constructor
+     *
      * @param array $options An array with options
      */
     public function __construct(array $options = [])
@@ -43,6 +47,7 @@ class ExcelDumper extends Dumper
 
     /**
      * Set options defined in array. Does not replace existing ones
+     *
      * @param array $options
      */
     public function setOptions(array $options) : void
@@ -52,6 +57,7 @@ class ExcelDumper extends Dumper
 
     /**
      * Set specific option
+     *
      * @param string $optionName
      * @param mixed  $optionValue
      */
@@ -62,9 +68,12 @@ class ExcelDumper extends Dumper
 
     /**
      * Dumps the stats table
-     * @param  StatsTable $statsTable
+     *
+     * @param StatsTable $statsTable
+     *
      * @return string
-     * @throws \Exception
+     *
+     * @throws Exception
      */
     public function dump(StatsTable $statsTable) : string
     {
@@ -86,16 +95,16 @@ class ExcelDumper extends Dumper
             $col = self::FIRST_COLUMN;
             foreach ($statsTable->getHeaders() as $header) {
                 $sheet->setCellValueByColumnAndRow($col, $row, $header);
-                $col++;
+                ++$col;
             }
-            $sheet->duplicateStyle($headerStyle, 'A1:'. Coordinate::stringFromColumnIndex($width).'1');
-            $row++;
+            $sheet->duplicateStyle($headerStyle, 'A1:' . Coordinate::stringFromColumnIndex($width) . '1');
+            ++$row;
         }
 
         // DATA //
         foreach ($statsTable->getData() as $data) {
             $this->applyValues($sheet, $row, $data, $statsTable->getDataFormats());
-            $row++;
+            ++$row;
         }
 
         // AGGREGATIONS //
@@ -104,7 +113,7 @@ class ExcelDumper extends Dumper
         }
 
         // FINAL FORMATTING //
-        for ($col = self::FIRST_COLUMN; $col < self::FIRST_COLUMN + $width; $col++) {
+        for ($col = self::FIRST_COLUMN; $col < self::FIRST_COLUMN + $width; ++$col) {
             $sheet
                 ->getColumnDimension(Coordinate::stringFromColumnIndex($col))
                 ->setAutoSize(true);
@@ -116,14 +125,14 @@ class ExcelDumper extends Dumper
         $contents = file_get_contents($pFilename);
         @unlink($pFilename);
 
-        unset($excel);
-        unset($xlsDumper);
+        unset($excel, $xlsDumper);
 
         return $contents;
     }
 
     /**
      * Get default style
+     *
      * @return array
      */
     protected function getDefaultStyleArray() : array
@@ -135,6 +144,7 @@ class ExcelDumper extends Dumper
 
     /**
      * Get default style for a filled cell
+     *
      * @return array
      */
     protected function getDefaultStyleForFilledCells() : array
@@ -154,7 +164,9 @@ class ExcelDumper extends Dumper
 
     /**
      * Get default style for a given row
-     * @param  integer $row
+     *
+     * @param int $row
+     *
      * @return array
      */
     protected function getDefaultStyleArrayForRow(int $row) : array
@@ -181,6 +193,7 @@ class ExcelDumper extends Dumper
 
     /**
      * Get style for headers
+     *
      * @return array
      */
     protected function getHeadersStyleArray() : array
@@ -196,7 +209,7 @@ class ExcelDumper extends Dumper
                 ],
                 'fill' => [
                     'fillType' => Fill::FILL_SOLID,
-                    'color' => ['argb' => 'FFD0D0D0']
+                    'color' => ['argb' => 'FFD0D0D0'],
                 ],
                 'font' => ['bold' => true],
             ]
@@ -205,6 +218,7 @@ class ExcelDumper extends Dumper
 
     /**
      * Get style for aggregations
+     *
      * @return array
      */
     protected function getAggregationsStyleArray() : array
@@ -229,7 +243,9 @@ class ExcelDumper extends Dumper
 
     /**
      * Gets an option
-     * @param  $optionName
+     *
+     * @param $optionName
+     *
      * @return null
      */
     public function getOption($optionName)
@@ -243,31 +259,35 @@ class ExcelDumper extends Dumper
 
     /**
      * Set values in specific row
+     *
      * @param Worksheet $sheet      The worksheet
-     * @param integer             $row        The selected row
-     * @param array               $values     The values to insert
-     * @param array               $formats    Associative arrays with formats
-     * @param array               $styleArray An array representing the style
-     * @throws \Exception
+     * @param int       $row        The selected row
+     * @param array     $values     The values to insert
+     * @param array     $formats    Associative arrays with formats
+     * @param array     $styleArray An array representing the style
+     *
+     * @throws Exception
      */
     protected function applyValues(Worksheet $sheet, int $row, array $values, array $formats, array $styleArray = []) : void
     {
         $col = self::FIRST_COLUMN;
         foreach ($values as $index => $value) {
             $this->applyValue($sheet, $col, $row, $value, array_key_exists($index, $formats) ? $formats[$index] : Format::STRING, $styleArray);
-            $col++;
+            ++$col;
         }
     }
 
     /**
      * Set value in specific cell
+     *
      * @param Worksheet $sheet      The worksheet
-     * @param integer             $col        The selected column
-     * @param integer             $row        The selected row
-     * @param array               $value      The values to insert
-     * @param array               $format     Associative arrays with formats
-     * @param array               $styleArray An array representing the style
-     * @throws \Exception
+     * @param int       $col        The selected column
+     * @param int       $row        The selected row
+     * @param array     $value      The values to insert
+     * @param array     $format     Associative arrays with formats
+     * @param array     $styleArray An array representing the style
+     *
+     * @throws Exception
      */
     protected function applyValue(Worksheet $sheet, int $col, int $row, $value, $format, array $styleArray = []) : void
     {
@@ -280,8 +300,8 @@ class ExcelDumper extends Dumper
 
         switch ($format) {
             case Format::DATE:
-                if (!($value instanceof \DateTimeInterface)) {
-                    $date = new \DateTimeImmutable($value);
+                if (!$value instanceof DateTimeInterface) {
+                    $date = new DateTimeImmutable($value);
                 } else {
                     $date = $value;
                 }
@@ -290,8 +310,8 @@ class ExcelDumper extends Dumper
                 break;
 
             case Format::DATETIME:
-                if (!($value instanceof \DateTimeInterface)) {
-                    $date = new \DateTimeImmutable($value);
+                if (!$value instanceof DateTimeInterface) {
+                    $date = new DateTimeImmutable($value);
                 } else {
                     $date = $value;
                 }
@@ -326,17 +346,20 @@ class ExcelDumper extends Dumper
                 break;
         }
 
-        $sheet->duplicateStyle($style, Coordinate::stringFromColumnIndex($col).$row);
+        $sheet->duplicateStyle($style, Coordinate::stringFromColumnIndex($col) . $row);
 
         switch ($format) {
             case Format::STRING:
                 $sheet->setCellValueExplicitByColumnAndRow($col, $row, $value, DataType::TYPE_STRING);
+
+                // no break
             case Format::LINK:
                 $sheet->setCellValueByColumnAndRow($col, $row, $value);
                 if (filter_var($value, FILTER_VALIDATE_URL)) {
                     $sheet->getCellByColumnAndRow($col, $row)->getHyperlink()->setUrl($value);
                 }
                 break;
+
             default:
                 $sheet->setCellValueByColumnAndRow($col, $row, $value);
                 break;

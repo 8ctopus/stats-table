@@ -15,4 +15,3 @@ class StaticAggregationTest extends AggregationTestAbstract
         self::assertSame('value', $staticAggregation->aggregate($statsTable));
     }
 }
- 

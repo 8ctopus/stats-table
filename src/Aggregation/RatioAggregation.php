@@ -24,10 +24,10 @@ class RatioAggregation implements AggregationInterface
     {
         // Use sum
         $sumValueAggregation = new SumAggregation($this->valueInternalName);
-        $sumOverAggregation  = new SumAggregation($this->overInternalName);
+        $sumOverAggregation = new SumAggregation($this->overInternalName);
 
         $sumValue = $sumValueAggregation->aggregate($statsTable);
-        $sumOver  = $sumOverAggregation->aggregate($statsTable);
+        $sumOver = $sumOverAggregation->aggregate($statsTable);
 
         return $sumOver ? $sumValue / $sumOver : $sumValue;
     }
