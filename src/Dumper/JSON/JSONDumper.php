@@ -15,7 +15,7 @@ class JSONDumper extends Dumper
      * @param StatsTable $statsTable
      * @return string
      */
-    public function dump(StatsTable $statsTable)
+    public function dump(StatsTable $statsTable) : string
     {
         $result = [
             'data' => $statsTable->getData(),
@@ -57,7 +57,7 @@ class JSONDumper extends Dumper
      * @param $value
      * @return float|int|string
      */
-    protected function formatValue($format, $value)
+    protected function formatValue($format, $value) : float|int|string
     {
         switch ($format) {
             case Format::DATE:
@@ -69,17 +69,17 @@ class JSONDumper extends Dumper
 
             case Format::FLOAT2:
             case Format::MONEY2:
-                return floatval(sprintf("%.2f", $value));
+                return (float) (sprintf("%.2f", $value));
 
             case Format::PCT2:
-                return floatval(sprintf('%.2f', $value*100));
+                return (float) (sprintf('%.2f', $value*100));
 
             case Format::PCT:
-                return intval(sprintf('%d', $value*100));
+                return (int) (sprintf('%d', $value*100));
 
             case Format::INTEGER:
             case Format::MONEY:
-                return intval(sprintf("%d", $value));
+                return (int) (sprintf("%d", $value));
         }
 
         return $value;
@@ -90,7 +90,7 @@ class JSONDumper extends Dumper
      * Get mime type of dumper
      * @return string
      */
-    public function getMimeType()
+    public function getMimeType() : string
     {
         return 'application/json';
     }

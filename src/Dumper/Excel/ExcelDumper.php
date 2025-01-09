@@ -36,7 +36,7 @@ class ExcelDumper extends Dumper
      * Constructor
      * @param array $options An array with options
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $this->options = $options;
     }
@@ -45,7 +45,7 @@ class ExcelDumper extends Dumper
      * Set options defined in array. Does not replace existing ones
      * @param array $options
      */
-    public function setOptions($options)
+    public function setOptions(array $options) : void
     {
         $this->options = array_merge($this->options, $options);
     }
@@ -55,7 +55,7 @@ class ExcelDumper extends Dumper
      * @param string $optionName
      * @param mixed  $optionValue
      */
-    public function setOption($optionName, $optionValue)
+    public function setOption(string $optionName, mixed $optionValue) : void
     {
         $this->options[$optionName] = $optionValue;
     }
@@ -66,7 +66,7 @@ class ExcelDumper extends Dumper
      * @return string
      * @throws \Exception
      */
-    public function dump(StatsTable $statsTable)
+    public function dump(StatsTable $statsTable) : string
     {
         $excel = new Spreadsheet();
 
@@ -126,7 +126,7 @@ class ExcelDumper extends Dumper
      * Get default style
      * @return array
      */
-    protected function getDefaultStyleArray()
+    protected function getDefaultStyleArray() : array
     {
         return [
             'font' => ['name' => 'Arial', 'size' => 9],
@@ -137,7 +137,7 @@ class ExcelDumper extends Dumper
      * Get default style for a filled cell
      * @return array
      */
-    protected function getDefaultStyleForFilledCells()
+    protected function getDefaultStyleForFilledCells() : array
     {
         return array_merge_recursive(
             $this->getDefaultStyleArray(),
@@ -157,12 +157,12 @@ class ExcelDumper extends Dumper
      * @param  integer $row
      * @return array
      */
-    protected function getDefaultStyleArrayForRow($row)
+    protected function getDefaultStyleArrayForRow(int $row) : array
     {
         $style = $this->getDefaultStyleForFilledCells();
 
         if ($this->getOption(self::OPTION_ZEBRA)) {
-            if (($row % 2) == 0) {
+            if (($row % 2) === 0) {
                 $bgColor = $this->getOption(self::OPTION_ZEBRA_COLOR_EVEN);
             } else {
                 $bgColor = $this->getOption(self::OPTION_ZEBRA_COLOR_ODD);
@@ -183,7 +183,7 @@ class ExcelDumper extends Dumper
      * Get style for headers
      * @return array
      */
-    protected function getHeadersStyleArray()
+    protected function getHeadersStyleArray() : array
     {
         return array_merge_recursive(
             $this->getDefaultStyleForFilledCells(),
@@ -207,7 +207,7 @@ class ExcelDumper extends Dumper
      * Get style for aggregations
      * @return array
      */
-    protected function getAggregationsStyleArray()
+    protected function getAggregationsStyleArray() : array
     {
         return array_merge_recursive(
             $this->getDefaultStyleForFilledCells(),
@@ -250,7 +250,7 @@ class ExcelDumper extends Dumper
      * @param array               $styleArray An array representing the style
      * @throws \Exception
      */
-    protected function applyValues(Worksheet $sheet, $row, $values, $formats, $styleArray = [])
+    protected function applyValues(Worksheet $sheet, int $row, array $values, array $formats, array $styleArray = []) : void
     {
         $col = self::FIRST_COLUMN;
         foreach ($values as $index => $value) {
@@ -269,9 +269,9 @@ class ExcelDumper extends Dumper
      * @param array               $styleArray An array representing the style
      * @throws \Exception
      */
-    protected function applyValue(Worksheet $sheet, $col, $row, $value, $format, $styleArray = [])
+    protected function applyValue(Worksheet $sheet, int $col, int $row, $value, $format, array $styleArray = []) : void
     {
-        if (0 == count($styleArray)) {
+        if (0 === count($styleArray)) {
             $styleArray = $this->getDefaultStyleArrayForRow($row);
         }
 
@@ -343,7 +343,7 @@ class ExcelDumper extends Dumper
         }
     }
 
-    public function getMimeType()
+    public function getMimeType() : string
     {
         return 'application/vnd.ms-office; charset=binary';
     }

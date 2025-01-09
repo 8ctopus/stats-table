@@ -35,7 +35,7 @@ class RatioAggregation implements AggregationInterface
     /**
      * @return string
      */
-    public function getFormat()
+    public function getFormat() : string
     {
         return $this->format;
     }

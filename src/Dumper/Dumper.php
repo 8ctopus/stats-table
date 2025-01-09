@@ -13,7 +13,7 @@ abstract class Dumper implements DumperInterface
      * Enable headers
      * @param bool $enableHeaders
      */
-    public function enableHeaders($enableHeaders = true)
+    public function enableHeaders(bool $enableHeaders = true) : void
     {
         $this->enableHeaders = $enableHeaders;
     }
@@ -22,7 +22,7 @@ abstract class Dumper implements DumperInterface
      * Enable aggregation
      * @param bool $enableAggregation
      */
-    public function enableAggregation($enableAggregation = true)
+    public function enableAggregation(bool $enableAggregation = true) : void
     {
         $this->enableAggregation = $enableAggregation;
     }
@@ -31,9 +31,9 @@ abstract class Dumper implements DumperInterface
      * Default value formatter
      * @param $format
      * @param $value
-     * @return string
+     * @return string|int|float
      */
-    protected function formatValue($format, $value)
+    protected function formatValue($format, $value) : string|int|float
     {
         switch ($format) {
             case Format::DATE:

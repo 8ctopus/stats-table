@@ -20,7 +20,7 @@ class SumColumnBuilder implements DynamicColumnBuilderInterface
         $column = [];
 
         $columnsValues = array_map(
-            function ($columnName) use ($statsTable) {
+            static function ($columnName) use ($statsTable) {
                 return $statsTable->getColumn($columnName)->getValues();
             },
             $this->columns
@@ -28,7 +28,7 @@ class SumColumnBuilder implements DynamicColumnBuilderInterface
 
         foreach ($statsTable->getIndexes() as $index) {
             $lineValues = array_map(
-                function ($array) use ($index) {
+                static function ($array) use ($index) {
                     return $array[$index];
                 },
                 $columnsValues

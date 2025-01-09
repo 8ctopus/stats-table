@@ -16,22 +16,22 @@ class HTMLDumper extends Dumper
     /**
      * @var string
      */
-    protected $template;
+    protected string $template;
 
     /**
      * @var string
      */
-    protected $templateFolder;
+    protected string $templateFolder;
 
     /**
      * @var array
      */
-    protected $templateOptions;
+    protected array $templateOptions;
 
     /**
      * @var Twig
      */
-    protected $twig;
+    protected Twig $twig;
 
     public function __construct($options = [])
     {
@@ -43,12 +43,12 @@ class HTMLDumper extends Dumper
         $this->templateOptions = $options->get('templateOptions',[]);
     }
 
-    public function setTwig(Twig $twig)
+    public function setTwig(Twig $twig) : void
     {
         $this->twig = $twig;
     }
 
-    public function dump(StatsTable $statsTable)
+    public function dump(StatsTable $statsTable) : string
     {
         $data = $statsTable->getData();
         $format = $statsTable->getDataFormats();
@@ -95,9 +95,9 @@ class HTMLDumper extends Dumper
      * Format values for HTML View
      * @param $format
      * @param $value
-     * @return float|int|string
+     * @return string
      */
-    protected function formatValue($format, $value)
+    protected function formatValue($format, $value) : string
     {
         // TODO : Put in parameters
         $decimals = 2;
@@ -118,10 +118,10 @@ class HTMLDumper extends Dumper
                 break;
 
             case Format::FLOAT2:
-                return str_replace($dec_point."00", "",number_format(floatval($value), $decimals, $dec_point, $thousands_sep));
+                return str_replace($dec_point."00", "",number_format((float) $value, $decimals, $dec_point, $thousands_sep));
 
             case Format::INTEGER:
-                return number_format(intval($value), 0, $dec_point, $thousands_sep);
+                return number_format((int) $value, 0, $dec_point, $thousands_sep);
 
             case Format::PCT:
                 return $this->formatValue(Format::INTEGER, $value*100)."%";
@@ -149,7 +149,7 @@ class HTMLDumper extends Dumper
         return 'statsTable.html.twig';
     }
 
-    public function getMimeType()
+    public function getMimeType() : string
     {
         return 'text/html; charset=utf-8';
     }

@@ -10,7 +10,7 @@ use Oct8pus\StatsTable\StatsTable;
 
 class TXTDumper extends Dumper
 {
-    public function dump(StatsTable $statsTable)
+    public function dump(StatsTable $statsTable) : string
     {
         $data = $statsTable->getData();
         $format = $statsTable->getDataFormats();
@@ -29,7 +29,7 @@ class TXTDumper extends Dumper
         $aggregations = $statsTable->getAggregations();
 
         if (!empty($aggregations)) {
-            array_push($data, $aggregations);
+            $data[] = $aggregations;
         }
 
         $widths = $this->measure($data);
@@ -50,7 +50,7 @@ class TXTDumper extends Dumper
         return $output;
     }
 
-    public function getMimeType()
+    public function getMimeType() : string
     {
         return 'text/plain; charset=utf-8';
     }
@@ -81,7 +81,7 @@ class TXTDumper extends Dumper
      * @param $value
      * @return float|int|string
      */
-    protected function formatValue($format, $value)
+    protected function formatValue($format, $value) : float|int|string
     {
         $decimals = 2;
         $dec_point = ',';
@@ -101,10 +101,10 @@ class TXTDumper extends Dumper
                 break;
 
             case Format::FLOAT2:
-                return str_replace($dec_point."00", "",number_format(floatval($value), $decimals, $dec_point, $thousands_sep));
+                return str_replace($dec_point."00", "",number_format((float) $value, $decimals, $dec_point, $thousands_sep));
 
             case Format::INTEGER:
-                return number_format(intval($value), 0, $dec_point, $thousands_sep);
+                return number_format((int) $value, 0, $dec_point, $thousands_sep);
 
             case Format::PCT:
                 return $this->formatValue(Format::INTEGER, $value*100)."%";

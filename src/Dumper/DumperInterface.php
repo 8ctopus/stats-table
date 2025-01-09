@@ -13,11 +13,11 @@ interface DumperInterface
      * @param  StatsTable $statsTable The stats table to dump
      * @return string                 The stats table dumped
      */
-    public function dump(StatsTable $statsTable);
+    public function dump(StatsTable $statsTable) : string;
 
     /**
      * Retrieve mime-type
      * @return string
      */
-    public function getMimeType();
+    public function getMimeType() : string;
 }

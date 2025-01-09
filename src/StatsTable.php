@@ -16,25 +16,25 @@ class StatsTable
     private $metaData;
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getHeaders()
+    public function getHeaders() : array
     {
         return $this->headers;
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getAggregations()
+    public function getAggregations() : array
     {
         return $this->aggregations;
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getData()
+    public function getData() : array
     {
         return $this->data;
     }
@@ -42,7 +42,7 @@ class StatsTable
     /**
      * @return array
      */
-    public function getAggregationsFormats()
+    public function getAggregationsFormats() : array
     {
         return $this->aggregationsFormats;
     }
@@ -50,7 +50,7 @@ class StatsTable
     /**
      * @return array
      */
-    public function getDataFormats()
+    public function getDataFormats() : array
     {
         return $this->dataFormats;
     }
@@ -58,7 +58,7 @@ class StatsTable
     /**
      * @return array
      */
-    public function getMetaData()
+    public function getMetaData() : array
     {
         return $this->metaData;
     }
@@ -95,7 +95,7 @@ class StatsTable
      *
      * @return StatsTable
      */
-    public function removeColumn($columnName)
+    public function removeColumn(mixed $columnName) : self
     {
         return $this->removeColumns(array($columnName));
     }
@@ -107,7 +107,7 @@ class StatsTable
      *
      * @return StatsTable
      */
-    public function removeColumns(array $columns)
+    public function removeColumns(array $columns) : self
     {
         $columnsMap = array_flip($columns);
 
@@ -131,7 +131,7 @@ class StatsTable
      *
      * @return void
      */
-    protected function removeColumnsInLine(array &$line, array $columnsMap)
+    protected function removeColumnsInLine(array &$line, array $columnsMap) : void
     {
         foreach (array_keys($line) as $k) {
             if (array_key_exists($k, $columnsMap)) {
@@ -146,7 +146,7 @@ class StatsTable
      * @param bool $asc Sort direction : TRUE=>Ascending, FALSE=>Descending
      * @return StatsTable
      */
-    public function sortColumn($columnName, $asc = true)
+    public function sortColumn(string $columnName, bool $asc = true) : self
     {
         $this->sortMultipleColumn(array($columnName=>$asc));
         return $this;
@@ -158,7 +158,7 @@ class StatsTable
      * @param function $compareFunc Custom compare function that should return 0, -1 or 1.
      * @return StatsTable
      */
-    public function uSortColumn($columnName, $compareFunc)
+    public function uSortColumn(string $columnName, $compareFunc) : self
     {
         $this->uSortMultipleColumn(array($columnName=>$compareFunc));
         return $this;
@@ -169,7 +169,7 @@ class StatsTable
      * @param array $columns Associative array : KEY=> column name (string), VALUE=> Sort direction (boolean)
      * @return $this
      */
-    public function sortMultipleColumn($columns)
+    public function sortMultipleColumn(array $columns)
     {
         $compareFuncList = [];
         foreach($columns as $colName=>$asc) {
@@ -186,9 +186,9 @@ class StatsTable
      * @param array $columns Associative array : KEY=> column name (string), VALUE=> Custom function (function)
      * @return $this
      */
-    public function uSortMultipleColumn($columns)
+    public function uSortMultipleColumn(array $columns)
     {
-        $sort = function ($a, $b) use ($columns) {
+        $sort = static function ($a, $b) use ($columns) {
             foreach ($columns as $colName => $fn) {
                 $tmp = $fn($a[$colName], $b[$colName]);
                 if ($tmp !== 0) {
@@ -204,20 +204,20 @@ class StatsTable
 
     private function _getFunctionForFormat($format, $asc)
     {
-        $genericFunc = function ($a, $b) use ($asc) {
-            if ($a == $b) {
+        $genericFunc = static function ($a, $b) use ($asc) {
+            if ($a === $b) {
                 return 0;
             }
             return ($a < $b) ? ($asc ? -1 : 1) : ($asc ? 1 : -1);
         };
 
-        $stringCmp = function ($a, $b) use ($asc) {
+        $stringCmp = static function ($a, $b) use ($asc) {
             $tmp = strcmp($a, $b);
             return $asc ? $tmp : -$tmp;
         };
 
 
-        if (Format::STRING == $format) {
+        if (Format::STRING === $format) {
             return $stringCmp;
         } else {
             return $genericFunc;

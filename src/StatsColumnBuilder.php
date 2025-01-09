@@ -11,10 +11,10 @@ class StatsColumnBuilder
     /**
      * @param array                $values      Associative array like index => { name => value }
      * @param string               $headerName  Header name
-     * @param string               $format      Format
+     * @param ?string               $format      Format
      * @param AggregationInterface|null $aggregation Aggregation
      */
-    public function __construct($values, $headerName = '', $format = null, ?AggregationInterface $aggregation = null, $metaData = [])
+    public function __construct(array $values, string $headerName = '', ?string $format = null, ?AggregationInterface $aggregation = null, $metaData = [])
     {
         $this->values = $values;
         $this->headerName = $headerName;
@@ -24,20 +24,20 @@ class StatsColumnBuilder
     }
 
     /** @var Array The raw values */
-    private $values;
+    private Array $values;
     /** @var string The format */
-    private $format;
+    private ?string $format;
     /** @var AggregationInterface The aggregation rule */
-    private $aggregation;
+    private ?AggregationInterface $aggregation;
     /** @var string The header name */
-    private $headerName;
+    private string $headerName;
     /** @var array Column metadata */
-    private $metaData;
+    private array $metaData;
 
     /**
      * @return mixed[]
      */
-    public function getValues()
+    public function getValues() : array
     {
         return $this->values;
     }
@@ -45,7 +45,7 @@ class StatsColumnBuilder
     /**
      * @return string
      */
-    public function getHeaderName()
+    public function getHeaderName() : string
     {
         return $this->headerName;
     }
@@ -64,7 +64,7 @@ class StatsColumnBuilder
     /**
      * @return AggregationInterface
      */
-    public function getAggregation()
+    public function getAggregation() : ?AggregationInterface
     {
         return $this->aggregation;
     }
@@ -81,9 +81,9 @@ class StatsColumnBuilder
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    public function getFormat()
+    public function getFormat() : ?string
     {
         return $this->format;
     }
@@ -91,7 +91,7 @@ class StatsColumnBuilder
     /**
      * @return array
      */
-    public function getMetaData()
+    public function getMetaData() : array
     {
         return $this->metaData;
     }
@@ -99,7 +99,7 @@ class StatsColumnBuilder
     /**
      * @param array $metaData
      */
-    public function setMetaData($metaData)
+    public function setMetaData(array $metaData) : void
     {
         $this->metaData = $metaData;
     }
@@ -111,7 +111,7 @@ class StatsColumnBuilder
      * @param $indexes
      * @param $defaultValue
      */
-    public function insureIsFilled($indexes, $defaultValue)
+    public function insureIsFilled($indexes, $defaultValue) : void
     {
         $newValues = [];
         foreach ($indexes as $index) {

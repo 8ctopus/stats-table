@@ -14,7 +14,7 @@ use Oct8pus\StatsTable\StatsTableBuilder;
 class SumAggregation implements AggregationInterface
 {
     private $columnName;
-    private $format;
+    private string $format;
 
     public function __construct($columnName, $format = Format::INTEGER)
     {
@@ -30,9 +30,9 @@ class SumAggregation implements AggregationInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getFormat()
+    public function getFormat() : string
     {
         return $this->format;
     }

@@ -11,7 +11,7 @@ use Oct8pus\StatsTable\Tools\ParameterBag;
 class CSVDumper extends Dumper
 {
     /** @var string The current locale */
-    private $locale;
+    private string $locale;
     private $delimiter;
     private $enclosure;
     private $charset;
@@ -29,12 +29,12 @@ class CSVDumper extends Dumper
      * The locale to use
      * @param string $locale
      */
-    public function setLocale($locale)
+    public function setLocale(string $locale) : void
     {
         $this->locale = $locale;
     }
 
-    public function dump(StatsTable $statsTable)
+    public function dump(StatsTable $statsTable) : string
     {
         $fileHandler = fopen('php://temp', 'w');
 
@@ -56,7 +56,7 @@ class CSVDumper extends Dumper
         return fread($fileHandler, $len);
     }
 
-    private function writeLine($fileHandler, $line, $formats = [])
+    private function writeLine($fileHandler, $line, $formats = []) : void
     {
         foreach ($formats as $index => $format) {
             if (array_key_exists($index, $line)) {
@@ -66,7 +66,7 @@ class CSVDumper extends Dumper
         fputcsv($fileHandler, $line, $this->delimiter, $this->enclosure, "\\");
     }
 
-    public function getMimeType()
+    public function getMimeType() : string
     {
         return sprintf('text/csv; charset=%s', $this->charset);
     }

@@ -9,20 +9,20 @@ class ParameterBag
     /**
      * @var array The parameter bag
      */
-    private $bag;
+    private array $bag;
 
     /**
      * Constructor. Take either an array of a ParameterBag
      * @param  array|ParameterBag        $bag
      * @throws \InvalidArgumentException
      */
-    public function __construct($bag = [])
+    public function __construct(array|self $bag = [])
     {
         if (!is_array($bag) && !($bag instanceof self)) {
             throw new \InvalidArgumentException('Bad constructor call');
         }
 
-        if ($bag instanceof ParameterBag) {
+        if ($bag instanceof self) {
             $array = $bag->toArray();
         } else {
             $array = $bag;
@@ -36,7 +36,7 @@ class ParameterBag
      * @param  string $key
      * @return bool
      */
-    public function has($key)
+    public function has(string $key) : bool
     {
         return array_key_exists($key, $this->bag);
     }
@@ -47,7 +47,7 @@ class ParameterBag
      * @param  null   $defaultValue
      * @return null
      */
-    public function get($key, $defaultValue = null)
+    public function get(string $key, $defaultValue = null)
     {
         return $this->has($key) ? $this->bag[$key] : $defaultValue;
     }
@@ -55,7 +55,7 @@ class ParameterBag
     /**
      * @return array
      */
-    public function toArray()
+    public function toArray() : array
     {
         return $this->bag;
     }

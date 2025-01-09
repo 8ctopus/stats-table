@@ -27,14 +27,14 @@ use Oct8pus\StatsTable\StatsTableBuilder;
 class RelativeColumnBuilder implements DynamicColumnBuilderInterface
 {
     /** @var array */
-    protected $columns;
+    protected array $columns;
 
     /**
      * Constructor
      *
      * @param array|string $columns Columns to consider
      */
-    public function __construct($columns)
+    public function __construct(array|string $columns)
     {
         $this->columns = is_array($columns) ? $columns : [$columns];
     }
@@ -51,7 +51,7 @@ class RelativeColumnBuilder implements DynamicColumnBuilderInterface
 
         if ($total) {
             $column = array_map(
-                function ($value) use ($total) {
+                static function ($value) use ($total) {
                     return $value/$total;
                 },
                 $summedData

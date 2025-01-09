@@ -12,13 +12,13 @@ use Oct8pus\StatsTable\DynamicColumn\DynamicColumnBuilderInterface;
 class StatsTableBuilder
 {
     /** @var StatsColumnBuilder[] The raw values passed to setTable, associative array */
-    private $columns;
+    private array $columns;
 
     /** @var mixed[] The lines indexes */
-    private $indexes;
+    private array $indexes;
 
     /** @var array */
-    private $defaultValues;
+    private array $defaultValues;
 
     /**
      * @param $table
@@ -31,7 +31,7 @@ class StatsTableBuilder
      * @param array $metaData
      * @throws \InvalidArgumentException
      */
-    public function __construct($table, $headers = [], $formats = [], $aggregations = [], $columnNames = [], array $defaultValues = [], $indexes = null, $metaData = [])
+    public function __construct($table, array $headers = [], array $formats = [], array $aggregations = [], array $columnNames = [], array $defaultValues = [], $indexes = null, array $metaData = [])
     {
         $this->columns = [];
 
@@ -51,7 +51,7 @@ class StatsTableBuilder
      * Retrieve existing indexes
      * @return array
      */
-    public function getIndexes()
+    public function getIndexes() : array
     {
         return $this->indexes;
     }
@@ -64,7 +64,7 @@ class StatsTableBuilder
      * @param null $format
      * @param AggregationInterface|null $aggregation
      */
-    public function addIndexesAsColumn($columnName, $headerName = null, $format = null, ?AggregationInterface $aggregation = null, $metaData = [])
+    public function addIndexesAsColumn($columnName, $headerName = null, $format = null, ?AggregationInterface $aggregation = null, $metaData = []) : void
     {
         $values = [];
         foreach ($this->indexes as $index) {
@@ -95,14 +95,14 @@ class StatsTableBuilder
      * @param mixed[]                $defaultValues
      */
     public function appendTable(
-        $table,
-        $headers,
-        $formats,
-        $aggregations,
-        $columnNames = [],
-        $defaultValues = [],
+        array $table,
+        array $headers,
+        array $formats,
+        array $aggregations,
+        array $columnNames = [],
+        array $defaultValues = [],
         $metaData = []
-    ) {
+    ) : void {
         $this->defaultValues = array_merge($this->defaultValues, $defaultValues);
 
         if (count($columnNames) === 0 && count($table) !== 0) {
@@ -137,7 +137,7 @@ class StatsTableBuilder
      * @param  mixed $defaultValue
      * @return mixed
      */
-    private function getParameter($values, $key, $defaultValue = null)
+    private function getParameter(array $values, mixed $key, mixed $defaultValue = null) : mixed
     {
         return array_key_exists($key, $values) ? $values[$key] : $defaultValue;
     }
@@ -150,7 +150,7 @@ class StatsTableBuilder
      * @param  mixed  $defaultValue
      * @return array  The column
      */
-    public function getAssocColumn($table, $columnName, $defaultValue = null)
+    public function getAssocColumn(array $table, string $columnName, mixed $defaultValue = null) : array
     {
         $values = [];
         foreach ($table as $key => $line) {
@@ -169,10 +169,10 @@ class StatsTableBuilder
      * @return StatsColumnBuilder
      * @throws \InvalidArgumentException
      */
-    public function getColumn($columnName)
+    public function getColumn($columnName) : StatsColumnBuilder
     {
         if (!array_key_exists($columnName, $this->columns)) {
-            throw new \InvalidArgumentException('Unable to find column '.$columnName.' in columns '.join(',', array_keys($this->columns)));
+            throw new \InvalidArgumentException('Unable to find column '.$columnName.' in columns '.implode(',', array_keys($this->columns)));
         }
 
         return $this->columns[$columnName];
@@ -183,7 +183,7 @@ class StatsTableBuilder
      *
      * @return string[]
      */
-    public function getColumnNames()
+    public function getColumnNames() : array
     {
         return array_keys($this->columns);
     }
@@ -196,7 +196,7 @@ class StatsTableBuilder
      * @param string                        $format
      * @param AggregationInterface|null     $aggregation
      */
-    public function addDynamicColumn($columnName, DynamicColumnBuilderInterface $dynamicColumn, $header = '', $format = null, ?AggregationInterface $aggregation = null, $metaData = [])
+    public function addDynamicColumn(mixed $columnName, DynamicColumnBuilderInterface $dynamicColumn, string $header = '', string $format = null, ?AggregationInterface $aggregation = null, $metaData = []) : void
     {
         $values = $dynamicColumn->buildColumnValues($this);
         $this->columns[$columnName] = new StatsColumnBuilder($values, $header, $format, $aggregation, $metaData);
@@ -210,7 +210,7 @@ class StatsTableBuilder
      * @param string                        $format
      * @param AggregationInterface|null     $aggregation
      */
-    public function addColumn($columnName, array $values, $header = '', $format = null, ?AggregationInterface $aggregation = null, $metaData = [])
+    public function addColumn(mixed $columnName, array $values, string $header = '', string $format = null, ?AggregationInterface $aggregation = null, $metaData = []) : void
     {
         $this->columns[$columnName] = new StatsColumnBuilder($values, $header, $format, $aggregation, $metaData);
     }
@@ -220,7 +220,7 @@ class StatsTableBuilder
      * @param  array      $columns Desired columns
      * @return StatsTable
      */
-    public function build($columns = [])
+    public function build(array $columns = []) : StatsTable
     {
         $headers = [];
         $data = [];
@@ -271,7 +271,7 @@ class StatsTableBuilder
      * @param  array $columns
      * @return array
      */
-    public static function orderColumns($table, $columns)
+    public static function orderColumns(array $table, array $columns) : array
     {
         // If no columns given, return table as-is
         if (!$columns) {
@@ -292,7 +292,7 @@ class StatsTableBuilder
     /**
      * @return StatsColumnBuilder[]
      */
-    public function getColumns()
+    public function getColumns() : array
     {
         return $this->columns;
     }
@@ -305,16 +305,16 @@ class StatsTableBuilder
      *
      * @return StatsTableBuilder
      */
-    public function groupBy($columns, array $excludeColumns = [])
+    public function groupBy(string|array $columns, array $excludeColumns = []) : self
     {
         $groupedData = [];
         $statsTable = $this->build();
 
         foreach ($statsTable->getData() as $line) {
-            $key = join(
+            $key = implode(
                 '-_##_-',
                 array_map(
-                    function ($c) use ($line) {
+                    static function ($c) use ($line) {
                         return $line[$c];
                     },
                     $columns
@@ -324,7 +324,7 @@ class StatsTableBuilder
             $groupedData[$key][] = $line;
         }
 
-        $filterLine = function ($line) use ($excludeColumns) {
+        $filterLine = static function ($line) use ($excludeColumns) {
             foreach ($excludeColumns as $c) {
                 unset($line[$c]);
             }
@@ -334,7 +334,7 @@ class StatsTableBuilder
 
         $headers = $filterLine(
             array_map(
-                function (StatsColumnBuilder $c) {
+                static function (StatsColumnBuilder $c) {
                     return $c->getHeaderName();
                 },
                 $this->columns
@@ -342,7 +342,7 @@ class StatsTableBuilder
         );
         $formats = $filterLine(
             array_map(
-                function (StatsColumnBuilder $c) {
+                static function (StatsColumnBuilder $c) {
                     return $c->getFormat();
                 },
                 $this->columns
@@ -350,7 +350,7 @@ class StatsTableBuilder
         );
         $aggregations = $filterLine(
             array_map(
-                function (StatsColumnBuilder $c) {
+                static function (StatsColumnBuilder $c) {
                     return $c->getAggregation();
                 },
                 $this->columns
@@ -358,7 +358,7 @@ class StatsTableBuilder
         );
         $metaData = $filterLine(
             array_map(
-                function (StatsColumnBuilder $c) {
+                static function (StatsColumnBuilder $c) {
                     return $c->getMetaData();
                 },
                 $this->columns
@@ -376,7 +376,7 @@ class StatsTableBuilder
                 $tmpAggregations[$column] = new StaticAggregation($value, Format::STRING);
             }
 
-            $tmpTableBuilder = new StatsTableBuilder(
+            $tmpTableBuilder = new self(
                 array_map($filterLine, $lines),
                 $headers,
                 $formats,
@@ -390,7 +390,7 @@ class StatsTableBuilder
             $data[] = $tmpTable->getAggregations();
         }
 
-        return new StatsTableBuilder(
+        return new self(
             $data,
             $headers,
             $formats,

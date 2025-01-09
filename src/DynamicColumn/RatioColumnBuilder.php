@@ -17,7 +17,7 @@ class RatioColumnBuilder implements DynamicColumnBuilderInterface
      * @param string $overInternalName  The big value
      * @param mixed  $defaultValue      Default value if big value is null
      */
-    public function __construct($valueInternalName, $overInternalName, $defaultValue)
+    public function __construct(string $valueInternalName, string $overInternalName, mixed $defaultValue)
     {
         $this->overInternalName = $overInternalName;
         $this->valueInternalName = $valueInternalName;
