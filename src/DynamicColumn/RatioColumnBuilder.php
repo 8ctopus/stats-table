@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace IgraalOSL\StatsTable\DynamicColumn;
+namespace Oct8pus\StatsTable\DynamicColumn;
 
-use IgraalOSL\StatsTable\StatsTableBuilder;
+use Oct8pus\StatsTable\StatsTableBuilder;
 
 class RatioColumnBuilder implements DynamicColumnBuilderInterface
 {

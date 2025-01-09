@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Dumper;
 
-use IgraalOSL\StatsTable\Dumper\DumperInterface;
-use IgraalOSL\StatsTable\Dumper\Format;
-use IgraalOSL\StatsTable\Dumper\TXT\TXTDumper;
-use IgraalOSL\StatsTable\StatsTable;
+use Oct8pus\StatsTable\Dumper\DumperInterface;
+use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\Dumper\TXT\TXTDumper;
+use Oct8pus\StatsTable\StatsTable;
 
 class TXTTest extends DumperTestAbstract
 {

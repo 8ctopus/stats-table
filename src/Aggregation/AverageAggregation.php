@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace IgraalOSL\StatsTable\Aggregation;
+namespace Oct8pus\StatsTable\Aggregation;
 
-use IgraalOSL\StatsTable\Dumper\Format;
-use IgraalOSL\StatsTable\StatsTableBuilder;
+use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\StatsTableBuilder;
 
 /**
  * Class AverageAggregation

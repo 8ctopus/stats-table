@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use IgraalOSL\StatsTable\Aggregation\AggregationInterface;
-use IgraalOSL\StatsTable\Aggregation\CountAggregation;
-use IgraalOSL\StatsTable\StatsColumnBuilder;
+use Oct8pus\StatsTable\Aggregation\AggregationInterface;
+use Oct8pus\StatsTable\Aggregation\CountAggregation;
+use Oct8pus\StatsTable\StatsColumnBuilder;
 use PHPUnit\Framework\TestCase;
 
 class StatsColumnBuilderTest extends TestCase

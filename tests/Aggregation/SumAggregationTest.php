@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Aggregation;
 
-use IgraalOSL\StatsTable\Aggregation\SumAggregation;
+use Oct8pus\StatsTable\Aggregation\SumAggregation;
 
 class SumAggregationTest extends AggregationTestAbstract
 {

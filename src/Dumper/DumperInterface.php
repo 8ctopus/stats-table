@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace IgraalOSL\StatsTable\Dumper;
+namespace Oct8pus\StatsTable\Dumper;
 
-use IgraalOSL\StatsTable\StatsTable;
+use Oct8pus\StatsTable\StatsTable;
 
 interface DumperInterface
 {

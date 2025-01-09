@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Aggregation;
 
-use IgraalOSL\StatsTable\Aggregation\StaticAggregation;
+use Oct8pus\StatsTable\Aggregation\StaticAggregation;
 
 class StaticAggregationTest extends AggregationTestAbstract
 {

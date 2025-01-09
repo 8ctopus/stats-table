@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use IgraalOSL\StatsTable\Aggregation\StaticAggregation;
-use IgraalOSL\StatsTable\Aggregation\SumAggregation;
-use IgraalOSL\StatsTable\Dumper\Format;
-use IgraalOSL\StatsTable\StatsColumnBuilder;
-use IgraalOSL\StatsTable\StatsTable;
-use IgraalOSL\StatsTable\StatsTableBuilder;
+use Oct8pus\StatsTable\Aggregation\StaticAggregation;
+use Oct8pus\StatsTable\Aggregation\SumAggregation;
+use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\StatsColumnBuilder;
+use Oct8pus\StatsTable\StatsTable;
+use Oct8pus\StatsTable\StatsTableBuilder;
 use PHPUnit\Framework\TestCase;
 use InvalidArgumentException;
 

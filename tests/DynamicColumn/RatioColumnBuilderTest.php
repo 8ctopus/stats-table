@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\DynamicColumn;
 
-use IgraalOSL\StatsTable\DynamicColumn\RatioColumnBuilder;
-use IgraalOSL\StatsTable\StatsColumnBuilder;
-use IgraalOSL\StatsTable\StatsTableBuilder;
+use Oct8pus\StatsTable\DynamicColumn\RatioColumnBuilder;
+use Oct8pus\StatsTable\StatsColumnBuilder;
+use Oct8pus\StatsTable\StatsTableBuilder;
 use PHPUnit\Framework\TestCase;
 
 class RatioColumnBuilderTest extends TestCase

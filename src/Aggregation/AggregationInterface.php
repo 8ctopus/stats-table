@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace IgraalOSL\StatsTable\Aggregation;
+namespace Oct8pus\StatsTable\Aggregation;
 
-use IgraalOSL\StatsTable\StatsTableBuilder;
+use Oct8pus\StatsTable\StatsTableBuilder;
 
 interface AggregationInterface
 {

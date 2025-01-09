@@ -21,7 +21,7 @@ This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-tab
 The `StatsTable` class holds the data. It takes one mandatory argument, and 4 optional arguments. The simpler way to create a new table is to pass the data itself and its headers (headers are optional).
 
 ```php
-use IgraalOSL\StatsTable\StatsTable;
+use Oct8pus\StatsTable\StatsTable;
 
 $data = [
     ['date' => '2014-01-01', 'hits' => 32500],
@@ -41,7 +41,7 @@ $statsTable = new StatsTable($data, $headers);
 Four formats are currently supported : text, Excel, CSV and JSON. Thus, you can use the same table with your ajax calls or to be downloaded.
 
 ```php
-use IgraalOSL\StatsTable\Dumper\Excel\ExcelDumper;
+use Oct8pus\StatsTable\Dumper\Excel\ExcelDumper;
 
 $excelDumper = new ExcelDumper();
 $excelContents = $excelDumper->dump($statsTable);
@@ -57,7 +57,7 @@ To help you construct a table, you can use the `StatsTableBuilder` class.\
 It helps you combine data from multiple tables, and can create automatic calculated columns. It also helps build aggregations (aka the footer line), with multiple possibilities : ratio, sum, average or static content.
 
 ```php
-use IgraalOSL\StatsTable\StatsTableBuilder;
+use Oct8pus\StatsTable\StatsTableBuilder;
 
 $statsTableBuilder = new StatsTableBuilder([
         '2014-01-01' => ['hits' => 32500],
@@ -76,12 +76,12 @@ $statsTable = $statsTableBuilder->build();
 #### Advanced example with aggregation, dynamic column multiple column sorting
 
 ```php
-use IgraalOSL\StatsTable\Aggregation\AverageAggregation;
-use IgraalOSL\StatsTable\Aggregation\SumAggregation;
-use IgraalOSL\StatsTable\Dumper\TXT\TXTDumper;
-use IgraalOSL\StatsTable\Dumper\Format;
-use IgraalOSL\StatsTable\DynamicColumn\CallbackColumnBuilder;
-use IgraalOSL\StatsTable\StatsTableBuilder;
+use Oct8pus\StatsTable\Aggregation\AverageAggregation;
+use Oct8pus\StatsTable\Aggregation\SumAggregation;
+use Oct8pus\StatsTable\Dumper\TXT\TXTDumper;
+use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\DynamicColumn\CallbackColumnBuilder;
+use Oct8pus\StatsTable\StatsTableBuilder;
 
 require_once __DIR__ . '/vendor/autoload.php';
 

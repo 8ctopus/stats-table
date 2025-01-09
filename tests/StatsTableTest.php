@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use IgraalOSL\StatsTable\StatsTable;
+use Oct8pus\StatsTable\StatsTable;
 use PHPUnit\Framework\TestCase;
 
 class StatsTableTest extends TestCase

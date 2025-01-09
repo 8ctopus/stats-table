@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\DynamicColumn;
 
-use IgraalOSL\StatsTable\DynamicColumn\CallbackColumnBuilder;
-use IgraalOSL\StatsTable\StatsTableBuilder;
+use Oct8pus\StatsTable\DynamicColumn\CallbackColumnBuilder;
+use Oct8pus\StatsTable\StatsTableBuilder;
 use PHPUnit\Framework\TestCase;
 
 class CallbackColumnBuilderTest extends TestCase

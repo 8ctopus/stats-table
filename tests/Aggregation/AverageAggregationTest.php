@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Aggregation;
 
-use IgraalOSL\StatsTable\Aggregation\AverageAggregation;
-use IgraalOSL\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\Aggregation\AverageAggregation;
+use Oct8pus\StatsTable\Dumper\Format;
 
 class AverageAggregationTest extends AggregationTestAbstract
 {

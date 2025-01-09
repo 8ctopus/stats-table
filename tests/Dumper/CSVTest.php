@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Dumper;
 
-use IgraalOSL\StatsTable\Dumper\CSV\CSVDumper;
-use IgraalOSL\StatsTable\Dumper\DumperInterface;
-use IgraalOSL\StatsTable\Dumper\Format;
-use IgraalOSL\StatsTable\StatsTable;
+use Oct8pus\StatsTable\Dumper\CSV\CSVDumper;
+use Oct8pus\StatsTable\Dumper\DumperInterface;
+use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\StatsTable;
 use DateTime;
 use DateTimeImmutable;
 

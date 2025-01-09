@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IgraalOSL\StatsTable\Dumper;
+namespace Oct8pus\StatsTable\Dumper;
 
 abstract class Dumper implements DumperInterface
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IgraalOSL\StatsTable\Dumper\JSON;
+namespace Oct8pus\StatsTable\Dumper\JSON;
 
-use IgraalOSL\StatsTable\Dumper\Dumper;
-use IgraalOSL\StatsTable\Dumper\Format;
-use IgraalOSL\StatsTable\StatsTable;
+use Oct8pus\StatsTable\Dumper\Dumper;
+use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\StatsTable;
 
 class JSONDumper extends Dumper
 {

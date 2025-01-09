@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\DynamicColumn;
 
-use IgraalOSL\StatsTable\DynamicColumn\RelativeColumnBuilder;
-use IgraalOSL\StatsTable\StatsTableBuilder;
+use Oct8pus\StatsTable\DynamicColumn\RelativeColumnBuilder;
+use Oct8pus\StatsTable\StatsTableBuilder;
 use PHPUnit\Framework\TestCase;
 
 class RelativeColumnBuilderTest extends TestCase

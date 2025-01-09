@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use IgraalOSL\StatsTable\Aggregation\SumAggregation;
-use IgraalOSL\StatsTable\Dumper\Format;
-use IgraalOSL\StatsTable\Dumper\HTML\HTMLDumper;
-use IgraalOSL\StatsTable\Dumper\JSON\JSONDumper;
-use IgraalOSL\StatsTable\Dumper\Text\TextDumper;
-use IgraalOSL\StatsTable\StatsTable;
+use Oct8pus\StatsTable\Aggregation\SumAggregation;
+use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\Dumper\HTML\HTMLDumper;
+use Oct8pus\StatsTable\Dumper\JSON\JSONDumper;
+use Oct8pus\StatsTable\Dumper\Text\TextDumper;
+use Oct8pus\StatsTable\StatsTable;
 
 require_once __DIR__ . '/vendor/autoload.php';
 

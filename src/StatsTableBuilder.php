@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace IgraalOSL\StatsTable;
+namespace Oct8pus\StatsTable;
 
-use IgraalOSL\StatsTable\Aggregation\AggregationInterface;
-use IgraalOSL\StatsTable\Aggregation\StaticAggregation;
-use IgraalOSL\StatsTable\Dumper\Format;
-use IgraalOSL\StatsTable\DynamicColumn\DynamicColumnBuilderInterface;
+use Oct8pus\StatsTable\Aggregation\AggregationInterface;
+use Oct8pus\StatsTable\Aggregation\StaticAggregation;
+use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\DynamicColumn\DynamicColumnBuilderInterface;
 
 class StatsTableBuilder
 {

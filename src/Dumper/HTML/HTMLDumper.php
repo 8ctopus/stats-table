@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace IgraalOSL\StatsTable\Dumper\HTML;
+namespace Oct8pus\StatsTable\Dumper\HTML;
 
-use IgraalOSL\StatsTable\Dumper\Dumper;
-use IgraalOSL\StatsTable\Dumper\Format;
-use IgraalOSL\StatsTable\StatsTable;
-use IgraalOSL\StatsTable\Tools\ParameterBag;
+use Oct8pus\StatsTable\Dumper\Dumper;
+use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\StatsTable;
+use Oct8pus\StatsTable\Tools\ParameterBag;
 use Twig\Environment as Twig;
 use Twig\Loader\FilesystemLoader as TwigFilesystemLoader;
 

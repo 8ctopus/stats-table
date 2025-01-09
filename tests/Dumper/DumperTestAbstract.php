@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\Dumper;
 
-use IgraalOSL\StatsTable\Aggregation\StaticAggregation;
-use IgraalOSL\StatsTable\Dumper\DumperInterface;
-use IgraalOSL\StatsTable\Dumper\Excel\ExcelDumper;
-use IgraalOSL\StatsTable\Dumper\Format;
-use IgraalOSL\StatsTable\StatsTable;
-use IgraalOSL\StatsTable\StatsTableBuilder;
+use Oct8pus\StatsTable\Aggregation\StaticAggregation;
+use Oct8pus\StatsTable\Dumper\DumperInterface;
+use Oct8pus\StatsTable\Dumper\Excel\ExcelDumper;
+use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\StatsTable;
+use Oct8pus\StatsTable\StatsTableBuilder;
 use PHPUnit\Framework\TestCase;
 
 abstract class DumperTestAbstract extends TestCase

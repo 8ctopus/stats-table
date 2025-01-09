@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IgraalOSL\StatsTable\Dumper\CSV;
+namespace Oct8pus\StatsTable\Dumper\CSV;
 
-use IgraalOSL\StatsTable\Dumper\Dumper;
-use IgraalOSL\StatsTable\StatsTable;
-use IgraalOSL\StatsTable\Tools\ParameterBag;
+use Oct8pus\StatsTable\Dumper\Dumper;
+use Oct8pus\StatsTable\StatsTable;
+use Oct8pus\StatsTable\Tools\ParameterBag;
 
 class CSVDumper extends Dumper
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IgraalOSL\StatsTable\Dumper\Excel;
+namespace Oct8pus\StatsTable\Dumper\Excel;
 
-use IgraalOSL\StatsTable\Dumper\Dumper;
-use IgraalOSL\StatsTable\Dumper\Format;
-use IgraalOSL\StatsTable\StatsTable;
+use Oct8pus\StatsTable\Dumper\Dumper;
+use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\StatsTable;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\Cell\DataType;
 use PhpOffice\PhpSpreadsheet\Shared\Date;

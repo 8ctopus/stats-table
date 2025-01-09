@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IgraalOSL\StatsTable\Tools;
+namespace Oct8pus\StatsTable\Tools;
 
 class ParameterBag
 {

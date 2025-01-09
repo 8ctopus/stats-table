@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Tools;
 
-use IgraalOSL\StatsTable\Tools\ParameterBag;
+use Oct8pus\StatsTable\Tools\ParameterBag;
 use PHPUnit\Framework\TestCase;
 
 class ParameterBagTest extends TestCase

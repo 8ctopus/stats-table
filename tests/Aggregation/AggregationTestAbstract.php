@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Aggregation;
 
-use IgraalOSL\StatsTable\StatsTableBuilder;
+use Oct8pus\StatsTable\StatsTableBuilder;
 use PHPUnit\Framework\TestCase;
 
 class AggregationTestAbstract extends TestCase
