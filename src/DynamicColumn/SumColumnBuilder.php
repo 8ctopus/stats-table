@@ -8,7 +8,7 @@ use Oct8pus\StatsTable\StatsTableBuilder;
 
 class SumColumnBuilder implements DynamicColumnBuilderInterface
 {
-    protected $columns;
+    protected array $columns;
 
     public function __construct(array $columns)
     {
@@ -20,7 +20,7 @@ class SumColumnBuilder implements DynamicColumnBuilderInterface
         $column = [];
 
         $columnsValues = array_map(
-            static function ($columnName) use ($statsTable) {
+            static function (string $columnName) use ($statsTable) {
                 return $statsTable->getColumn($columnName)->getValues();
             },
             $this->columns

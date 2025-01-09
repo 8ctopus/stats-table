@@ -13,16 +13,16 @@ use Oct8pus\StatsTable\StatsTableBuilder;
  */
 class AverageAggregation implements AggregationInterface
 {
-    private $columnName;
-    private $format;
+    private string $columnName;
+    private string $format;
 
-    public function __construct($columnName, $format = Format::INTEGER)
+    public function __construct(string $columnName, string $format = Format::INTEGER)
     {
         $this->columnName = $columnName;
         $this->format = $format;
     }
 
-    public function aggregate(StatsTableBuilder $statsTable)
+    public function aggregate(StatsTableBuilder $statsTable) : mixed
     {
         $column = $statsTable->getColumn($this->columnName)->getValues();
         $sum = array_sum($column);

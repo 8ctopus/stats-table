@@ -8,7 +8,7 @@ use Oct8pus\StatsTable\StatsTableBuilder;
 
 interface AggregationInterface
 {
-    public function aggregate(StatsTableBuilder $statsTable);
+    public function aggregate(StatsTableBuilder $statsTable) : mixed;
 
-    public function getFormat();
+    public function getFormat() : string;
 }

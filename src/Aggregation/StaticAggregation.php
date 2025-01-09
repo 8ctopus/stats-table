@@ -14,15 +14,15 @@ use Oct8pus\StatsTable\StatsTableBuilder;
 class StaticAggregation implements AggregationInterface
 {
     private $value;
-    private $format;
+    private string $format;
 
-    public function __construct($value, $format = Format::STRING)
+    public function __construct($value, string $format = Format::STRING)
     {
         $this->value = $value;
         $this->format = $format;
     }
 
-    public function aggregate(StatsTableBuilder $statsTable)
+    public function aggregate(StatsTableBuilder $statsTable) : mixed
     {
         return $this->value;
     }

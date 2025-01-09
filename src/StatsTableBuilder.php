@@ -12,13 +12,8 @@ use Oct8pus\StatsTable\DynamicColumn\DynamicColumnBuilderInterface;
 
 class StatsTableBuilder
 {
-    /** @var StatsColumnBuilder[] The raw values passed to setTable, associative array */
     private array $columns;
-
-    /** @var mixed[] The lines indexes */
-    private array $indexes;
-
-    /** @var array */
+    private ?array $indexes;
     private array $defaultValues;
 
     /**
@@ -33,7 +28,7 @@ class StatsTableBuilder
      *
      * @throws InvalidArgumentException
      */
-    public function __construct($table, array $headers = [], array $formats = [], array $aggregations = [], array $columnNames = [], array $defaultValues = [], $indexes = null, array $metaData = [])
+    public function __construct(array $table, array $headers = [], array $formats = [], array $aggregations = [], array $columnNames = [], array $defaultValues = [], ?array $indexes = null, array $metaData = [])
     {
         $this->columns = [];
 
@@ -45,16 +40,15 @@ class StatsTableBuilder
 
         $this->defaultValues = $defaultValues;
 
-        // Append the values
         $this->appendTable($table, $headers, $formats, $aggregations, $columnNames, $defaultValues, $metaData);
     }
 
     /**
      * Retrieve existing indexes
      *
-     * @return array
+     * @return ?array
      */
-    public function getIndexes() : array
+    public function getIndexes() : ?array
     {
         return $this->indexes;
     }
@@ -62,13 +56,13 @@ class StatsTableBuilder
     /**
      * Add index of data as a new column
      *
-     * @param                           $columnName
-     * @param null                      $headerName
-     * @param null                      $format
-     * @param null|AggregationInterface $aggregation
-     * @param mixed                     $metaData
+     * @param string                    $columnName
+     * @param ?string                   $headerName
+     * @param ?string                   $format
+     * @param ?AggregationInterface     $aggregation
+     * @param array                     $metaData
      */
-    public function addIndexesAsColumn($columnName, $headerName = null, $format = null, ?AggregationInterface $aggregation = null, $metaData = []) : void
+    public function addIndexesAsColumn(string $columnName, ?string $headerName = null, ?string $format = null, ?AggregationInterface $aggregation = null, array $metaData = []) : void
     {
         $values = [];
         foreach ($this->indexes as $index) {
@@ -96,8 +90,8 @@ class StatsTableBuilder
      * @param string[]               $formats
      * @param AggregationInterface[] $aggregations
      * @param string[]               $columnNames
-     * @param mixed[]                $defaultValues
-     * @param mixed                  $metaData
+     * @param array[]                $defaultValues
+     * @param array                  $metaData
      */
     public function appendTable(
         array $table,
@@ -106,7 +100,7 @@ class StatsTableBuilder
         array $aggregations,
         array $columnNames = [],
         array $defaultValues = [],
-        $metaData = []
+        array $metaData = []
     ) : void {
         $this->defaultValues = array_merge($this->defaultValues, $defaultValues);
 
@@ -162,13 +156,13 @@ class StatsTableBuilder
     /**
      * Retrieve a column
      *
-     * @param mixed $columnName
+     * @param string $columnName
      *
      * @return StatsColumnBuilder
      *
      * @throws InvalidArgumentException
      */
-    public function getColumn($columnName) : StatsColumnBuilder
+    public function getColumn(string $columnName) : StatsColumnBuilder
     {
         if (!array_key_exists($columnName, $this->columns)) {
             throw new InvalidArgumentException('Unable to find column ' . $columnName . ' in columns ' . implode(',', array_keys($this->columns)));
@@ -190,14 +184,14 @@ class StatsTableBuilder
     /**
      * Add a dynamic column
      *
-     * @param mixed                         $columnName
+     * @param string                        $columnName
      * @param DynamicColumnBuilderInterface $dynamicColumn
      * @param string                        $header
      * @param string                        $format
-     * @param null|AggregationInterface     $aggregation
-     * @param mixed                         $metaData
+     * @param ?AggregationInterface         $aggregation
+     * @param array                         $metaData
      */
-    public function addDynamicColumn(mixed $columnName, DynamicColumnBuilderInterface $dynamicColumn, string $header = '', ?string $format = null, ?AggregationInterface $aggregation = null, $metaData = []) : void
+    public function addDynamicColumn(string $columnName, DynamicColumnBuilderInterface $dynamicColumn, string $header = '', ?string $format = null, ?AggregationInterface $aggregation = null, array $metaData = []) : void
     {
         $values = $dynamicColumn->buildColumnValues($this);
         $this->columns[$columnName] = new StatsColumnBuilder($values, $header, $format, $aggregation, $metaData);
@@ -206,14 +200,14 @@ class StatsTableBuilder
     /**
      * Add a column
      *
-     * @param mixed                     $columnName
+     * @param string                    $columnName
      * @param array                     $values
      * @param string                    $header
      * @param string                    $format
-     * @param null|AggregationInterface $aggregation
-     * @param mixed                     $metaData
+     * @param ?AggregationInterface     $aggregation
+     * @param array                     $metaData
      */
-    public function addColumn(mixed $columnName, array $values, string $header = '', ?string $format = null, ?AggregationInterface $aggregation = null, $metaData = []) : void
+    public function addColumn(string $columnName, array $values, string $header = '', ?string $format = null, ?AggregationInterface $aggregation = null, array $metaData = []) : void
     {
         $this->columns[$columnName] = new StatsColumnBuilder($values, $header, $format, $aggregation, $metaData);
     }
@@ -413,12 +407,12 @@ class StatsTableBuilder
      * Get an indexed value in a table. Same as ParameterBag
      *
      * @param array $values
-     * @param mixed $key
+     * @param string $key
      * @param mixed $defaultValue
      *
      * @return mixed
      */
-    private function getParameter(array $values, mixed $key, mixed $defaultValue = null) : mixed
+    private function getParameter(array $values, string $key, mixed $defaultValue = null) : mixed
     {
         return array_key_exists($key, $values) ? $values[$key] : $defaultValue;
     }

@@ -77,7 +77,7 @@ class HTMLDumper extends Dumper
         return 'text/html; charset=utf-8';
     }
 
-    protected function formatData($data, $format) : array
+    protected function formatData(array $data, array $format) : array
     {
         foreach ($data as &$line) {
             $line = $this->formatLine($line, $format);
@@ -86,7 +86,7 @@ class HTMLDumper extends Dumper
         return $data;
     }
 
-    protected function formatLine($line, $format) : array
+    protected function formatLine(array $line, array $format) : array
     {
         foreach ($line as $id => &$val) {
             if (array_key_exists($id, $format)) {
@@ -105,7 +105,7 @@ class HTMLDumper extends Dumper
      *
      * @return string
      */
-    protected function formatValue($format, $value) : string
+    protected function formatValue(string $format, mixed $value) : string
     {
         // TODO : Put in parameters
         $decimals = 2;

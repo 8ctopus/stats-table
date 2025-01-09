@@ -8,25 +8,20 @@ use Oct8pus\StatsTable\Aggregation\AggregationInterface;
 
 class StatsColumnBuilder
 {
-    /** @var array The raw values */
     private array $values;
-    /** @var string The format */
     private ?string $format;
-    /** @var AggregationInterface The aggregation rule */
     private ?AggregationInterface $aggregation;
-    /** @var string The header name */
     private string $headerName;
-    /** @var array Column metadata */
     private array $metaData;
 
     /**
      * @param array                     $values      Associative array like index => { name => value }
      * @param string                    $headerName  Header name
      * @param ?string                   $format      Format
-     * @param null|AggregationInterface $aggregation Aggregation
-     * @param mixed                     $metaData
+     * @param ?AggregationInterface     $aggregation Aggregation
+     * @param array                     $metaData
      */
-    public function __construct(array $values, string $headerName = '', ?string $format = null, ?AggregationInterface $aggregation = null, $metaData = [])
+    public function __construct(array $values, string $headerName = '', ?string $format = null, ?AggregationInterface $aggregation = null, array $metaData = [])
     {
         $this->values = $values;
         $this->headerName = $headerName;
@@ -56,7 +51,7 @@ class StatsColumnBuilder
      *
      * @return self
      */
-    public function setHeaderName($headerName) : self
+    public function setHeaderName(string $headerName) : self
     {
         $this->headerName = $headerName;
 
@@ -113,7 +108,7 @@ class StatsColumnBuilder
      * @param $indexes
      * @param $defaultValue
      */
-    public function insureIsFilled($indexes, $defaultValue) : void
+    public function insureIsFilled(array $indexes, mixed $defaultValue) : void
     {
         $newValues = [];
         foreach ($indexes as $index) {

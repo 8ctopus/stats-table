@@ -136,7 +136,7 @@ class ExcelDumper extends Dumper
      *
      * @return mixed
      */
-    public function getOption($optionName) : mixed
+    public function getOption(string $optionName) : mixed
     {
         if (array_key_exists($optionName, $this->options)) {
             return $this->options[$optionName];
@@ -287,13 +287,13 @@ class ExcelDumper extends Dumper
      * @param Worksheet $sheet      The worksheet
      * @param int       $col        The selected column
      * @param int       $row        The selected row
-     * @param array     $value      The values to insert
-     * @param array     $format     Associative arrays with formats
+     * @param mixed     $value      The values to insert
+     * @param string    $format
      * @param array     $styleArray An array representing the style
      *
      * @throws Exception
      */
-    protected function applyValue(Worksheet $sheet, int $col, int $row, $value, $format, array $styleArray = []) : void
+    protected function applyValue(Worksheet $sheet, int $col, int $row, mixed $value, string $format, array $styleArray = []) : void
     {
         if (0 === count($styleArray)) {
             $styleArray = $this->getDefaultStyleArrayForRow($row);
@@ -309,6 +309,7 @@ class ExcelDumper extends Dumper
                 } else {
                     $date = $value;
                 }
+
                 $value = Date::PHPToExcel($date);
                 $style->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_DATE_YYYYMMDD2);
                 break;
@@ -319,6 +320,7 @@ class ExcelDumper extends Dumper
                 } else {
                     $date = $value;
                 }
+
                 $value = Date::PHPToExcel($date);
                 $style->getNumberFormat()->setFormatCode(self::FORMAT_DATETIME);
                 break;

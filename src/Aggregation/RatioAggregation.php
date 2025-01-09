@@ -11,16 +11,16 @@ class RatioAggregation implements AggregationInterface
 {
     private $valueInternalName;
     private $overInternalName;
-    private $format;
+    private string $format;
 
-    public function __construct($overInternalName, $valueInternalName, $format = Format::PCT2)
+    public function __construct($overInternalName, $valueInternalName, string $format = Format::PCT2)
     {
         $this->valueInternalName = $valueInternalName;
         $this->overInternalName = $overInternalName;
         $this->format = $format;
     }
 
-    public function aggregate(StatsTableBuilder $statsTable)
+    public function aggregate(StatsTableBuilder $statsTable) : mixed
     {
         // Use sum
         $sumValueAggregation = new SumAggregation($this->valueInternalName);

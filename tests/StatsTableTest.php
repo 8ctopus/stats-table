@@ -34,7 +34,7 @@ class StatsTableTest extends TestCase
     }
 
     #[DataProvider('dataProviderForOneColumn')]
-    public function testSortOneColumn($columnName, $asc, $expected) : void
+    public function testSortOneColumn(string $columnName, $asc, $expected) : void
     {
         $statsTable = $this->_getSimpleTestData();
         $statsTable->sortColumn($columnName, $asc);
@@ -173,7 +173,7 @@ class StatsTableTest extends TestCase
     }
 
     #[DataProvider('dataProviderForOneColumnWithFunc')]
-    public function testSortOneColumnWithFunc($columnName, $customCompareFunc, $expected) : void
+    public function testSortOneColumnWithFunc(string $columnName, $customCompareFunc, $expected) : void
     {
         $statsTable = $this->_getAdvancedTestData();
         $statsTable->uSortColumn($columnName, $customCompareFunc);

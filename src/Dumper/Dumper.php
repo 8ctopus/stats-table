@@ -39,7 +39,7 @@ abstract class Dumper implements DumperInterface
      *
      * @return float|int|string
      */
-    protected function formatValue($format, $value) : float|int|string
+    protected function formatValue(string $format, mixed $value) : float|int|string
     {
         switch ($format) {
             case Format::DATE:

@@ -12,9 +12,9 @@ class CSVDumper extends Dumper
 {
     /** @var string The current locale */
     private string $locale;
-    private $delimiter;
-    private $enclosure;
-    private $charset;
+    private string $delimiter;
+    private string $enclosure;
+    private string $charset;
 
     public function __construct(array $options = [])
     {
@@ -62,13 +62,14 @@ class CSVDumper extends Dumper
         return sprintf('text/csv; charset=%s', $this->charset);
     }
 
-    private function writeLine($fileHandler, $line, $formats = []) : void
+    private function writeLine($fileHandler, array $line, array $formats = []) : void
     {
         foreach ($formats as $index => $format) {
             if (array_key_exists($index, $line)) {
                 $line[$index] = $this->formatValue($format, $line[$index]);
             }
         }
+
         fputcsv($fileHandler, $line, $this->delimiter, $this->enclosure, '\\');
     }
 }

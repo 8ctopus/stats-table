@@ -8,5 +8,5 @@ use Oct8pus\StatsTable\StatsTableBuilder;
 
 interface DynamicColumnBuilderInterface
 {
-    public function buildColumnValues(StatsTableBuilder $statsTable);
+    public function buildColumnValues(StatsTableBuilder $statsTable) : array;
 }

@@ -8,12 +8,12 @@ use Oct8pus\StatsTable\Dumper\Format;
 
 class StatsTable
 {
-    private $headers;
-    private $aggregations;
-    private $data;
-    private $dataFormats;
-    private $aggregationsFormats;
-    private $metaData;
+    private array $headers;
+    private array $aggregations;
+    private array $data;
+    private array $dataFormats;
+    private array $aggregationsFormats;
+    private array $metaData;
 
     /**
      * Constructs a new stats table
@@ -92,11 +92,11 @@ class StatsTable
     /**
      * Remove a single column in table
      *
-     * @param mixed $columnName
+     * @param string $columnName
      *
      * @return self
      */
-    public function removeColumn(mixed $columnName) : self
+    public function removeColumn(string $columnName) : self
     {
         return $this->removeColumns([$columnName]);
     }
@@ -180,13 +180,15 @@ class StatsTable
      */
     public function uSortMultipleColumn(array $columns) : self
     {
-        $sort = static function ($a, $b) use ($columns) {
+        $sort = static function (mixed $a, mixed $b) use ($columns) : int {
             foreach ($columns as $colName => $fn) {
                 $tmp = $fn($a[$colName], $b[$colName]);
+
                 if ($tmp !== 0) {
                     return $tmp;
                 }
             }
+
             return 0;
         };
 

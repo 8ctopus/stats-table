@@ -8,9 +8,6 @@ use InvalidArgumentException;
 
 class ParameterBag
 {
-    /**
-     * @var array The parameter bag
-     */
     private array $bag;
 
     /**

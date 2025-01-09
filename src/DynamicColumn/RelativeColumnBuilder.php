@@ -26,7 +26,6 @@ use Oct8pus\StatsTable\StatsTableBuilder;
  */
 class RelativeColumnBuilder implements DynamicColumnBuilderInterface
 {
-    /** @var array */
     protected array $columns;
 
     /**
