@@ -45,10 +45,6 @@
             "Tests\\": "tests"
         }
     },
-    "conflict": {
-        "paxal/stats-table": "*",
-        "igraal/stats-table": "*"
-    },
     "replace": {
         "paxal/stats-table": "*",
         "igraal/stats-table": "*"
