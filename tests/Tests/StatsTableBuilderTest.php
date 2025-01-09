@@ -10,7 +10,7 @@ use IgraalOSL\StatsTable\StatsTable;
 use IgraalOSL\StatsTable\StatsTableBuilder;
 use PHPUnit\Framework\TestCase;
 
-class StatsTableBuilderTests extends TestCase
+class StatsTableBuilderTest extends TestCase
 {
     public function testGetters()
     {

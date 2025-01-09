@@ -55,7 +55,7 @@ class StatsTableTest extends TestCase
     }
 
 
-    public function dataProviderForOneColumn()
+    static public function dataProviderForOneColumn()
     {
         return [
             [
@@ -107,7 +107,7 @@ class StatsTableTest extends TestCase
         $this->assertSame($expected, $statsTable->getData());
     }
 
-    public function dataProviderForMultipleColumn()
+    static public function dataProviderForMultipleColumn()
     {
         return [
             [
@@ -174,7 +174,7 @@ class StatsTableTest extends TestCase
         $this->assertSame($expected, $statsTable->getData());
     }
 
-    public function dataProviderForMultipleColumnWithFunc()
+    static public function dataProviderForMultipleColumnWithFunc()
     {
         $customSort = function($a, $b){
             if($a['nb'] == $b['nb']) {
@@ -217,7 +217,7 @@ class StatsTableTest extends TestCase
         );
     }
 
-    public function dataProviderForOneColumnWithFunc()
+    static public function dataProviderForOneColumnWithFunc()
     {
         $customSort = function($a, $b){
             if($a == $b) {
