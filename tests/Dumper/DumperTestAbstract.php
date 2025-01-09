@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 abstract class DumperTestAbstract extends TestCase
 {
-    protected function getData(): array
+    protected function getData() : array
     {
         $table = [
             '2014-01-01' => ['hits' => 12],
@@ -22,34 +22,34 @@ abstract class DumperTestAbstract extends TestCase
         return $table;
     }
 
-    protected function getHeaders(): array
+    protected function getHeaders() : array
     {
         return ['hits' => 'Hits'];
     }
 
-    protected function getFormats(): array
+    protected function getFormats() : array
     {
         return ['hits' => Format::INTEGER];
     }
 
-    protected function getAggregations(): array
+    protected function getAggregations() : array
     {
         return ['hits' => new StaticAggregation('value')];
     }
 
-    protected function getStatsTableBuilder(): StatsTableBuilder
+    protected function getStatsTableBuilder() : StatsTableBuilder
     {
         return new StatsTableBuilder($this->getData(), $this->getHeaders(), $this->getFormats(), $this->getAggregations());
     }
 
-    protected function getStatsTable(): StatsTable
+    protected function getStatsTable() : StatsTable
     {
         return $this->getStatsTableBuilder()->build();
     }
 
-    abstract protected function getDumper(): DumperInterface;
+    abstract protected function getDumper() : DumperInterface;
 
-    public function testLink(): void
+    public function testLink() : void
     {
         self::expectNotToPerformAssertions();
         $dumper = $this->getDumper();

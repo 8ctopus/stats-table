@@ -66,7 +66,7 @@ class JSONTest extends DumperTestAbstract
         ), json_decode($jsonDumper->dump($statsTable), true));
     }
 
-    protected function getDumper(): DumperInterface
+    protected function getDumper() : DumperInterface
     {
         return new JSONDumper();
     }

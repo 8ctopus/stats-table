@@ -9,6 +9,7 @@ use IgraalOSL\StatsTable\StatsColumnBuilder;
 use IgraalOSL\StatsTable\StatsTable;
 use IgraalOSL\StatsTable\StatsTableBuilder;
 use PHPUnit\Framework\TestCase;
+use InvalidArgumentException;
 
 class StatsTableBuilderTest extends TestCase
 {
@@ -197,7 +198,7 @@ class StatsTableBuilderTest extends TestCase
 
     public function testInvalidColumn()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $table = [['hits' => 0]];
         $statsTable = new StatsTableBuilder($table);

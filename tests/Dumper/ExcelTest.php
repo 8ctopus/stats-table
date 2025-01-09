@@ -65,7 +65,7 @@ class ExcelTest extends DumperTestAbstract
         $excelDumper->dump($statsTable);
     }
 
-    protected function getDumper(): DumperInterface
+    protected function getDumper() : DumperInterface
     {
         return new ExcelDumper();
     }

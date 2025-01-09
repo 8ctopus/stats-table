@@ -6,6 +6,7 @@ use IgraalOSL\StatsTable\Dumper\DumperInterface;
 use IgraalOSL\StatsTable\Dumper\Format;
 use IgraalOSL\StatsTable\Dumper\HTML\HTMLDumper;
 use IgraalOSL\StatsTable\StatsTable;
+use DOMDocument;
 
 class HTMLTest extends DumperTestAbstract
 {
@@ -45,11 +46,11 @@ class HTMLTest extends DumperTestAbstract
 
         $dumper = new HTMLDumper();
         $html = $dumper->dump($statsTable);
-        $doc = new \DOMDocument();
+        $doc = new DOMDocument();
         $doc->loadXML($html);
 
-        $expectedDoc = new \DOMDocument();
-        $expectedDoc->load(__DIR__.'/Fixtures/test.html');
+        $expectedDoc = new DOMDocument();
+        $expectedDoc->load(__DIR__ . '/Fixtures/test.html');
 
         $this->assertEquals($expectedDoc, $doc);
 
@@ -57,21 +58,21 @@ class HTMLTest extends DumperTestAbstract
         // Test with a custom template
         $dumper = new HTMLDumper([
             'template'        => 'custom.html.twig',
-            'templateFolder'  => __DIR__.'/Fixtures/template',
+            'templateFolder'  => __DIR__ . '/Fixtures/template',
             'templateOptions' => ['title' => 'My title test']
         ]);
         $html = $dumper->dump($statsTable);
 
-        $doc = new \DOMDocument();
+        $doc = new DOMDocument();
         $doc->loadXML($html);
 
-        $expectedDoc = new \DOMDocument();
-        $expectedDoc->load(__DIR__.'/Fixtures/test-custom.html');
+        $expectedDoc = new DOMDocument();
+        $expectedDoc->load(__DIR__ . '/Fixtures/test-custom.html');
 
         $this->assertEquals($expectedDoc, $doc);
     }
 
-    protected function getDumper(): DumperInterface
+    protected function getDumper() : DumperInterface
     {
         return new HTMLDumper();
     }

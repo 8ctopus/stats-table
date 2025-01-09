@@ -59,7 +59,7 @@ class TXTTest extends DumperTestAbstract
         $this->assertEquals($excepted, $text);
     }
 
-    protected function getDumper(): DumperInterface
+    protected function getDumper() : DumperInterface
     {
         return new TXTDumper();
     }

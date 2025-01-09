@@ -6,6 +6,8 @@ use IgraalOSL\StatsTable\Dumper\CSV\CSVDumper;
 use IgraalOSL\StatsTable\Dumper\DumperInterface;
 use IgraalOSL\StatsTable\Dumper\Format;
 use IgraalOSL\StatsTable\StatsTable;
+use DateTime;
+use DateTimeImmutable;
 
 class CSVTest extends DumperTestAbstract
 {
@@ -19,13 +21,13 @@ class CSVTest extends DumperTestAbstract
         // DATE
         $this->assertEquals(
             "2014-01-01\n2014-01-01\n",
-            $csvDumper->dump(new StatsTable([['date' => '2014-01-01'], ['date' => new \DateTime('2014-01-01')]], [], [], ['date' => Format::DATE]))
+            $csvDumper->dump(new StatsTable([['date' => '2014-01-01'], ['date' => new DateTime('2014-01-01')]], [], [], ['date' => Format::DATE]))
         );
 
         // DATETIME
         $this->assertEquals(
             "\"2014-01-01 00:00:00\"\n\"2014-01-01 00:00:00\"\n",
-            $csvDumper->dump(new StatsTable([['date' => '2014-01-01 00:00:00'], ['date' => new \DateTimeImmutable('2014-01-01 00:00:00')]], [], [], ['date' => Format::DATETIME]))
+            $csvDumper->dump(new StatsTable([['date' => '2014-01-01 00:00:00'], ['date' => new DateTimeImmutable('2014-01-01 00:00:00')]], [], [], ['date' => Format::DATETIME]))
         );
 
         // INTEGER
@@ -82,7 +84,7 @@ class CSVTest extends DumperTestAbstract
         );
     }
 
-    protected function getDumper(): DumperInterface
+    protected function getDumper() : DumperInterface
     {
         return new CSVDumper();
     }
