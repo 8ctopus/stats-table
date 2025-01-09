@@ -1,6 +1,6 @@
 {
     "name": "8ctopus/stats-table",
-    "description": "Helper to handle stats table with multiple formatter",
+    "description": "Create statistic tables and export them to text, JSON, CSV or Excel",
     "homepage": "https://github.com/8ctopus/stats-table",
     "type": "library",
     "license": "MIT",
