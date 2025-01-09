@@ -15,7 +15,7 @@ class SumColumnBuilder implements DynamicColumnBuilderInterface
         $this->columns = $columns;
     }
 
-    public function buildColumnValues(StatsTableBuilder $statsTable)
+    public function buildColumnValues(StatsTableBuilder $statsTable) : array
     {
         $column = [];
 

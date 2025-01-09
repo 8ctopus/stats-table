@@ -53,9 +53,9 @@ class ParameterBag
      * @param string $key
      * @param null   $defaultValue
      *
-     * @return null
+     * @return mixed
      */
-    public function get(string $key, $defaultValue = null)
+    public function get(string $key, $defaultValue = null) : mixed
     {
         return $this->has($key) ? $this->bag[$key] : $defaultValue;
     }

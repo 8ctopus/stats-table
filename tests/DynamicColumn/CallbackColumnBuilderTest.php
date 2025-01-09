@@ -17,9 +17,10 @@ class CallbackColumnBuilderTest extends TestCase
             ['hits' => 5, 'subscribers' => 2],
         ]);
 
-        $callbackColumnBuilder = new CallbackColumnBuilder(static function ($line) {
+        $callbackColumnBuilder = new CallbackColumnBuilder(static function ($line) : int {
             return $line['hits'] * $line['subscribers'];
         });
+
         self::assertSame(
             [50, 10],
             $callbackColumnBuilder->buildColumnValues($statsTableBuilder)

@@ -77,7 +77,7 @@ class HTMLDumper extends Dumper
         return 'text/html; charset=utf-8';
     }
 
-    protected function formatData($data, $format)
+    protected function formatData($data, $format) : array
     {
         foreach ($data as &$line) {
             $line = $this->formatLine($line, $format);
@@ -86,7 +86,7 @@ class HTMLDumper extends Dumper
         return $data;
     }
 
-    protected function formatLine($line, $format)
+    protected function formatLine($line, $format) : array
     {
         foreach ($line as $id => &$val) {
             if (array_key_exists($id, $format)) {
@@ -147,12 +147,12 @@ class HTMLDumper extends Dumper
         return $value;
     }
 
-    protected function getDefaultTemplateFolder()
+    protected function getDefaultTemplateFolder() : string
     {
         return __DIR__ . '/../../Resources/views';
     }
 
-    protected function getDefaultTemplate()
+    protected function getDefaultTemplate() : string
     {
         return 'statsTable.html.twig';
     }

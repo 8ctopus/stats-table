@@ -16,7 +16,7 @@ class CallbackColumnBuilder implements DynamicColumnBuilderInterface
         $this->callback = $callback;
     }
 
-    public function buildColumnValues(StatsTableBuilder $statsTable)
+    public function buildColumnValues(StatsTableBuilder $statsTable) : array
     {
         $values = [];
 

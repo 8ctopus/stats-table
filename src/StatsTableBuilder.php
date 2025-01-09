@@ -310,7 +310,7 @@ class StatsTableBuilder
      * @param array|string $columns        Columns to aggregate
      * @param array        $excludeColumns Irrelevant columns to exclude
      *
-     * @return StatsTableBuilder
+     * @return self
      */
     public function groupBy(array|string $columns, array $excludeColumns = []) : self
     {
@@ -341,7 +341,7 @@ class StatsTableBuilder
 
         $headers = $filterLine(
             array_map(
-                static function (StatsColumnBuilder $c) {
+                static function (StatsColumnBuilder $c) : string {
                     return $c->getHeaderName();
                 },
                 $this->columns
@@ -349,7 +349,7 @@ class StatsTableBuilder
         );
         $formats = $filterLine(
             array_map(
-                static function (StatsColumnBuilder $c) {
+                static function (StatsColumnBuilder $c) : string {
                     return $c->getFormat();
                 },
                 $this->columns
@@ -357,7 +357,7 @@ class StatsTableBuilder
         );
         $aggregations = $filterLine(
             array_map(
-                static function (StatsColumnBuilder $c) {
+                static function (StatsColumnBuilder $c) : ?AggregationInterface {
                     return $c->getAggregation();
                 },
                 $this->columns
@@ -365,7 +365,7 @@ class StatsTableBuilder
         );
         $metaData = $filterLine(
             array_map(
-                static function (StatsColumnBuilder $c) {
+                static function (StatsColumnBuilder $c) : array {
                     return $c->getMetaData();
                 },
                 $this->columns

@@ -56,7 +56,7 @@ class TXTDumper extends Dumper
         return 'text/plain; charset=utf-8';
     }
 
-    protected function formatData($data, $format)
+    protected function formatData($data, $format) : array
     {
         foreach ($data as &$line) {
             $line = $this->formatLine($line, $format);
@@ -65,7 +65,7 @@ class TXTDumper extends Dumper
         return $data;
     }
 
-    protected function formatLine($line, $format)
+    protected function formatLine($line, $format) : array
     {
         foreach ($line as $id => &$val) {
             if (array_key_exists($id, $format)) {

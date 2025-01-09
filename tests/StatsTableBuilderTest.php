@@ -275,9 +275,8 @@ class StatsTableBuilderTest extends TestCase
         );
     }
 
-    private function _getTestData()
+    private function _getTestData() : array
     {
-        // Data of test
         return [
             '2014-01-01' => ['hits' => 12],
             '2014-01-03' => ['hits' => 14],

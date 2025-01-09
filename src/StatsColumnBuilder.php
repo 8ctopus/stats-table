@@ -54,9 +54,9 @@ class StatsColumnBuilder
     /**
      * @param $headerName
      *
-     * @return $this
+     * @return self
      */
-    public function setHeaderName($headerName)
+    public function setHeaderName($headerName) : self
     {
         $this->headerName = $headerName;
 
@@ -74,9 +74,9 @@ class StatsColumnBuilder
     /**
      * @param AggregationInterface $aggregation
      *
-     * @return $this
+     * @return self
      */
-    public function setAggregation(AggregationInterface $aggregation)
+    public function setAggregation(AggregationInterface $aggregation) : self
     {
         $this->aggregation = $aggregation;
 

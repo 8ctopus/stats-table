@@ -42,7 +42,7 @@ class RelativeColumnBuilder implements DynamicColumnBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function buildColumnValues(StatsTableBuilder $statsTable)
+    public function buildColumnValues(StatsTableBuilder $statsTable) : array
     {
         $summedDataColumn = new SumColumnBuilder($this->columns);
         $summedData = $summedDataColumn->buildColumnValues($statsTable);

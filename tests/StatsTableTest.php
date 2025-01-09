@@ -41,7 +41,7 @@ class StatsTableTest extends TestCase
         self::assertSame($expected, $statsTable->getData());
     }
 
-    public static function dataProviderForOneColumn()
+    public static function dataProviderForOneColumn() : array
     {
         return [
             [
@@ -95,7 +95,7 @@ class StatsTableTest extends TestCase
         self::assertSame($expected, $statsTable->getData());
     }
 
-    public static function dataProviderForMultipleColumn()
+    public static function dataProviderForMultipleColumn() : array
     {
         return [
             [
@@ -145,9 +145,9 @@ class StatsTableTest extends TestCase
         self::assertSame($expected, $statsTable->getData());
     }
 
-    public static function dataProviderForMultipleColumnWithFunc()
+    public static function dataProviderForMultipleColumnWithFunc() : array
     {
-        $customSort = static function ($a, $b) {
+        $customSort = static function ($a, $b) : int {
             if ($a['nb'] === $b['nb']) {
                 if ($a['id'] === $b['id']) {
                     return 0;
@@ -185,9 +185,9 @@ class StatsTableTest extends TestCase
         );
     }
 
-    public static function dataProviderForOneColumnWithFunc()
+    public static function dataProviderForOneColumnWithFunc() : array
     {
-        $customSort = static function ($a, $b) {
+        $customSort = static function ($a, $b) : int {
             if ($a === $b) {
                 return 0;
             }
@@ -209,7 +209,7 @@ class StatsTableTest extends TestCase
         ];
     }
 
-    private function _getSimpleTestData()
+    private function _getSimpleTestData() : StatsTable
     {
         return new StatsTable(
             [
@@ -222,7 +222,7 @@ class StatsTableTest extends TestCase
         );
     }
 
-    private function _getAdvancedTestData()
+    private function _getAdvancedTestData() : StatsTable
     {
         return new StatsTable(
             [

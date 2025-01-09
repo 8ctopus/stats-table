@@ -94,7 +94,7 @@ class StatsTable
      *
      * @param mixed $columnName
      *
-     * @return StatsTable
+     * @return self
      */
     public function removeColumn(mixed $columnName) : self
     {
@@ -106,7 +106,7 @@ class StatsTable
      *
      * @param array $columns
      *
-     * @return StatsTable
+     * @return self
      */
     public function removeColumns(array $columns) : self
     {
@@ -130,7 +130,7 @@ class StatsTable
      * @param string $columnName Name of column
      * @param bool   $asc        Sort direction : TRUE=>Ascending, FALSE=>Descending
      *
-     * @return StatsTable
+     * @return self
      */
     public function sortColumn(string $columnName, bool $asc = true) : self
     {
@@ -144,7 +144,7 @@ class StatsTable
      * @param string   $columnName  Name of column
      * @param function $compareFunc custom compare function that should return 0, -1 or 1
      *
-     * @return StatsTable
+     * @return self
      */
     public function uSortColumn(string $columnName, $compareFunc) : self
     {
@@ -157,9 +157,9 @@ class StatsTable
      *
      * @param array $columns Associative array : KEY=> column name (string), VALUE=> Sort direction (boolean)
      *
-     * @return $this
+     * @return self
      */
-    public function sortMultipleColumn(array $columns)
+    public function sortMultipleColumn(array $columns) : self
     {
         $compareFuncList = [];
         foreach ($columns as $colName => $asc) {
@@ -176,9 +176,9 @@ class StatsTable
      *
      * @param array $columns Associative array : KEY=> column name (string), VALUE=> Custom function (function)
      *
-     * @return $this
+     * @return self
      */
-    public function uSortMultipleColumn(array $columns)
+    public function uSortMultipleColumn(array $columns) : self
     {
         $sort = static function ($a, $b) use ($columns) {
             foreach ($columns as $colName => $fn) {
@@ -211,7 +211,7 @@ class StatsTable
         }
     }
 
-    private function _getFunctionForFormat($format, $asc)
+    private function _getFunctionForFormat($format, $asc) : mixed
     {
         $genericFunc = static function ($a, $b) use ($asc) {
             if ($a === $b) {

@@ -42,7 +42,7 @@ class ParameterBagTest extends TestCase
         self::assertSame('Three', $bag->get('3', 'Three'));
     }
 
-    private function getSampleData()
+    private function getSampleData() : array
     {
         return [
             '1' => 'One',
@@ -50,7 +50,7 @@ class ParameterBagTest extends TestCase
         ];
     }
 
-    private function getSampleBag()
+    private function getSampleBag() : ParameterBag
     {
         return new ParameterBag($this->getSampleData());
     }

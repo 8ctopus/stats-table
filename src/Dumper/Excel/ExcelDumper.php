@@ -134,9 +134,9 @@ class ExcelDumper extends Dumper
      *
      * @param $optionName
      *
-     * @return null
+     * @return mixed
      */
-    public function getOption($optionName)
+    public function getOption($optionName) : mixed
     {
         if (array_key_exists($optionName, $this->options)) {
             return $this->options[$optionName];
