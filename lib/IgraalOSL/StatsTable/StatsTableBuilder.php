@@ -60,9 +60,9 @@ class StatsTableBuilder
      * @param $columnName
      * @param null $headerName
      * @param null $format
-     * @param AggregationInterface $aggregation
+     * @param AggregationInterface|null $aggregation
      */
-    public function addIndexesAsColumn($columnName, $headerName = null, $format = null, AggregationInterface $aggregation = null, $metaData = [])
+    public function addIndexesAsColumn($columnName, $headerName = null, $format = null, ?AggregationInterface $aggregation = null, $metaData = [])
     {
         $values = [];
         foreach ($this->indexes as $index) {
@@ -192,9 +192,9 @@ class StatsTableBuilder
      * @param DynamicColumnBuilderInterface $dynamicColumn
      * @param string                        $header
      * @param string                        $format
-     * @param AggregationInterface          $aggregation
+     * @param AggregationInterface|null     $aggregation
      */
-    public function addDynamicColumn($columnName, DynamicColumnBuilderInterface $dynamicColumn, $header = '', $format = null, AggregationInterface $aggregation = null, $metaData = [])
+    public function addDynamicColumn($columnName, DynamicColumnBuilderInterface $dynamicColumn, $header = '', $format = null, ?AggregationInterface $aggregation = null, $metaData = [])
     {
         $values = $dynamicColumn->buildColumnValues($this);
         $this->columns[$columnName] = new StatsColumnBuilder($values, $header, $format, $aggregation, $metaData);
@@ -206,9 +206,9 @@ class StatsTableBuilder
      * @param array                         $values
      * @param string                        $header
      * @param string                        $format
-     * @param AggregationInterface          $aggregation
+     * @param AggregationInterface|null     $aggregation
      */
-    public function addColumn($columnName, array $values, $header = '', $format = null, AggregationInterface $aggregation = null, $metaData = [])
+    public function addColumn($columnName, array $values, $header = '', $format = null, ?AggregationInterface $aggregation = null, $metaData = [])
     {
         $this->columns[$columnName] = new StatsColumnBuilder($values, $header, $format, $aggregation, $metaData);
     }

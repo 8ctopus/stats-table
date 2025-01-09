@@ -10,9 +10,9 @@ class StatsColumnBuilder
      * @param array                $values      Associative array like index => { name => value }
      * @param string               $headerName  Header name
      * @param string               $format      Format
-     * @param AggregationInterface $aggregation Aggregation
+     * @param AggregationInterface|null $aggregation Aggregation
      */
-    public function __construct($values, $headerName = '', $format = null, AggregationInterface $aggregation = null, $metaData = [])
+    public function __construct($values, $headerName = '', $format = null, ?AggregationInterface $aggregation = null, $metaData = [])
     {
         $this->values = $values;
         $this->headerName = $headerName;

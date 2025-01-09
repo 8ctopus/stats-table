@@ -61,7 +61,7 @@ class CSVDumper extends Dumper
                 $line[$index] = $this->formatValue($format, $line[$index]);
             }
         }
-        fputcsv($fileHandler, $line, $this->delimiter, $this->enclosure);
+        fputcsv($fileHandler, $line, $this->delimiter, $this->enclosure, "\\");
     }
 
     public function getMimeType()
