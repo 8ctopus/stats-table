@@ -15,11 +15,11 @@ class StatsColumnBuilder
     private array $metaData;
 
     /**
-     * @param array                     $values      Associative array like index => { name => value }
-     * @param string                    $headerName  Header name
-     * @param ?string                   $format      Format
-     * @param ?AggregationInterface     $aggregation Aggregation
-     * @param array                     $metaData
+     * @param array                 $values      Associative array like index => { name => value }
+     * @param string                $headerName  Header name
+     * @param ?string               $format      Format
+     * @param ?AggregationInterface $aggregation Aggregation
+     * @param array                 $metaData
      */
     public function __construct(array $values, string $headerName = '', ?string $format = null, ?AggregationInterface $aggregation = null, array $metaData = [])
     {

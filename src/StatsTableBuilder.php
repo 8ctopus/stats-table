@@ -56,11 +56,11 @@ class StatsTableBuilder
     /**
      * Add index of data as a new column
      *
-     * @param string                    $columnName
-     * @param ?string                   $headerName
-     * @param ?string                   $format
-     * @param ?AggregationInterface     $aggregation
-     * @param array                     $metaData
+     * @param string                $columnName
+     * @param ?string               $headerName
+     * @param ?string               $format
+     * @param ?AggregationInterface $aggregation
+     * @param array                 $metaData
      */
     public function addIndexesAsColumn(string $columnName, ?string $headerName = null, ?string $format = null, ?AggregationInterface $aggregation = null, array $metaData = []) : void
     {
@@ -200,12 +200,12 @@ class StatsTableBuilder
     /**
      * Add a column
      *
-     * @param string                    $columnName
-     * @param array                     $values
-     * @param string                    $header
-     * @param string                    $format
-     * @param ?AggregationInterface     $aggregation
-     * @param array                     $metaData
+     * @param string                $columnName
+     * @param array                 $values
+     * @param string                $header
+     * @param string                $format
+     * @param ?AggregationInterface $aggregation
+     * @param array                 $metaData
      */
     public function addColumn(string $columnName, array $values, string $header = '', ?string $format = null, ?AggregationInterface $aggregation = null, array $metaData = []) : void
     {
@@ -406,9 +406,9 @@ class StatsTableBuilder
     /**
      * Get an indexed value in a table. Same as ParameterBag
      *
-     * @param array $values
+     * @param array  $values
      * @param string $key
-     * @param mixed $defaultValue
+     * @param mixed  $defaultValue
      *
      * @return mixed
      */
