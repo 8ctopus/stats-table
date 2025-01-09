@@ -1,34 +1,30 @@
-***This package is a fork of [igraal/stats-table](https://github.com/igraal/stats-table)***
+# stats-table
 
-stats-table
-===========
+[![packagist](https://poser.pugx.org/8ctopus/stats-table/v)](https://packagist.org/packages/8ctopus/stats-table)
+[![downloads](https://poser.pugx.org/8ctopus/stats-table/downloads)](https://packagist.org/packages/8ctopus/stats-table)
+[![min php version](https://poser.pugx.org/8ctopus/stats-table/require/php)](https://packagist.org/packages/8ctopus/stats-table)
+[![license](https://poser.pugx.org/8ctopus/stats-table/license)](https://packagist.org/packages/8ctopus/stats-table)
+[![tests](https://github.com/8ctopus/stats-table/actions/workflows/tests.yml/badge.svg)](https://github.com/8ctopus/stats-table/actions/workflows/tests.yml)
+![code coverage badge](https://raw.githubusercontent.com/8ctopus/stats-table/image-data/coverage.svg)
+![lines of code](https://raw.githubusercontent.com/8ctopus/stats-table/image-data/lines.svg)
 
-PHP Libary to handle statistics tables and CSV, JSON and Excel exports. [![Build status](https://github.com/paxal/stats-table/actions/workflows/main.yml/badge.svg)](https://github.com/paxal/stats-table/actions/workflows/main.yml)
+This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-table)
 
-Summary
--------
+PHP Libary to handle statistics tables and CSV, JSON and Excel exports.
+
+# Summary
 
 This library helps you create statistical tables given some data. You provide data, headers and what you want for the footer line, and then you can dump your table into a JSON, CSV or Excel file.
 
 This is very useful to manipulate a lot of tables you want to see in an HTML FrontOffice and when you want to add the ability to get this data in CSV or Excel File as well.
 
-Installation
-------------
+## Installation
 
-### Using composer
+    composer require 8ctopus/stats-table
 
-Using composer, just run the following to require the latest stable :
+## Usage
 
-```bash
-composer req paxal/stats-table
-```
-
-Usage
------
-
-### Using the class StatsTable
-
-The class `StatsTable` is the class that will hold your data. It takes one mandatory argument, and 4 optional arguments. The simpler way to create a new table is to pass the data itself and its headers (even if headers are optional).
+The class `StatsTable` holds your data. It takes one mandatory argument, and 4 optional arguments. The simpler way to create a new table is to pass the data itself and its headers (headers are optional).
 
 ```php
 use IgraalOSL\StatsTable\StatsTable;
@@ -37,6 +33,7 @@ $data = [
     ['date' => '2014-01-01', 'hits' => 32500],
     ['date' => '2014-01-02', 'hits' => 48650],
 ];
+
 $headers = ['date' => 'Date', 'hits' => 'Number of hits'];
 $statsTable = new StatsTable($data, $headers);
 ```
@@ -73,6 +70,7 @@ $statsTableBuilder = new StatsTableBuilder(
     $data,
     ['hits' => 'Number of hits']
 );
+
 $statsTableBuilder->addIndexesAsColumn('date', 'Date');
 
 $statsTable = $statsTableBuilder->build();
