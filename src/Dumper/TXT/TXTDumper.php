@@ -40,7 +40,7 @@ class TXTDumper extends Dumper
             $index = 0;
 
             foreach ($row as $cell) {
-                $output .= str_pad($cell, $widths[$index] + 1, ' ', $rowIndex ? STR_PAD_LEFT : STR_PAD_RIGHT);
+                $output .= str_pad((string) $cell, $widths[$index] + 1, ' ', $rowIndex ? STR_PAD_LEFT : STR_PAD_RIGHT);
                 ++$index;
             }
 
