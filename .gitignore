@@ -1,6 +1,6 @@
 /composer.lock
-/composer.phar
 /vendor/*
 /coverage
-/.idea
 /.phpunit.result.cache
+/.php-cs-fixer.cache
+/*.sublime-workspace
