@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\DynamicColumn;
 
 use IgraalOSL\StatsTable\DynamicColumn\RelativeColumnBuilder;
@@ -8,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class RelativeColumnBuilderTest extends TestCase
 {
-    public function testWithData()
+    public function testWithData() : void
     {
         $statsTable = new StatsTableBuilder(
             [
@@ -18,19 +20,19 @@ class RelativeColumnBuilderTest extends TestCase
         );
 
         $aColumnBuilder = new RelativeColumnBuilder('a');
-        $this->assertEquals(
+        self::assertEquals(
             ['first' => .2, 'second' => .8],
             $aColumnBuilder->buildColumnValues($statsTable)
         );
 
         $abColumnBuilder = new RelativeColumnBuilder(['a', 'b']);
-        $this->assertEquals(
+        self::assertEquals(
             ['first' => .25, 'second' => .75],
             $abColumnBuilder->buildColumnValues($statsTable)
         );
 
         $cColumnBuilder = new RelativeColumnBuilder('c');
-        $this->assertEquals(
+        self::assertEquals(
             ['first' => 0, 'second' => 0],
             $cColumnBuilder->buildColumnValues($statsTable)
         );

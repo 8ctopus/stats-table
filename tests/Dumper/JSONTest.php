@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Dumper;
 
 use IgraalOSL\StatsTable\Dumper\DumperInterface;
@@ -9,12 +11,12 @@ use IgraalOSL\StatsTable\StatsTable;
 
 class JSONTest extends DumperTestAbstract
 {
-    public function testJSON()
+    public function testJSON() : void
     {
         $jsonDumper = new JSONDumper();
 
         // With all values
-        $this->assertEquals(array(
+        self::assertEquals(array(
             'headers' => $this->getHeaders(),
             'data' => $this->getData(),
             'aggregations' => ['hits' => 'value'],
@@ -24,7 +26,7 @@ class JSONTest extends DumperTestAbstract
         ), json_decode($jsonDumper->dump($this->getStatsTable()), true));
     }
 
-    public function testJSONPct()
+    public function testJSONPct() : void
     {
         $jsonDumper = new JSONDumper();
 
@@ -36,7 +38,7 @@ class JSONTest extends DumperTestAbstract
             ['pct' => Format::PCT]
         );
 
-        $this->assertEquals(array(
+        self::assertEquals(array(
             'headers' => ['pct'],
             'data' => [['pct' => 31]],
             'aggregations' => [],
@@ -45,7 +47,7 @@ class JSONTest extends DumperTestAbstract
         ), json_decode($jsonDumper->dump($statsTable), true));
     }
 
-    public function testJSONPct2()
+    public function testJSONPct2() : void
     {
         $jsonDumper = new JSONDumper();
 
@@ -57,7 +59,7 @@ class JSONTest extends DumperTestAbstract
             ['pct' => Format::PCT2]
         );
 
-        $this->assertEquals(array(
+        self::assertEquals(array(
             'headers' => ['pct'],
             'data' => [['pct' => 31.23]],
             'aggregations' => [],

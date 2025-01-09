@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Aggregation;
 
 use IgraalOSL\StatsTable\StatsTableBuilder;
@@ -10,7 +12,7 @@ class AggregationTestAbstract extends TestCase
     /**
      * @return StatsTableBuilder
      */
-    protected function getSampleTable()
+    protected function getSampleTable() : StatsTableBuilder
     {
         $table = [
             '2014-01-01' => ['hits' => 10, 'subscribers' => 5],

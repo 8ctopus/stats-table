@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Aggregation;
 
 use IgraalOSL\StatsTable\Aggregation\SumAggregation;
 
 class SumAggregationTest extends AggregationTestAbstract
 {
-    public function testAggregation()
+    public function testAggregation() : void
     {
         $statsTable = $this->getSampleTable();
 
         $hitsSum = new SumAggregation('hits');
-        $this->assertEquals(40, $hitsSum->aggregate($statsTable));
+        self::assertSame(40, $hitsSum->aggregate($statsTable));
     }
 }

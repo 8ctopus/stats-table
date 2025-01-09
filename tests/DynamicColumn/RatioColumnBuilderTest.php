@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\DynamicColumn;
 
 use IgraalOSL\StatsTable\DynamicColumn\RatioColumnBuilder;
@@ -9,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class RatioColumnBuilderTest extends TestCase
 {
-    public function testBuilder()
+    public function testBuilder() : void
     {
         $table = [
             '2014-01-01' => ['hits' => 10, 'subscribers' => 5],
@@ -29,6 +31,6 @@ class RatioColumnBuilderTest extends TestCase
             '2014-01-03' => 'N/A'
         ];
         $ratioColumn = new StatsColumnBuilder($ratioData, 'Ratio');
-        $this->assertEquals($ratioColumn, $statsTable->getColumn('ratio'));
+        self::assertEquals($ratioColumn, $statsTable->getColumn('ratio'));
     }
 }

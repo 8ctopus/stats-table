@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\DynamicColumn;
 
 use IgraalOSL\StatsTable\DynamicColumn\CallbackColumnBuilder;
@@ -8,17 +10,17 @@ use PHPUnit\Framework\TestCase;
 
 class CallbackColumnBuilderTest extends TestCase
 {
-    public function test()
+    public function test() : void
     {
         $statsTableBuilder = new StatsTableBuilder([
             ['hits' => 10, 'subscribers' => 5],
             ['hits' => 5, 'subscribers' => 2]
         ]);
 
-        $callbackColumnBuilder = new CallbackColumnBuilder(function($line) {
+        $callbackColumnBuilder = new CallbackColumnBuilder(static function($line) {
             return $line['hits'] * $line['subscribers'];
         });
-        $this->assertEquals(
+        self::assertSame(
             [50, 10],
             $callbackColumnBuilder->buildColumnValues($statsTableBuilder)
         );

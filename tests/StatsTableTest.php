@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests;
 
 use IgraalOSL\StatsTable\StatsTable;
@@ -7,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class StatsTableTest extends TestCase
 {
-    public function testRemoveColumn()
+    public function testRemoveColumn() : void
     {
         $statsTable = new StatsTable(
             [
@@ -19,9 +21,9 @@ class StatsTableTest extends TestCase
 
         $statsTable->removeColumn('b');
 
-        $this->assertEquals(['a' => 'Alpha'], $statsTable->getHeaders());
+        self::assertSame(['a' => 'Alpha'], $statsTable->getHeaders());
 
-        $this->assertEquals(
+        self::assertSame(
             [
                 ['a' => 'a'],
                 ['a' => 'A']
@@ -45,11 +47,11 @@ class StatsTableTest extends TestCase
 
 
     #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForOneColumn')]
-    public function testSortOneColumn($columnName, $asc, $expected)
+    public function testSortOneColumn($columnName, $asc, $expected) : void
     {
         $statsTable = $this->_getSimpleTestData();
         $statsTable->sortColumn($columnName, $asc);
-        $this->assertSame($expected, $statsTable->getData());
+        self::assertSame($expected, $statsTable->getData());
     }
 
 
@@ -100,11 +102,11 @@ class StatsTableTest extends TestCase
     }
 
     #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForMultipleColumn')]
-    public function testSortMultipleColumn($params, $expected)
+    public function testSortMultipleColumn($params, $expected) : void
     {
         $statsTable = $this->_getSimpleTestData();
         $statsTable->sortMultipleColumn($params);
-        $this->assertSame($expected, $statsTable->getData());
+        self::assertSame($expected, $statsTable->getData());
     }
 
     static public function dataProviderForMultipleColumn()
@@ -165,18 +167,18 @@ class StatsTableTest extends TestCase
     }
 
     #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForMultipleColumnWithFunc')]
-    public function testSortMultipleColumnWithFunc($params, $expected)
+    public function testSortMultipleColumnWithFunc($params, $expected) : void
     {
         $statsTable = $this->_getAdvancedTestData();
         $statsTable->uSortMultipleColumn($params);
-        $this->assertSame($expected, $statsTable->getData());
+        self::assertSame($expected, $statsTable->getData());
     }
 
     static public function dataProviderForMultipleColumnWithFunc()
     {
-        $customSort = function($a, $b){
-            if($a['nb'] == $b['nb']) {
-                if($a['id'] == $b['id']) {
+        $customSort = static function($a, $b){
+            if($a['nb'] === $b['nb']) {
+                if($a['id'] === $b['id']) {
                     return 0;
                 }
                 return $a['id'] < $b['id']  ? -1 :1;
@@ -201,13 +203,13 @@ class StatsTableTest extends TestCase
     }
 
     #[\PHPUnit\Framework\Attributes\DataProvider('dataProviderForOneColumnWithFunc')]
-    public function testSortOneColumnWithFunc($columnName, $customCompareFunc, $expected)
+    public function testSortOneColumnWithFunc($columnName, $customCompareFunc, $expected) : void
     {
         $statsTable = $this->_getAdvancedTestData();
         $statsTable->uSortColumn($columnName, $customCompareFunc);
 
         // We have an egality for the last rows
-        $this->assertSame(
+        self::assertSame(
             array_slice($expected, 0, 3),
             array_slice($statsTable->getData(), 0, 3)
         );
@@ -215,8 +217,8 @@ class StatsTableTest extends TestCase
 
     static public function dataProviderForOneColumnWithFunc()
     {
-        $customSort = function($a, $b){
-            if($a == $b) {
+        $customSort = static function($a, $b){
+            if($a === $b) {
                return 0;
             }
 

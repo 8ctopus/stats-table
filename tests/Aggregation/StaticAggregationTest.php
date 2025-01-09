@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Aggregation;
 
 use IgraalOSL\StatsTable\Aggregation\StaticAggregation;
 
 class StaticAggregationTest extends AggregationTestAbstract
 {
-    public function testStaticAggregation()
+    public function testStaticAggregation() : void
     {
         $statsTable = $this->getSampleTable();
         $staticAggregation = new StaticAggregation('value');
-        $this->assertEquals('value', $staticAggregation->aggregate($statsTable));
+        self::assertSame('value', $staticAggregation->aggregate($statsTable));
     }
 }
  

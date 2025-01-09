@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\DynamicColumn;
 
 use IgraalOSL\StatsTable\DynamicColumn\SumColumnBuilder;
@@ -9,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class SumColumnBuilderTest extends TestCase
 {
-    public function test()
+    public function test() : void
     {
         $table = [
             '2014-01-01' => ['hits' => 10, 'subscribers' => 5],
@@ -29,6 +31,6 @@ class SumColumnBuilderTest extends TestCase
             '2014-01-03' => 0
         ];
         $sumColumn = new StatsColumnBuilder($sumData, 'Sum');
-        $this->assertEquals($sumColumn, $statsTable->getColumn('sum'));
+        self::assertEquals($sumColumn, $statsTable->getColumn('sum'));
     }
 }

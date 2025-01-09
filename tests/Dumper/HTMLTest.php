@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Dumper;
 
 use IgraalOSL\StatsTable\Dumper\DumperInterface;
@@ -10,7 +12,7 @@ use DOMDocument;
 
 class HTMLTest extends DumperTestAbstract
 {
-    public function testDump()
+    public function testDump() : void
     {
         $headers = ['date' => 'Date', 'hits' => 'Nb de visites', 'subscribers' => 'Nb inscrits', 'ratio' => 'Taux de transfo', 'revenues' => 'Revenus générés'];
         $data = [
@@ -52,7 +54,7 @@ class HTMLTest extends DumperTestAbstract
         $expectedDoc = new DOMDocument();
         $expectedDoc->load(__DIR__ . '/Fixtures/test.html');
 
-        $this->assertEquals($expectedDoc, $doc);
+        self::assertEquals($expectedDoc, $doc);
 
 
         // Test with a custom template
@@ -69,7 +71,7 @@ class HTMLTest extends DumperTestAbstract
         $expectedDoc = new DOMDocument();
         $expectedDoc->load(__DIR__ . '/Fixtures/test-custom.html');
 
-        $this->assertEquals($expectedDoc, $doc);
+        self::assertEquals($expectedDoc, $doc);
     }
 
     protected function getDumper() : DumperInterface

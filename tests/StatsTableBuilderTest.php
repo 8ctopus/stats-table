@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests;
 
 use IgraalOSL\StatsTable\Aggregation\StaticAggregation;
@@ -13,7 +15,7 @@ use InvalidArgumentException;
 
 class StatsTableBuilderTest extends TestCase
 {
-    public function testGetters()
+    public function testGetters() : void
     {
         $table = [
             ['hits' => 12, 'subscribers' => 3],
@@ -25,10 +27,10 @@ class StatsTableBuilderTest extends TestCase
             ['hits' => 'Hits', 'subscribers' => 'Subscribers']
         );
 
-        $this->assertEquals(new StatsColumnBuilder([12, 25], 'Hits'), $statsTable->getColumn('hits'));
+        self::assertEquals(new StatsColumnBuilder([12, 25], 'Hits'), $statsTable->getColumn('hits'));
     }
 
-    public function testAdditionalIndexes()
+    public function testAdditionalIndexes() : void
     {
         $table = [
             '2014-01-01' => ['hits' => 12],
@@ -53,15 +55,15 @@ class StatsTableBuilderTest extends TestCase
             array_keys($wishedColumn)
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             new StatsColumnBuilder($wishedColumn, 'hits'),
             $statsTable->getColumn('hits')
         );
 
-        $this->assertEquals(array_keys($wishedColumn), array_keys($statsTable->getColumn('hits')->getValues()));
+        self::assertSame(array_keys($wishedColumn), array_keys($statsTable->getColumn('hits')->getValues()));
     }
 
-    public function testAddIndexAsColumn()
+    public function testAddIndexAsColumn() : void
     {
         $table = [
             '2014-01-01' => ['hits' => 12],
@@ -79,7 +81,7 @@ class StatsTableBuilderTest extends TestCase
             'Date'
         );
 
-        $this->assertEquals($dateColumn, $statsTable->getColumn('date'));
+        self::assertEquals($dateColumn, $statsTable->getColumn('date'));
     }
 
 
@@ -92,7 +94,7 @@ class StatsTableBuilderTest extends TestCase
         ];
     }
 
-    public function testBuildWithAggregation()
+    public function testBuildWithAggregation() : void
     {
         $data = $this->_getTestData();
         $statsTable = new StatsTableBuilder(
@@ -103,7 +105,7 @@ class StatsTableBuilderTest extends TestCase
         );
 
         $stats = $statsTable->build();
-        $this->assertEquals(new StatsTable(
+        self::assertEquals(new StatsTable(
             $data,
             ['hits' => 'Hits'],
             ['hits' => 26],
@@ -113,7 +115,7 @@ class StatsTableBuilderTest extends TestCase
         ), $stats);
     }
 
-    public function testBuildWithoutAggregation()
+    public function testBuildWithoutAggregation() : void
     {
         $data = $this->_getTestData();
         $statsTable = new StatsTableBuilder(
@@ -122,7 +124,7 @@ class StatsTableBuilderTest extends TestCase
         );
 
         $stats = $statsTable->build();
-        $this->assertEquals(new StatsTable(
+        self::assertEquals(new StatsTable(
             $data,
             ['hits' => 'Hits'],
             ['hits' => null],
@@ -132,7 +134,7 @@ class StatsTableBuilderTest extends TestCase
         ), $stats);
     }
 
-    public function testBuildWithoutData()
+    public function testBuildWithoutData() : void
     {
         $statsTable = new StatsTableBuilder(
             [],
@@ -140,7 +142,7 @@ class StatsTableBuilderTest extends TestCase
         );
 
         $stats = $statsTable->build();
-        $this->assertEquals(new StatsTable(
+        self::assertEquals(new StatsTable(
             [],
             ['hits' => 'Hits'],
             ['hits' => null],
@@ -150,7 +152,7 @@ class StatsTableBuilderTest extends TestCase
         ), $stats);
     }
 
-    public function testBuildWithoutDataAndWithAggregation()
+    public function testBuildWithoutDataAndWithAggregation() : void
     {
         $statsTable = new StatsTableBuilder(
             [],
@@ -160,7 +162,7 @@ class StatsTableBuilderTest extends TestCase
         );
 
         $stats = $statsTable->build();
-        $this->assertEquals(new StatsTable(
+        self::assertEquals(new StatsTable(
             [],
             ['hits' => 'Hits'],
             ['hits' => 0],
@@ -170,7 +172,7 @@ class StatsTableBuilderTest extends TestCase
         ), $stats);
     }
 
-    public function testMissingColumn()
+    public function testMissingColumn() : void
     {
         $table = [
             '2014-01-01' => ['hits' => 12],
@@ -193,10 +195,10 @@ class StatsTableBuilderTest extends TestCase
             '2014-01-03' => 0
         ];
 
-        $this->assertEquals(new StatsColumnBuilder($wishedColumn, 'Hits'), $statsTable->getColumn('hits'));
+        self::assertEquals(new StatsColumnBuilder($wishedColumn, 'Hits'), $statsTable->getColumn('hits'));
     }
 
-    public function testInvalidColumn()
+    public function testInvalidColumn() : void
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -206,17 +208,17 @@ class StatsTableBuilderTest extends TestCase
         $statsTable->getColumn('invalidColumn');
     }
 
-    public function testOrderColumns()
+    public function testOrderColumns() : void
     {
         $table = ['a' => 'value1', 'b' => 'value2', 'c' => 'value3'];
         $expectedTable = ['c' => 'value3', 'a' => 'value1'];
 
-        $this->assertEquals($expectedTable, StatsTableBuilder::orderColumns($table, ['c', 'a']));
+        self::assertEquals($expectedTable, StatsTableBuilder::orderColumns($table, ['c', 'a']));
 
-        $this->assertEquals($table, StatsTableBuilder::orderColumns($table, []));
+        self::assertEquals($table, StatsTableBuilder::orderColumns($table, []));
     }
 
-    public function testBuildWithOrder()
+    public function testBuildWithOrder() : void
     {
         $table = [
             ['a' => 'a', 'b' => 'b', 'c' => 'c'],
@@ -235,13 +237,13 @@ class StatsTableBuilderTest extends TestCase
         );
 
         $statsTable = $statsTableBuilder->build(['c', 'a']);
-        $this->assertEquals(
+        self::assertEquals(
             ['c' => 'Charly', 'a' => 'Alpha'],
             $statsTable->getHeaders()
         );
     }
 
-    public function testGroupBy()
+    public function testGroupBy() : void
     {
         $table = [
             ['tag' => 'one', 'subtag' => 'morning', 'hits' => 2],
@@ -261,23 +263,23 @@ class StatsTableBuilderTest extends TestCase
 
         $groupedByStatsTableBuilder = $statsTableBuilder->groupBy(['tag'], ['subtag']);
 
-        $this->assertEquals(2, count($groupedByStatsTableBuilder->getColumns()));
+        self::assertSame(2, count($groupedByStatsTableBuilder->getColumns()));
 
-        $this->assertEquals(
+        self::assertEquals(
             ['one', 'two'],
             $groupedByStatsTableBuilder->getColumn('tag')->getValues()
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             [5, 4],
             $groupedByStatsTableBuilder->getColumn('hits')->getValues()
         );
 
-        $this->assertEquals(
+        self::assertSame(
             'Tag',
             $groupedByStatsTableBuilder->getColumn('tag')->getAggregation()->aggregate($groupedByStatsTableBuilder)
         );
-        $this->assertEquals(
+        self::assertSame(
             9,
             $groupedByStatsTableBuilder->getColumn('hits')->getAggregation()->aggregate($groupedByStatsTableBuilder)
         );

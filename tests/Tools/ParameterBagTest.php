@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Tools;
 
 use IgraalOSL\StatsTable\Tools\ParameterBag;
@@ -20,36 +22,36 @@ class ParameterBagTest extends TestCase
         return new ParameterBag($this->getSampleData());
     }
 
-    public function testConstructorWithArray()
+    public function testConstructorWithArray() : void
     {
         $data = $this->getSampleData();
         $bag = $this->getSampleBag();
 
-        $this->assertEquals($data, $bag->toArray());
+        self::assertSame($data, $bag->toArray());
     }
 
-    public function testConstructorWithParameterBag()
+    public function testConstructorWithParameterBag() : void
     {
         $data = $this->getSampleData();
         $bag = $this->getSampleBag();
 
         $bag2 = new ParameterBag($bag);
-        $this->assertEquals($data, $bag2->toArray());
+        self::assertSame($data, $bag2->toArray());
     }
 
-    public function testHasKey()
+    public function testHasKey() : void
     {
         $bag = $this->getSampleBag();
 
-        $this->assertTrue($bag->has('1'));
-        $this->assertFalse($bag->has('3'));
+        self::assertTrue($bag->has('1'));
+        self::assertFalse($bag->has('3'));
     }
 
-    public function testGet()
+    public function testGet() : void
     {
         $bag = $this->getSampleBag();
 
-        $this->assertEquals('One', $bag->get('1', 'One value'));
-        $this->assertEquals('Three', $bag->get('3', 'Three'));
+        self::assertSame('One', $bag->get('1', 'One value'));
+        self::assertSame('Three', $bag->get('3', 'Three'));
     }
 }

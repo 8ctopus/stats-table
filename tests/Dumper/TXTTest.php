@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Dumper;
 
 use IgraalOSL\StatsTable\Dumper\DumperInterface;
@@ -9,7 +11,7 @@ use IgraalOSL\StatsTable\StatsTable;
 
 class TXTTest extends DumperTestAbstract
 {
-    public function testDump()
+    public function testDump() : void
     {
         $headers = ['date' => 'Date', 'hits' => 'Nb de visites', 'subscribers' => 'Nb inscrits', 'ratio' => 'Taux de transfo', 'revenues' => 'Revenus générés'];
 
@@ -56,7 +58,7 @@ class TXTTest extends DumperTestAbstract
 
         TXT;
 
-        $this->assertEquals($excepted, $text);
+        self::assertEquals($excepted, $text);
     }
 
     protected function getDumper() : DumperInterface

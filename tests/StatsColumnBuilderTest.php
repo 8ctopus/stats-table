@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests;
 
 use IgraalOSL\StatsTable\Aggregation\AggregationInterface;
@@ -9,20 +11,20 @@ use PHPUnit\Framework\TestCase;
 
 class StatsColumnBuilderTest extends TestCase
 {
-    public function testCreation()
+    public function testCreation() : void
     {
         $aggregation = new CountAggregation('Hits');
 
         $values = [3, 5];
         $column = new StatsColumnBuilder($values, 'Hits', 'format', $aggregation);
 
-        $this->assertEquals($values, $column->getValues());
-        $this->assertEquals('Hits', $column->getHeaderName());
-        $this->assertEquals('format', $column->getFormat());
-        $this->assertEquals($aggregation, $column->getAggregation());
+        self::assertSame($values, $column->getValues());
+        self::assertSame('Hits', $column->getHeaderName());
+        self::assertSame('format', $column->getFormat());
+        self::assertSame($aggregation, $column->getAggregation());
     }
 
-    public function testEnsureIndexExists()
+    public function testEnsureIndexExists() : void
     {
         $values = ['2014-01-01' => 3, '2014-01-03' => 5];
         $column = new StatsColumnBuilder($values);
@@ -31,21 +33,21 @@ class StatsColumnBuilderTest extends TestCase
 
         $values['2014-01-02'] = 0;
 
-        $this->assertEquals($values, $column->getValues());
+        self::assertEquals($values, $column->getValues());
     }
 
-    public function testSetters()
+    public function testSetters() : void
     {
         $values = [3, 5];
         $column = new StatsColumnBuilder($values, 'Hits');
 
         $column->setHeaderName('Hits2');
-        $this->assertEquals('Hits2', $column->getHeaderName());
+        self::assertSame('Hits2', $column->getHeaderName());
 
-        $this->assertNull($column->getAggregation());
+        self::assertNull($column->getAggregation());
 
         $aggregation = new CountAggregation('Hits');
         $column->setAggregation($aggregation);
-        $this->assertEquals($aggregation, $column->getAggregation());
+        self::assertSame($aggregation, $column->getAggregation());
     }
 }

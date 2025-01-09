@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Dumper;
 
 use IgraalOSL\StatsTable\Dumper\DumperInterface;
@@ -9,7 +11,7 @@ use IgraalOSL\StatsTable\StatsTable;
 
 class ExcelTest extends DumperTestAbstract
 {
-    public function test()
+    public function test() : void
     {
         self::expectNotToPerformAssertions();
 
@@ -56,7 +58,7 @@ class ExcelTest extends DumperTestAbstract
         file_put_contents(sys_get_temp_dir() . '/test2.xls', $excelContents);
     }
 
-    public function testEmpty()
+    public function testEmpty() : void
     {
         self::expectNotToPerformAssertions();
 
