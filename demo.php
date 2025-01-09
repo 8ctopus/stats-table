@@ -63,9 +63,9 @@ $dynamicColumn = new CallbackColumnBuilder(function($row) : float {
     return $row['weight'] / ($row['height'] * $row['height']);
 });
 
-$builder->addDynamicColumn('BMI', $dynamicColumn, 'BMI', Format::FLOAT2);
-
-$table = $builder->build();
+$table = $builder
+    ->addDynamicColumn('BMI', $dynamicColumn, 'BMI', Format::FLOAT2)
+    ->build();
 
 $table->sortMultipleColumn([
     'age' => true,
