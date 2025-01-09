@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IgraalOSL\StatsTable;
 
 use IgraalOSL\StatsTable\Aggregation\AggregationInterface;

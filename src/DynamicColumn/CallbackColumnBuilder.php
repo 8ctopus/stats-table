@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IgraalOSL\StatsTable\DynamicColumn;
 
 use IgraalOSL\StatsTable\StatsTableBuilder;

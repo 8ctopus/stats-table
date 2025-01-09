@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use IgraalOSL\StatsTable\Aggregation\SumAggregation;
 use IgraalOSL\StatsTable\Dumper\Format;
 use IgraalOSL\StatsTable\Dumper\HTML\HTMLDumper;

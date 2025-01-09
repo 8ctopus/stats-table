@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IgraalOSL\StatsTable\Dumper\CSV;
 
 use IgraalOSL\StatsTable\Dumper\Dumper;

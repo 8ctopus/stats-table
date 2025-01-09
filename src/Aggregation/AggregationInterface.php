@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IgraalOSL\StatsTable\Aggregation;
 
 use IgraalOSL\StatsTable\StatsTableBuilder;

@@ -49,13 +49,13 @@ if (isset($GLOBALS['argv']) && in_array('--allow-risky=yes', $GLOBALS['argv'], t
 
     $fixer
         ->setRules([
-            '@PhpCsFixer:risky' => true,
+            //'@PhpCsFixer:risky' => true,
             'declare_strict_types' => true,
-            'native_function_invocation' => false,
-            'phpdoc_to_param_type' => true,
-            'phpdoc_to_property_type' => true,
-            'phpdoc_to_return_type' => true,
-            'void_return' => true,
+            //'native_function_invocation' => false,
+            //'phpdoc_to_param_type' => true,
+            //'phpdoc_to_property_type' => true,
+            //'phpdoc_to_return_type' => true,
+            //'void_return' => true,
         ]);
 }
 
