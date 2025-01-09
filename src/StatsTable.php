@@ -16,6 +16,32 @@ class StatsTable
     private $metaData;
 
     /**
+     * Constructs a new stats table
+     *
+     * @param array $data
+     * @param       $headers
+     * @param       $aggregations
+     * @param array $dataFormats
+     * @param array $aggregationsFormats
+     * @param array $metaData
+     */
+    public function __construct(
+        array $data,
+        array $headers = [],
+        array $aggregations = [],
+        array $dataFormats = [],
+        array $aggregationsFormats = [],
+        array $metaData = []
+    ) {
+        $this->headers = $headers;
+        $this->data = $data;
+        $this->aggregations = $aggregations;
+        $this->dataFormats = $dataFormats;
+        $this->aggregationsFormats = $aggregationsFormats;
+        $this->metaData = $metaData;
+    }
+
+    /**
      * @return array
      */
     public function getHeaders() : array
@@ -64,32 +90,6 @@ class StatsTable
     }
 
     /**
-     * Constructs a new stats table
-     *
-     * @param array $data
-     * @param       $headers
-     * @param       $aggregations
-     * @param array $dataFormats
-     * @param array $aggregationsFormats
-     * @param array $metaData
-     */
-    public function __construct(
-        array $data,
-        array $headers = [],
-        array $aggregations = [],
-        array $dataFormats = [],
-        array $aggregationsFormats = [],
-        array $metaData = []
-    ) {
-        $this->headers = $headers;
-        $this->data = $data;
-        $this->aggregations = $aggregations;
-        $this->dataFormats = $dataFormats;
-        $this->aggregationsFormats = $aggregationsFormats;
-        $this->metaData = $metaData;
-    }
-
-    /**
      * Remove a single column in table
      *
      * @param mixed $columnName
@@ -122,23 +122,6 @@ class StatsTable
         }
 
         return $this;
-    }
-
-    /**
-     * Internal helper to remove columns for a line.
-     *
-     * @param array $line       Line to filter. Referenced.
-     * @param array $columnsMap An array indexed by columns to exclude. Value doesn't matter.
-     *
-     * @return void
-     */
-    protected function removeColumnsInLine(array &$line, array $columnsMap) : void
-    {
-        foreach (array_keys($line) as $k) {
-            if (array_key_exists($k, $columnsMap)) {
-                unset($line[$k]);
-            }
-        }
     }
 
     /**
@@ -209,6 +192,23 @@ class StatsTable
 
         uasort($this->data, $sort);
         return $this;
+    }
+
+    /**
+     * Internal helper to remove columns for a line.
+     *
+     * @param array $line       Line to filter. Referenced.
+     * @param array $columnsMap An array indexed by columns to exclude. Value doesn't matter.
+     *
+     * @return void
+     */
+    protected function removeColumnsInLine(array &$line, array $columnsMap) : void
+    {
+        foreach (array_keys($line) as $k) {
+            if (array_key_exists($k, $columnsMap)) {
+                unset($line[$k]);
+            }
+        }
     }
 
     private function _getFunctionForFormat($format, $asc)

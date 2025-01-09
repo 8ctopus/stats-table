@@ -8,6 +8,17 @@ use Oct8pus\StatsTable\Aggregation\AggregationInterface;
 
 class StatsColumnBuilder
 {
+    /** @var array The raw values */
+    private array $values;
+    /** @var string The format */
+    private ?string $format;
+    /** @var AggregationInterface The aggregation rule */
+    private ?AggregationInterface $aggregation;
+    /** @var string The header name */
+    private string $headerName;
+    /** @var array Column metadata */
+    private array $metaData;
+
     /**
      * @param array                     $values      Associative array like index => { name => value }
      * @param string                    $headerName  Header name
@@ -23,17 +34,6 @@ class StatsColumnBuilder
         $this->aggregation = $aggregation;
         $this->metaData = $metaData;
     }
-
-    /** @var array The raw values */
-    private array $values;
-    /** @var string The format */
-    private ?string $format;
-    /** @var AggregationInterface The aggregation rule */
-    private ?AggregationInterface $aggregation;
-    /** @var string The header name */
-    private string $headerName;
-    /** @var array Column metadata */
-    private array $metaData;
 
     /**
      * @return mixed[]

@@ -9,19 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class ParameterBagTest extends TestCase
 {
-    private function getSampleData()
-    {
-        return [
-            '1' => 'One',
-            '2' => 'Two',
-        ];
-    }
-
-    private function getSampleBag()
-    {
-        return new ParameterBag($this->getSampleData());
-    }
-
     public function testConstructorWithArray() : void
     {
         $data = $this->getSampleData();
@@ -53,5 +40,18 @@ class ParameterBagTest extends TestCase
 
         self::assertSame('One', $bag->get('1', 'One value'));
         self::assertSame('Three', $bag->get('3', 'Three'));
+    }
+
+    private function getSampleData()
+    {
+        return [
+            '1' => 'One',
+            '2' => 'Two',
+        ];
+    }
+
+    private function getSampleBag()
+    {
+        return new ParameterBag($this->getSampleData());
     }
 }

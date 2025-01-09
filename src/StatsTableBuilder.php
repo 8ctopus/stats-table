@@ -136,20 +136,6 @@ class StatsTableBuilder
     }
 
     /**
-     * Get an indexed value in a table. Same as ParameterBag
-     *
-     * @param array $values
-     * @param mixed $key
-     * @param mixed $defaultValue
-     *
-     * @return mixed
-     */
-    private function getParameter(array $values, mixed $key, mixed $defaultValue = null) : mixed
-    {
-        return array_key_exists($key, $values) ? $values[$key] : $defaultValue;
-    }
-
-    /**
      * Returns an associative table only with selected column.
      * Fill with default value if column not in a row
      *
@@ -421,5 +407,19 @@ class StatsTableBuilder
             null,
             $metaData
         );
+    }
+
+    /**
+     * Get an indexed value in a table. Same as ParameterBag
+     *
+     * @param array $values
+     * @param mixed $key
+     * @param mixed $defaultValue
+     *
+     * @return mixed
+     */
+    private function getParameter(array $values, mixed $key, mixed $defaultValue = null) : mixed
+    {
+        return array_key_exists($key, $values) ? $values[$key] : $defaultValue;
     }
 }

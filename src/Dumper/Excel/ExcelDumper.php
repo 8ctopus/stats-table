@@ -23,8 +23,6 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ExcelDumper extends Dumper
 {
-    private const FIRST_COLUMN = 1;
-
     public const OPTION_ZEBRA = 'zebra';
     public const OPTION_ZEBRA_COLOR_ODD = 'zebra_color_odd';
     public const OPTION_ZEBRA_COLOR_EVEN = 'zebra_color_even';
@@ -32,6 +30,7 @@ class ExcelDumper extends Dumper
 
     public const FORMAT_EUR = '# ##0.00 €';
     public const FORMAT_DATETIME = 'dd/mm/yy hh:mm';
+    private const FIRST_COLUMN = 1;
 
     protected $options = [];
 
@@ -128,6 +127,27 @@ class ExcelDumper extends Dumper
         unset($excel, $xlsDumper);
 
         return $contents;
+    }
+
+    /**
+     * Gets an option
+     *
+     * @param $optionName
+     *
+     * @return null
+     */
+    public function getOption($optionName)
+    {
+        if (array_key_exists($optionName, $this->options)) {
+            return $this->options[$optionName];
+        } else {
+            return null;
+        }
+    }
+
+    public function getMimeType() : string
+    {
+        return 'application/vnd.ms-office; charset=binary';
     }
 
     /**
@@ -242,22 +262,6 @@ class ExcelDumper extends Dumper
     }
 
     /**
-     * Gets an option
-     *
-     * @param $optionName
-     *
-     * @return null
-     */
-    public function getOption($optionName)
-    {
-        if (array_key_exists($optionName, $this->options)) {
-            return $this->options[$optionName];
-        } else {
-            return null;
-        }
-    }
-
-    /**
      * Set values in specific row
      *
      * @param Worksheet $sheet      The worksheet
@@ -364,10 +368,5 @@ class ExcelDumper extends Dumper
                 $sheet->setCellValueByColumnAndRow($col, $row, $value);
                 break;
         }
-    }
-
-    public function getMimeType() : string
-    {
-        return 'application/vnd.ms-office; charset=binary';
     }
 }

@@ -55,6 +55,16 @@ class JSONDumper extends Dumper
     }
 
     /**
+     * Get mime type of dumper
+     *
+     * @return string
+     */
+    public function getMimeType() : string
+    {
+        return 'application/json';
+    }
+
+    /**
      * Format values for JSON
      *
      * @param $format
@@ -88,15 +98,5 @@ class JSONDumper extends Dumper
         }
 
         return $value;
-    }
-
-    /**
-     * Get mime type of dumper
-     *
-     * @return string
-     */
-    public function getMimeType() : string
-    {
-        return 'application/json';
     }
 }

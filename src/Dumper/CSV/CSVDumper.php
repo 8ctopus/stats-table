@@ -57,6 +57,11 @@ class CSVDumper extends Dumper
         return fread($fileHandler, $len);
     }
 
+    public function getMimeType() : string
+    {
+        return sprintf('text/csv; charset=%s', $this->charset);
+    }
+
     private function writeLine($fileHandler, $line, $formats = []) : void
     {
         foreach ($formats as $index => $format) {
@@ -65,10 +70,5 @@ class CSVDumper extends Dumper
             }
         }
         fputcsv($fileHandler, $line, $this->delimiter, $this->enclosure, '\\');
-    }
-
-    public function getMimeType() : string
-    {
-        return sprintf('text/csv; charset=%s', $this->charset);
     }
 }

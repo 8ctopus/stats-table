@@ -72,6 +72,11 @@ class HTMLDumper extends Dumper
         return $this->twig->render($this->template, $params);
     }
 
+    public function getMimeType() : string
+    {
+        return 'text/html; charset=utf-8';
+    }
+
     protected function formatData($data, $format)
     {
         foreach ($data as &$line) {
@@ -150,10 +155,5 @@ class HTMLDumper extends Dumper
     protected function getDefaultTemplate()
     {
         return 'statsTable.html.twig';
-    }
-
-    public function getMimeType() : string
-    {
-        return 'text/html; charset=utf-8';
     }
 }

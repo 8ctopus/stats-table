@@ -84,15 +84,6 @@ class StatsTableBuilderTest extends TestCase
         self::assertEquals($dateColumn, $statsTable->getColumn('date'));
     }
 
-    private function _getTestData()
-    {
-        // Data of test
-        return [
-            '2014-01-01' => ['hits' => 12],
-            '2014-01-03' => ['hits' => 14],
-        ];
-    }
-
     public function testBuildWithAggregation() : void
     {
         $data = $this->_getTestData();
@@ -282,5 +273,14 @@ class StatsTableBuilderTest extends TestCase
             9,
             $groupedByStatsTableBuilder->getColumn('hits')->getAggregation()->aggregate($groupedByStatsTableBuilder)
         );
+    }
+
+    private function _getTestData()
+    {
+        // Data of test
+        return [
+            '2014-01-01' => ['hits' => 12],
+            '2014-01-03' => ['hits' => 14],
+        ];
     }
 }

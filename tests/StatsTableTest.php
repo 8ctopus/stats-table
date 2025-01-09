@@ -33,19 +33,6 @@ class StatsTableTest extends TestCase
         );
     }
 
-    private function _getSimpleTestData()
-    {
-        return new StatsTable(
-            [
-                ['name' => 'Pierre', 'age' => '32'],
-                ['name' => 'Jacques', 'age' => '28'],
-                ['name' => 'Jean', 'age' => '32'],
-                ['name' => 'Paul', 'age' => '25'],
-            ],
-            ['name' => 'Name', 'age' => 'Age', 'order' => 'Order']
-        );
-    }
-
     #[DataProvider('dataProviderForOneColumn')]
     public function testSortOneColumn($columnName, $asc, $expected) : void
     {
@@ -150,20 +137,6 @@ class StatsTableTest extends TestCase
         ];
     }
 
-    private function _getAdvancedTestData()
-    {
-        return new StatsTable(
-            [
-                ['name' => 'Pierre', 'age' => '32', 'order' => ['nb' => 10, 'id' => '4587956']],
-                ['name' => 'Jacques', 'age' => '28', 'order' => ['nb' => 10, 'id' => '2479109']],
-                ['name' => 'Jean', 'age' => '32', 'order' => ['nb' => 1, 'id' => '9210367']],
-                ['name' => 'Paul', 'age' => '25', 'order' => ['nb' => 24, 'id' => '5214681']],
-                ['name' => 'Celine', 'age' => '25', 'order' => ['nb' => 24, 'id' => '5214680']],
-            ],
-            ['name' => 'Name', 'age' => 'Age', 'order' => 'Order']
-        );
-    }
-
     #[DataProvider('dataProviderForMultipleColumnWithFunc')]
     public function testSortMultipleColumnWithFunc($params, $expected) : void
     {
@@ -234,5 +207,32 @@ class StatsTableTest extends TestCase
                 ],
             ],
         ];
+    }
+
+    private function _getSimpleTestData()
+    {
+        return new StatsTable(
+            [
+                ['name' => 'Pierre', 'age' => '32'],
+                ['name' => 'Jacques', 'age' => '28'],
+                ['name' => 'Jean', 'age' => '32'],
+                ['name' => 'Paul', 'age' => '25'],
+            ],
+            ['name' => 'Name', 'age' => 'Age', 'order' => 'Order']
+        );
+    }
+
+    private function _getAdvancedTestData()
+    {
+        return new StatsTable(
+            [
+                ['name' => 'Pierre', 'age' => '32', 'order' => ['nb' => 10, 'id' => '4587956']],
+                ['name' => 'Jacques', 'age' => '28', 'order' => ['nb' => 10, 'id' => '2479109']],
+                ['name' => 'Jean', 'age' => '32', 'order' => ['nb' => 1, 'id' => '9210367']],
+                ['name' => 'Paul', 'age' => '25', 'order' => ['nb' => 24, 'id' => '5214681']],
+                ['name' => 'Celine', 'age' => '25', 'order' => ['nb' => 24, 'id' => '5214680']],
+            ],
+            ['name' => 'Name', 'age' => 'Age', 'order' => 'Order']
+        );
     }
 }
