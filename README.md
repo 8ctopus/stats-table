@@ -43,44 +43,9 @@ Date       Number of hits
  2014-01-02          48650
 ```
 
-### Dumping a table
+### Table builder
 
-Four formats are currently supported : text, Excel, CSV and JSON. Thus, you can use the same table with your ajax calls or to be downloaded.
-
-```php
-use Oct8pus\StatsTable\Dumper\Excel\ExcelDumper;
-
-$excelDumper = new ExcelDumper();
-$excelContents = $excelDumper->dump($statsTable);
-
-header('Content-type: application/vnd.ms-excel');
-echo $excelContents;
-```
-
-### Using stats table builder
-
-To help you construct a table, you can use the `StatsTableBuilder` class.\
-
-It helps you combine data from multiple tables, and can create automatic calculated columns. It also helps build aggregations (aka the footer line), with multiple possibilities : ratio, sum, average or static content.
-
-```php
-use Oct8pus\StatsTable\StatsTableBuilder;
-
-$statsTableBuilder = new StatsTableBuilder([
-        '2014-01-01' => ['hits' => 32500],
-        '2014-01-02' => ['hits' => 48650],
-    ],
-    [
-        'hits' => 'Number of hits',
-    ]
-);
-
-$statsTableBuilder->addIndexesAsColumn('date', 'Date');
-
-$statsTable = $statsTableBuilder->build();
-```
-
-#### Advanced example with aggregation, dynamic column multiple column sorting
+The `StatsTableBuilder` class helps combine data from multiple tables, create automatic calculated columns, and build aggregations (sum, count, average, ...).
 
 ```php
 use Oct8pus\StatsTable\Aggregation\AverageAggregation;
@@ -155,6 +120,15 @@ $table->sortMultipleColumn([
     'height' => true,
 ]);
 
-$dumper = new HTMLDumper();
+$dumper = new TXTDumper();
 echo $dumper->dump($table);
+```
+
+```txt
+Name    Age Weight Height BMI
+    Paul  25     75   1,82 22,64
+ Jacques  28     60   1,67 21,51
+  Pierre  32    100   1,87 28,60
+    Jean  32     80   1,98 20,41
+         117         1.835
 ```
