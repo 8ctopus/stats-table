@@ -196,7 +196,15 @@ class StatsTable
         }
     }
 
-    private function getCompareFunction(string $format, bool $asc) : mixed
+    /**
+     * Get compare function
+     *
+     * @param  string $format
+     * @param  bool   $asc
+     *
+     * @return callable
+     */
+    private function getCompareFunction(string $format, bool $asc) : callable
     {
         if (Format::STRING === $format) {
             return static function (string $a, string $b) use ($asc) {
