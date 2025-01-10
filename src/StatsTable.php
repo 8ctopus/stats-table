@@ -8,10 +8,10 @@ use Oct8pus\StatsTable\Dumper\Format;
 
 class StatsTable
 {
-    private array $headers;
-    private array $aggregations;
     private array $data;
+    private array $headers;
     private array $dataFormats;
+    private array $aggregations;
     private array $aggregationsFormats;
     private array $metaData;
 
@@ -19,8 +19,8 @@ class StatsTable
      * Constructs a new stats table
      *
      * @param array $data
-     * @param       $headers
-     * @param       $aggregations
+     * @param array $headers
+     * @param array $aggregations
      * @param array $dataFormats
      * @param array $aggregationsFormats
      * @param array $metaData
@@ -33,64 +33,46 @@ class StatsTable
         array $aggregationsFormats = [],
         array $metaData = []
     ) {
-        $this->headers = $headers;
         $this->data = $data;
+        $this->headers = $headers;
         $this->aggregations = $aggregations;
         $this->dataFormats = $dataFormats;
         $this->aggregationsFormats = $aggregationsFormats;
         $this->metaData = $metaData;
     }
 
-    /**
-     * @return array
-     */
-    public function getHeaders() : array
-    {
-        return $this->headers;
-    }
-
-    /**
-     * @return array
-     */
-    public function getAggregations() : array
-    {
-        return $this->aggregations;
-    }
-
-    /**
-     * @return array
-     */
     public function getData() : array
     {
         return $this->data;
     }
 
-    /**
-     * @return array
-     */
+    public function getHeaders() : array
+    {
+        return $this->headers;
+    }
+
+    public function getAggregations() : array
+    {
+        return $this->aggregations;
+    }
+
     public function getAggregationsFormats() : array
     {
         return $this->aggregationsFormats;
     }
 
-    /**
-     * @return array
-     */
     public function getDataFormats() : array
     {
         return $this->dataFormats;
     }
 
-    /**
-     * @return array
-     */
     public function getMetaData() : array
     {
         return $this->metaData;
     }
 
     /**
-     * Remove a single column in table
+     * Remove a single column
      *
      * @param string $columnName
      *
@@ -102,7 +84,7 @@ class StatsTable
     }
 
     /**
-     * Remove columns in table
+     * Remove columns
      *
      * @param array $columns
      *
@@ -125,10 +107,10 @@ class StatsTable
     }
 
     /**
-     * Sort stats table by one column
+     * Sort by one column
      *
-     * @param string $columnName Name of column
-     * @param bool   $asc        Sort direction : TRUE=>Ascending, FALSE=>Descending
+     * @param string $columnName
+     * @param bool   $asc
      *
      * @return self
      */
@@ -139,29 +121,30 @@ class StatsTable
     }
 
     /**
-     * Sort stats table by one column with a custom compare function
+     * Sort by one column with a custom compare function
      *
-     * @param string   $columnName  Name of column
-     * @param function $compareFunc custom compare function that should return 0, -1 or 1
+     * @param string   $columnName
+     * @param callable $compareFunc custom compare function that must return 0, -1 or 1
      *
      * @return self
      */
-    public function uSortColumn(string $columnName, $compareFunc) : self
+    public function uSortColumn(string $columnName, callable $compareFunc) : self
     {
         $this->uSortMultipleColumn([$columnName => $compareFunc]);
         return $this;
     }
 
     /**
-     * Sort stats table by multiple column
+     * Sort by multiple columns
      *
-     * @param array $columns Associative array : KEY=> column name (string), VALUE=> Sort direction (boolean)
+     * @param array $columns Associative array : KEY => column name, VALUE => Sort direction (boolean)
      *
      * @return self
      */
     public function sortMultipleColumn(array $columns) : self
     {
         $compareFuncList = [];
+
         foreach ($columns as $colName => $asc) {
             $columnFormat = array_key_exists($colName, $this->dataFormats) ? $this->dataFormats[$colName] : Format::STRING;
             $compareFuncList[$colName] = $this->_getFunctionForFormat($columnFormat, $asc);
@@ -172,9 +155,9 @@ class StatsTable
     }
 
     /**
-     * Sort stats table by multiple column with a custom compare function
+     * Sort by multiple columns with a custom compare function
      *
-     * @param array $columns Associative array : KEY=> column name (string), VALUE=> Custom function (function)
+     * @param array $columns Associative array : KEY => column name, VALUE => Custom function (function)
      *
      * @return self
      */
@@ -197,9 +180,9 @@ class StatsTable
     }
 
     /**
-     * Internal helper to remove columns for a line.
+     * Remove columns for a line
      *
-     * @param array $line       Line to filter. Referenced.
+     * @param array $line       Referenced line to filter
      * @param array $columnsMap An array indexed by columns to exclude. Value doesn't matter.
      *
      * @return void
