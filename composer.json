@@ -4,7 +4,7 @@
     "homepage": "https://github.com/8ctopus/stats-table",
     "type": "library",
     "license": "MIT",
-    "keywords": ["PHP", "stats", "statistics", "excel", "csv", "json", "xls"],
+    "keywords": ["table", "stats", "statistics"],
     "authors": [
         {
             "name": "iGraal",
