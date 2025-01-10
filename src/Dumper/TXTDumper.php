@@ -15,10 +15,12 @@ class TXTDumper extends Dumper
     {
         $data = $statsTable->getData();
         $format = $statsTable->getDataFormats();
+
+        $data = $this->formatData($data, $format);
+
         $aggregations = $statsTable->getAggregations();
         $aggregationsFormats = $statsTable->getAggregationsFormats();
 
-        $data = $this->formatData($data, $format);
         $aggregations = $this->formatLine($aggregations, $aggregationsFormats);
 
         $headers = $statsTable->getHeaders();
