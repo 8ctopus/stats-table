@@ -12,9 +12,9 @@ class CSVDumper extends Dumper
 {
     /** @var string The current locale */
     private string $locale;
-    private string $delimiter;
-    private string $enclosure;
-    private string $charset;
+    private readonly string $delimiter;
+    private readonly string $enclosure;
+    private readonly string $charset;
 
     public function __construct(array $options = [])
     {

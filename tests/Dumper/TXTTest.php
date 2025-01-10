@@ -21,11 +21,11 @@ class TXTTest extends DumperTestAbstract
         ];
 
         $dataTypes = [
-            'date' => Format::fDate,
-            'hits' => Format::fInteger,
-            'subscribers' => Format::fInteger,
-            'ratio' => Format::fPercent2,
-            'revenues' => Format::fMoney2,
+            'date' => Format::Date,
+            'hits' => Format::Integer,
+            'subscribers' => Format::Integer,
+            'ratio' => Format::Percent2,
+            'revenues' => Format::Money2,
         ];
 
         $aggregations = [
@@ -42,8 +42,8 @@ class TXTTest extends DumperTestAbstract
         ];
 
         $aggregationsTypes = $dataTypes;
-        $aggregationsTypes['date'] = Format::fString;
-        $aggregationsTypes['ratio'] = Format::fPercent;
+        $aggregationsTypes['date'] = Format::String;
+        $aggregationsTypes['ratio'] = Format::Percent;
 
         $statsTable = new StatsTable($data, $headers, $aggregations, $dataTypes, $aggregationsTypes, $metaData);
 

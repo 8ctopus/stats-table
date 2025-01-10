@@ -8,8 +8,8 @@ use DateTimeInterface;
 
 abstract class Dumper implements DumperInterface
 {
-    protected $enableHeaders = true;
-    protected $enableAggregation = true;
+    protected bool $enableHeaders = true;
+    protected bool $enableAggregation = true;
 
     /**
      * Enable headers
@@ -42,35 +42,35 @@ abstract class Dumper implements DumperInterface
     protected function formatValue(Format $format, mixed $value) : mixed
     {
         switch ($format) {
-            case Format::fDate:
+            case Format::Date:
                 if ($value instanceof DateTimeInterface) {
                     return $value->format('Y-m-d');
                 }
                 break;
 
-            case Format::fDateTime:
+            case Format::DateTime:
                 if ($value instanceof DateTimeInterface) {
                     return $value->format('Y-m-d H:i:s');
                 }
                 break;
 
-            case Format::fFloat:
+            case Format::Float:
                 return sprintf('%.2f', $value);
 
-            case Format::fInteger:
+            case Format::Integer:
                 return sprintf('%d', $value);
 
-            case Format::fPercent:
-                return $this->formatValue(Format::fInteger, $value) . ' %';
+            case Format::Percent:
+                return $this->formatValue(Format::Integer, $value) . ' %';
 
-            case Format::fPercent2:
-                return $this->formatValue(Format::fFloat, $value) . ' %';
+            case Format::Percent2:
+                return $this->formatValue(Format::Float, $value) . ' %';
 
-            case Format::fMoney:
-                return $this->formatValue(Format::fInteger, $value) . ' €';
+            case Format::Money:
+                return $this->formatValue(Format::Integer, $value) . ' €';
 
-            case Format::fMoney2:
-                return $this->formatValue(Format::fFloat, $value) . ' €';
+            case Format::Money2:
+                return $this->formatValue(Format::Float, $value) . ' €';
         }
 
         return $value;

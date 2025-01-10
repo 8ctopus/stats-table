@@ -18,11 +18,11 @@ abstract class DumperTestAbstract extends TestCase
         self::expectNotToPerformAssertions();
         $dumper = $this->getDumper();
 
-        $statsTable = new StatsTable([['http://example.org']], ['link'], [''], [Format::fLink], [Format::fString]);
+        $statsTable = new StatsTable([['http://example.org']], ['link'], [''], [Format::Link], [Format::String]);
         $dumper->dump($statsTable);
 
         // Should not fail if link is not valid
-        $statsTable = new StatsTable([['']], ['link'], [''], [Format::fLink], [Format::fString]);
+        $statsTable = new StatsTable([['']], ['link'], [''], [Format::Link], [Format::String]);
         $dumper->dump($statsTable);
     }
 
@@ -41,7 +41,7 @@ abstract class DumperTestAbstract extends TestCase
 
     protected function getFormats() : array
     {
-        return ['hits' => Format::fInteger];
+        return ['hits' => Format::Integer];
     }
 
     protected function getAggregations() : array

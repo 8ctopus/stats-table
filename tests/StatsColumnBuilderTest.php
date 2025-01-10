@@ -16,11 +16,11 @@ class StatsColumnBuilderTest extends TestCase
         $aggregation = new CountAggregation('Hits');
 
         $values = [3, 5];
-        $column = new StatsColumnBuilder($values, 'Hits', Format::fInteger, $aggregation);
+        $column = new StatsColumnBuilder($values, 'Hits', Format::Integer, $aggregation);
 
         self::assertSame($values, $column->getValues());
         self::assertSame('Hits', $column->getHeaderName());
-        self::assertSame(Format::fInteger, $column->getFormat());
+        self::assertSame(Format::Integer, $column->getFormat());
         self::assertSame($aggregation, $column->getAggregation());
     }
 

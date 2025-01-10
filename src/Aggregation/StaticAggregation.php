@@ -12,16 +12,16 @@ use Oct8pus\StatsTable\StatsTableBuilder;
  */
 class StaticAggregation implements AggregationInterface
 {
-    private $value;
-    private Format $format;
+    private readonly string $value;
+    private readonly Format $format;
 
-    public function __construct($value, Format $format = Format::fString)
+    public function __construct(string $value, Format $format = Format::String)
     {
         $this->value = $value;
         $this->format = $format;
     }
 
-    public function aggregate(StatsTableBuilder $statsTable) : mixed
+    public function aggregate(StatsTableBuilder $statsTable) : string
     {
         return $this->value;
     }

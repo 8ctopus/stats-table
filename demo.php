@@ -43,20 +43,20 @@ $headers = [
 ];
 
 $formats = [
-    'name' => Format::fString,
-    'age' => Format::fInteger,
-    'weight' => Format::fFloat,
-    'height' => Format::fFloat,
+    'name' => Format::String,
+    'age' => Format::Integer,
+    'weight' => Format::Float,
+    'height' => Format::Float,
 ];
 
 $aggregations = [
-    'age' => new SumAggregation('age', Format::fInteger),
-    'height' => new AverageAggregation('height', Format::fFloat),
+    'age' => new SumAggregation('age', Format::Integer),
+    'height' => new AverageAggregation('height', Format::Float),
 ];
 
 $aggregationsFormats = [
-    'age' => Format::fInteger,
-    'height' => Format::fFloat,
+    'age' => Format::Integer,
+    'height' => Format::Float,
 ];
 
 $builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
@@ -66,7 +66,7 @@ $dynamicColumn = new CallbackColumnBuilder(function($row) : float {
 });
 
 $table = $builder
-    ->addDynamicColumn('BMI', $dynamicColumn, 'BMI', Format::fFloat)
+    ->addDynamicColumn('BMI', $dynamicColumn, 'BMI', Format::Float)
     ->build();
 
 $table->sortByColumns([

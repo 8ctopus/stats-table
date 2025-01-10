@@ -13,7 +13,7 @@ use Oct8pus\StatsTable\DynamicColumn\DynamicColumnBuilderInterface;
 class StatsTableBuilder
 {
     private array $columns;
-    private ?array $indexes;
+    private readonly ?array $indexes;
     private array $defaultValues;
 
     /**
@@ -393,7 +393,7 @@ class StatsTableBuilder
             foreach ($columns as $column) {
                 $oneLine = current($lines);
                 $value = $oneLine[$column];
-                $tmpAggregations[$column] = new StaticAggregation($value, Format::fString);
+                $tmpAggregations[$column] = new StaticAggregation($value, Format::String);
             }
 
             $tmpTableBuilder = new self(

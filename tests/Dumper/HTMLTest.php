@@ -20,11 +20,11 @@ class HTMLTest extends DumperTestAbstract
             ['date' => '2014-01-01', 'hits' => '20', 'subscribers' => 7, 'ratio' => .35, 'revenues' => 80.754],
         ];
         $dataTypes = [
-            'date' => Format::fDate,
-            'hits' => Format::fInteger,
-            'subscribers' => Format::fInteger,
-            'ratio' => Format::fPercent2,
-            'revenues' => Format::fMoney2,
+            'date' => Format::Date,
+            'hits' => Format::Integer,
+            'subscribers' => Format::Integer,
+            'ratio' => Format::Percent2,
+            'revenues' => Format::Money2,
         ];
 
         $aggregations = [
@@ -41,8 +41,8 @@ class HTMLTest extends DumperTestAbstract
         ];
 
         $aggregationsTypes = $dataTypes;
-        $aggregationsTypes['date'] = Format::fString;
-        $aggregationsTypes['ratio'] = Format::fPercent;
+        $aggregationsTypes['date'] = Format::String;
+        $aggregationsTypes['ratio'] = Format::Percent;
 
         $statsTable = new StatsTable($data, $headers, $aggregations, $dataTypes, $aggregationsTypes, $metaData);
 

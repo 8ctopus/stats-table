@@ -9,16 +9,16 @@ use Oct8pus\StatsTable\StatsTableBuilder;
 
 class SumAggregation implements AggregationInterface
 {
-    private string $columnName;
-    private Format $format;
+    private readonly string $columnName;
+    private readonly Format $format;
 
-    public function __construct(string $columnName, Format $format = Format::fInteger)
+    public function __construct(string $columnName, Format $format = Format::Integer)
     {
         $this->columnName = $columnName;
         $this->format = $format;
     }
 
-    public function aggregate(StatsTableBuilder $statsTable) : mixed
+    public function aggregate(StatsTableBuilder $statsTable) : float
     {
         $column = $statsTable->getColumn($this->columnName)->getValues();
 

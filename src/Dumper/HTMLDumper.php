@@ -14,24 +14,9 @@ use Twig\Loader\FilesystemLoader as TwigFilesystemLoader;
 
 class HTMLDumper extends Dumper
 {
-    /**
-     * @var string
-     */
-    protected string $template;
-
-    /**
-     * @var string
-     */
-    protected string $templateFolder;
-
-    /**
-     * @var array
-     */
-    protected array $templateOptions;
-
-    /**
-     * @var Twig
-     */
+    protected readonly string $template;
+    protected readonly string $templateFolder;
+    protected readonly array $templateOptions;
     protected Twig $twig;
 
     public function __construct($options = [])
@@ -113,35 +98,35 @@ class HTMLDumper extends Dumper
         $thousands_sep = ' ';
 
         switch ($format) {
-            case Format::fDate:
+            case Format::Date:
                 if ($value instanceof DateTimeInterface) {
                     return $value->format('d/m/Y');
                 }
                 break;
 
-            case Format::fDateTime:
+            case Format::DateTime:
                 if ($value instanceof DateTimeInterface) {
                     return $value->format('d/m/Y H:i:s');
                 }
                 break;
 
-            case Format::fFloat:
+            case Format::Float:
                 return str_replace($dec_point . '00', '', number_format((float) $value, $decimals, $dec_point, $thousands_sep));
 
-            case Format::fInteger:
+            case Format::Integer:
                 return number_format((int) $value, 0, $dec_point, $thousands_sep);
 
-            case Format::fPercent:
-                return $this->formatValue(Format::fInteger, $value * 100) . '%';
+            case Format::Percent:
+                return $this->formatValue(Format::Integer, $value * 100) . '%';
 
-            case Format::fPercent2:
-                return $this->formatValue(Format::fFloat, $value * 100) . '%';
+            case Format::Percent2:
+                return $this->formatValue(Format::Float, $value * 100) . '%';
 
-            case Format::fMoney:
-                return $this->formatValue(Format::fInteger, $value) . '€';
+            case Format::Money:
+                return $this->formatValue(Format::Integer, $value) . '€';
 
-            case Format::fMoney2:
-                return $this->formatValue(Format::fFloat, $value) . '€';
+            case Format::Money2:
+                return $this->formatValue(Format::Float, $value) . '€';
         }
 
         return $value;

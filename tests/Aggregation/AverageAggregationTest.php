@@ -13,9 +13,9 @@ class AverageAggregationTest extends AggregationTestAbstract
     {
         $statsTable = $this->getSampleTable();
 
-        $format = Format::fFloat;
+        $format = Format::Float;
         $hitsAverage = new AverageAggregation('hits', $format);
-        self::assertSame(20, $hitsAverage->aggregate($statsTable));
+        self::assertSame(20.0, $hitsAverage->aggregate($statsTable));
         self::assertSame($format, $hitsAverage->getFormat());
     }
 }

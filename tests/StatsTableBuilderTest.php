@@ -90,7 +90,7 @@ class StatsTableBuilderTest extends TestCase
         $statsTable = new StatsTableBuilder(
             $data,
             ['hits' => 'Hits'],
-            ['hits' => Format::fInteger],
+            ['hits' => Format::Integer],
             ['hits' => new SumAggregation('hits')]
         );
 
@@ -99,8 +99,8 @@ class StatsTableBuilderTest extends TestCase
             $data,
             ['hits' => 'Hits'],
             ['hits' => 26],
-            ['hits' => Format::fInteger],
-            ['hits' => Format::fInteger],
+            ['hits' => Format::Integer],
+            ['hits' => Format::Integer],
             ['hits' => []]
         ), $stats);
     }
@@ -147,7 +147,7 @@ class StatsTableBuilderTest extends TestCase
         $statsTable = new StatsTableBuilder(
             [],
             ['hits' => 'Hits'],
-            ['hits' => Format::fInteger],
+            ['hits' => Format::Integer],
             ['hits' => new SumAggregation('hits')]
         );
 
@@ -156,8 +156,8 @@ class StatsTableBuilderTest extends TestCase
             [],
             ['hits' => 'Hits'],
             ['hits' => 0],
-            ['hits' => Format::fInteger],
-            ['hits' => Format::fInteger],
+            ['hits' => Format::Integer],
+            ['hits' => Format::Integer],
             ['hits' => []]
         ), $stats);
     }
@@ -223,7 +223,7 @@ class StatsTableBuilderTest extends TestCase
         $statsTableBuilder = new StatsTableBuilder(
             $table,
             $headers,
-            [Format::fString, Format::fString]
+            [Format::String, Format::String]
         );
 
         $statsTable = $statsTableBuilder->build(['c', 'a']);
@@ -243,11 +243,11 @@ class StatsTableBuilderTest extends TestCase
         $statsTableBuilder = new StatsTableBuilder(
             $table,
             ['tag' => 'Tag', 'subtag' => 'When', 'hits' => 'Hits'],
-            ['tag' => Format::fString, 'subtag' => Format::fString, 'hits' => Format::fInteger],
+            ['tag' => Format::String, 'subtag' => Format::String, 'hits' => Format::Integer],
             [
                 'tag' => new StaticAggregation('Tag'),
                 'subtag' => new StaticAggregation('Sub tag'),
-                'hits' => new SumAggregation('hits', Format::fInteger),
+                'hits' => new SumAggregation('hits', Format::Integer),
             ]
         );
 
@@ -270,7 +270,7 @@ class StatsTableBuilderTest extends TestCase
             $groupedByStatsTableBuilder->getColumn('tag')->getAggregation()->aggregate($groupedByStatsTableBuilder)
         );
         self::assertSame(
-            9,
+            9.0,
             $groupedByStatsTableBuilder->getColumn('hits')->getAggregation()->aggregate($groupedByStatsTableBuilder)
         );
     }

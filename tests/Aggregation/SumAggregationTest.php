@@ -13,6 +13,6 @@ class SumAggregationTest extends AggregationTestAbstract
         $statsTable = $this->getSampleTable();
 
         $hitsSum = new SumAggregation('hits');
-        self::assertSame(40, $hitsSum->aggregate($statsTable));
+        self::assertSame(40.0, $hitsSum->aggregate($statsTable));
     }
 }

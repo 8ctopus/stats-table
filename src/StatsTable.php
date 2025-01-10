@@ -13,7 +13,7 @@ class StatsTable
     private array $dataFormats;
     private array $aggregations;
     private array $aggregationsFormats;
-    private array $metaData;
+    private readonly array $metaData;
 
     /**
      * Constructs a new stats table
@@ -116,7 +116,7 @@ class StatsTable
         $compareFuncList = [];
 
         foreach ($columns as $colName => $asc) {
-            $columnFormat = array_key_exists($colName, $this->dataFormats) ? $this->dataFormats[$colName] : Format::fString;
+            $columnFormat = array_key_exists($colName, $this->dataFormats) ? $this->dataFormats[$colName] : Format::String;
             $compareFuncList[$colName] = $this->getCompareFunction($columnFormat, $asc);
         }
 
@@ -206,7 +206,7 @@ class StatsTable
      */
     private function getCompareFunction(Format $format, bool $asc) : callable
     {
-        if (Format::fString === $format) {
+        if (Format::String === $format) {
             return static function (string $a, string $b) use ($asc) {
                 $tmp = strcmp($a, $b);
                 return $asc ? $tmp : -$tmp;

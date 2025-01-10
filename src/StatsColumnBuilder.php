@@ -10,10 +10,10 @@ use Oct8pus\StatsTable\Dumper\Format;
 class StatsColumnBuilder
 {
     private array $values;
-    private ?Format $format;
+    private readonly ?Format $format;
     private ?AggregationInterface $aggregation;
     private string $headerName;
-    private array $metaData;
+    private readonly array $metaData;
 
     /**
      * @param array                 $values      Associative array like index => { name => value }

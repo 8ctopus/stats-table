@@ -6,14 +6,14 @@ namespace Oct8pus\StatsTable\Dumper;
 
 enum Format : string
 {
-    case fDate = 'date';
-    case fDateTime = 'datetime';
-    case fFloat = 'float2';
-    case fInteger = 'integer';
-    case fMoney = 'money';
-    case fMoney2 = 'money2';
-    case fPercent = 'percent';
-    case fPercent2 = 'percent2';
-    case fString = 'string';
-    case fLink = 'link';
+    case Date = 'date';
+    case DateTime = 'datetime';
+    case Float = 'float2';
+    case Integer = 'integer';
+    case Money = 'money';
+    case Money2 = 'money2';
+    case Percent = 'percent';
+    case Percent2 = 'percent2';
+    case String = 'string';
+    case Link = 'link';
 }
