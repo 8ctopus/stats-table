@@ -89,20 +89,20 @@ $headers = [
 ];
 
 $formats = [
-    'name' => Format::STRING,
-    'age' => Format::INTEGER,
-    'weight' => Format::FLOAT2,
-    'height' => Format::FLOAT2,
+    'name' => Format::String,
+    'age' => Format::Integer,
+    'weight' => Format::Float,
+    'height' => Format::Float,
 ];
 
 $aggregations = [
-    'age' => new SumAggregation('age', Format::INTEGER),
-    'height' => new AverageAggregation('height', Format::FLOAT2),
+    'age' => new SumAggregation('age', Format::Integer),
+    'height' => new AverageAggregation('height', Format::Float),
 ];
 
 $aggregationsFormats = [
-    'age' => Format::INTEGER,
-    'height' => Format::FLOAT2,
+    'age' => Format::Integer,
+    'height' => Format::Float,
 ];
 
 $builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
