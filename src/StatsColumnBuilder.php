@@ -30,27 +30,16 @@ class StatsColumnBuilder
         $this->metaData = $metaData;
     }
 
-    /**
-     * @return mixed[]
-     */
     public function getValues() : array
     {
         return $this->values;
     }
 
-    /**
-     * @return string
-     */
     public function getHeaderName() : string
     {
         return $this->headerName;
     }
 
-    /**
-     * @param $headerName
-     *
-     * @return self
-     */
     public function setHeaderName(string $headerName) : self
     {
         $this->headerName = $headerName;
@@ -58,19 +47,11 @@ class StatsColumnBuilder
         return $this;
     }
 
-    /**
-     * @return AggregationInterface
-     */
     public function getAggregation() : ?AggregationInterface
     {
         return $this->aggregation;
     }
 
-    /**
-     * @param AggregationInterface $aggregation
-     *
-     * @return self
-     */
     public function setAggregation(AggregationInterface $aggregation) : self
     {
         $this->aggregation = $aggregation;
@@ -78,25 +59,16 @@ class StatsColumnBuilder
         return $this;
     }
 
-    /**
-     * @return ?string
-     */
     public function getFormat() : ?string
     {
         return $this->format;
     }
 
-    /**
-     * @return array
-     */
     public function getMetaData() : array
     {
         return $this->metaData;
     }
 
-    /**
-     * @param array $metaData
-     */
     public function setMetaData(array $metaData) : void
     {
         $this->metaData = $metaData;
@@ -105,15 +77,19 @@ class StatsColumnBuilder
     /**
      * Ensure column is filled with given indexes. If not, it will be filled with default values
      *
-     * @param $indexes
-     * @param $defaultValue
+     * @param array $indexes
+     * @param mixed $defaultValue
+     *
+     * @return void
      */
     public function insureIsFilled(array $indexes, mixed $defaultValue) : void
     {
         $newValues = [];
+
         foreach ($indexes as $index) {
             $newValues[$index] = array_key_exists($index, $this->values) ? $this->values[$index] : $defaultValue;
         }
+
         $this->values = $newValues;
     }
 }
