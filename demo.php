@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Oct8pus\StatsTable\Aggregation\AverageAggregation;
 use Oct8pus\StatsTable\Aggregation\SumAggregation;
 use Oct8pus\StatsTable\Dumper\TXT\TXTDumper;
