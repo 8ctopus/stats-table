@@ -288,13 +288,14 @@ class StatsTableBuilder
      */
     public static function orderColumns(array $table, array $columns) : array
     {
-        // If no columns given, return table as-is
+        // if no columns given, return table as-is
         if (!$columns) {
             return $table;
         }
 
-        // Order
+        // order
         $result = [];
+
         foreach ($columns as $column) {
             if (array_key_exists($column, $table)) {
                 $result[$column] = $table[$column];
@@ -355,6 +356,7 @@ class StatsTableBuilder
                 $this->columns
             )
         );
+
         $formats = $filterLine(
             array_map(
                 static function (StatsColumnBuilder $c) : string {
@@ -363,6 +365,7 @@ class StatsTableBuilder
                 $this->columns
             )
         );
+
         $aggregations = $filterLine(
             array_map(
                 static function (StatsColumnBuilder $c) : ?AggregationInterface {
@@ -371,6 +374,7 @@ class StatsTableBuilder
                 $this->columns
             )
         );
+
         $metaData = $filterLine(
             array_map(
                 static function (StatsColumnBuilder $c) : array {
@@ -384,7 +388,8 @@ class StatsTableBuilder
 
         foreach ($groupedData as $lines) {
             $tmpAggregations = $aggregations;
-            // Add static aggragation for group by fields
+
+            // add static aggregation for group by fields
             foreach ($columns as $column) {
                 $oneLine = current($lines);
                 $value = $oneLine[$column];
@@ -401,6 +406,7 @@ class StatsTableBuilder
                 null,
                 $metaData
             );
+
             $tmpTable = $tmpTableBuilder->build();
             $data[] = $tmpTable->getAggregations();
         }
