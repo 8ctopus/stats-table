@@ -67,12 +67,12 @@ class JSONDumper extends Dumper
     /**
      * Format values for JSON
      *
-     * @param $format
-     * @param $value
+     * @param string $format
+     * @param mixed $value
      *
-     * @return float|int|string
+     * @return string|float|int
      */
-    protected function formatValue($format, $value) : float|int|string
+    protected function formatValue(string $format, mixed $value) : string|float|int
     {
         switch ($format) {
             case Format::DATE:

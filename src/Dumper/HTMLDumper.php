@@ -100,8 +100,8 @@ class HTMLDumper extends Dumper
     /**
      * Format values for HTML View
      *
-     * @param $format
-     * @param $value
+     * @param string $format
+     * @param mixed $value
      *
      * @return string
      */
