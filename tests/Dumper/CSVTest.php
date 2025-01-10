@@ -6,7 +6,7 @@ namespace Tests\Dumper;
 
 use DateTime;
 use DateTimeImmutable;
-use Oct8pus\StatsTable\Dumper\CSV\CSVDumper;
+use Oct8pus\StatsTable\Dumper\CSVDumper;
 use Oct8pus\StatsTable\Dumper\DumperInterface;
 use Oct8pus\StatsTable\Dumper\Format;
 use Oct8pus\StatsTable\StatsTable;

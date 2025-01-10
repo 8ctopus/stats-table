@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Oct8pus\StatsTable\Dumper\Excel;
+namespace Oct8pus\StatsTable\Dumper;
 
 use DateTimeImmutable;
 use DateTimeInterface;

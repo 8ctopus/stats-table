@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Oct8pus\StatsTable\Dumper\HTML;
+namespace Oct8pus\StatsTable\Dumper;
 
 use DateTimeInterface;
 use Oct8pus\StatsTable\Dumper\Dumper;
@@ -149,7 +149,7 @@ class HTMLDumper extends Dumper
 
     protected function getDefaultTemplateFolder() : string
     {
-        return __DIR__ . '/../../Resources/views';
+        return __DIR__ . '/../Resources/views';
     }
 
     protected function getDefaultTemplate() : string

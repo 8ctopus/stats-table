@@ -6,7 +6,7 @@ namespace Tests\Dumper;
 
 use Oct8pus\StatsTable\Dumper\DumperInterface;
 use Oct8pus\StatsTable\Dumper\Format;
-use Oct8pus\StatsTable\Dumper\TXT\TXTDumper;
+use Oct8pus\StatsTable\Dumper\TXTDumper;
 use Oct8pus\StatsTable\StatsTable;
 
 class TXTTest extends DumperTestAbstract

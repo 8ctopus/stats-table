@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Oct8pus\StatsTable\Dumper\CSV;
+namespace Oct8pus\StatsTable\Dumper;
 
 use Oct8pus\StatsTable\Dumper\Dumper;
 use Oct8pus\StatsTable\StatsTable;
