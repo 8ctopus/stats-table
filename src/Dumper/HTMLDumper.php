@@ -6,7 +6,7 @@ namespace Oct8pus\StatsTable\Dumper;
 
 use DateTimeInterface;
 use Oct8pus\StatsTable\Dumper\Dumper;
-use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 use Oct8pus\StatsTable\Tools\ParameterBag;
 use Twig\Environment as Twig;

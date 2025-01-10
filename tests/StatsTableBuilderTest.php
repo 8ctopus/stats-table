@@ -7,7 +7,7 @@ namespace Tests;
 use InvalidArgumentException;
 use Oct8pus\StatsTable\Aggregation\StaticAggregation;
 use Oct8pus\StatsTable\Aggregation\SumAggregation;
-use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsColumnBuilder;
 use Oct8pus\StatsTable\StatsTable;
 use Oct8pus\StatsTable\StatsTableBuilder;

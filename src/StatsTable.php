@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Oct8pus\StatsTable;
 
-use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\Format;
 
 class StatsTable
 {

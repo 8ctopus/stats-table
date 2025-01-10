@@ -7,7 +7,7 @@ namespace Oct8pus\StatsTable;
 use InvalidArgumentException;
 use Oct8pus\StatsTable\Aggregation\AggregationInterface;
 use Oct8pus\StatsTable\Aggregation\StaticAggregation;
-use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\DynamicColumn\DynamicColumnBuilderInterface;
 
 class StatsTableBuilder

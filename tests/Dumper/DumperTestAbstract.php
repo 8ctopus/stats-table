@@ -6,7 +6,7 @@ namespace Tests\Dumper;
 
 use Oct8pus\StatsTable\Aggregation\StaticAggregation;
 use Oct8pus\StatsTable\Dumper\DumperInterface;
-use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 use Oct8pus\StatsTable\StatsTableBuilder;
 use PHPUnit\Framework\TestCase;

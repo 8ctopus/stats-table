@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Oct8pus\StatsTable\Dumper;
 
 use DateTimeInterface;
+use Oct8pus\StatsTable\Format;
 
 abstract class Dumper implements DumperInterface
 {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Dumper;
 
 use Oct8pus\StatsTable\Dumper\DumperInterface;
-use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\Dumper\JSONDumper;
 use Oct8pus\StatsTable\StatsTable;
 

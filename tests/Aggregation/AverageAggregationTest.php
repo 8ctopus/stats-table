@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Aggregation;
 
 use Oct8pus\StatsTable\Aggregation\AverageAggregation;
-use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\Format;
 
 class AverageAggregationTest extends AggregationTestAbstract
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Oct8pus\StatsTable\Dumper;
+namespace Oct8pus\StatsTable;
 
 enum Format : string
 {

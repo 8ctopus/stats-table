@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests;
 
 use Oct8pus\StatsTable\Aggregation\CountAggregation;
-use Oct8pus\StatsTable\Dumper\Format;
+use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsColumnBuilder;
 use PHPUnit\Framework\TestCase;
 
