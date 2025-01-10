@@ -72,7 +72,7 @@ class StatsTable
     }
 
     /**
-     * Remove a single column
+     * Remove column
      *
      * @param string $columnName
      *
@@ -147,7 +147,7 @@ class StatsTable
 
         foreach ($columns as $colName => $asc) {
             $columnFormat = array_key_exists($colName, $this->dataFormats) ? $this->dataFormats[$colName] : Format::STRING;
-            $compareFuncList[$colName] = $this->_getFunctionForFormat($columnFormat, $asc);
+            $compareFuncList[$colName] = $this->getCompareFunction($columnFormat, $asc);
         }
 
         $this->uSortMultipleColumn($compareFuncList);
@@ -196,7 +196,7 @@ class StatsTable
         }
     }
 
-    private function _getFunctionForFormat($format, $asc) : mixed
+    private function getCompareFunction($format, $asc) : mixed
     {
         $genericFunc = static function ($a, $b) use ($asc) {
             if ($a === $b) {
