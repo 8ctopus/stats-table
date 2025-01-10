@@ -44,13 +44,13 @@ class StatsTable
     /**
      * Remove column
      *
-     * @param string $columnName
+     * @param string $column
      *
      * @return self
      */
-    public function removeColumn(string $columnName) : self
+    public function removeColumn(string $column) : self
     {
-        return $this->removeColumns([$columnName]);
+        return $this->removeColumns([$column]);
     }
 
     /**
@@ -77,30 +77,30 @@ class StatsTable
     }
 
     /**
-     * Sort by one column
+     * Sort by column
      *
-     * @param string $columnName
+     * @param string $column
      * @param bool   $asc
      *
      * @return self
      */
-    public function sortColumn(string $columnName, bool $asc = true) : self
+    public function sortColumn(string $column, bool $asc = true) : self
     {
-        $this->sortMultipleColumn([$columnName => $asc]);
+        $this->sortMultipleColumn([$column => $asc]);
         return $this;
     }
 
     /**
      * Sort by one column with a custom compare function
      *
-     * @param string   $columnName
-     * @param callable $compareFunc custom compare function that must return 0, -1 or 1
+     * @param string   $column
+     * @param callable $function
      *
      * @return self
      */
-    public function uSortColumn(string $columnName, callable $compareFunc) : self
+    public function uSortColumn(string $column, callable $function) : self
     {
-        $this->uSortMultipleColumn([$columnName => $compareFunc]);
+        $this->uSortMultipleColumn([$column => $function]);
         return $this;
     }
 
@@ -127,7 +127,7 @@ class StatsTable
     /**
      * Sort by multiple columns with a custom compare function
      *
-     * @param array $columns Associative array : KEY => column name, VALUE => Custom function (function)
+     * @param array $columns Associative array : KEY => column name, VALUE => Custom function
      *
      * @return self
      */
@@ -180,17 +180,17 @@ class StatsTable
     }
 
     /**
-     * Remove columns for a line
+     * Remove columns from line
      *
      * @param array $line       Referenced line to filter
-     * @param array $columnsMap An array indexed by columns to exclude. Value doesn't matter.
+     * @param array $columns An array indexed by columns to exclude. Value doesn't matter.
      *
      * @return void
      */
-    protected function removeColumnsInLine(array &$line, array $columnsMap) : void
+    protected function removeColumnsInLine(array &$line, array $columns) : void
     {
         foreach (array_keys($line) as $k) {
-            if (array_key_exists($k, $columnsMap)) {
+            if (array_key_exists($k, $columns)) {
                 unset($line[$k]);
             }
         }
