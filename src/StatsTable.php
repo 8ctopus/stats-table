@@ -41,36 +41,6 @@ class StatsTable
         $this->metaData = $metaData;
     }
 
-    public function getData() : array
-    {
-        return $this->data;
-    }
-
-    public function getHeaders() : array
-    {
-        return $this->headers;
-    }
-
-    public function getAggregations() : array
-    {
-        return $this->aggregations;
-    }
-
-    public function getAggregationsFormats() : array
-    {
-        return $this->aggregationsFormats;
-    }
-
-    public function getDataFormats() : array
-    {
-        return $this->dataFormats;
-    }
-
-    public function getMetaData() : array
-    {
-        return $this->metaData;
-    }
-
     /**
      * Remove column
      *
@@ -177,6 +147,36 @@ class StatsTable
 
         uasort($this->data, $sort);
         return $this;
+    }
+
+    public function getData() : array
+    {
+        return $this->data;
+    }
+
+    public function getHeaders() : array
+    {
+        return $this->headers;
+    }
+
+    public function getAggregations() : array
+    {
+        return $this->aggregations;
+    }
+
+    public function getAggregationsFormats() : array
+    {
+        return $this->aggregationsFormats;
+    }
+
+    public function getDataFormats() : array
+    {
+        return $this->dataFormats;
+    }
+
+    public function getMetaData() : array
+    {
+        return $this->metaData;
     }
 
     /**
