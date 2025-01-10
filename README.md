@@ -10,7 +10,7 @@
 
 Create statistics tables and export them to text, JSON, CSV or Excel.
 
-This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-table)
+This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-table). Migrating from the parent package shouldn't be too hard, but except a bit of work.
 
 ## Installation
 
