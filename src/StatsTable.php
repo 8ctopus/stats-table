@@ -196,24 +196,21 @@ class StatsTable
         }
     }
 
-    private function getCompareFunction($format, $asc) : mixed
+    private function getCompareFunction(string $format, bool $asc) : mixed
     {
-        $genericFunc = static function ($a, $b) use ($asc) {
+        if (Format::STRING === $format) {
+            return static function (string $a, string $b) use ($asc) {
+                $tmp = strcmp($a, $b);
+                return $asc ? $tmp : -$tmp;
+            };
+        }
+
+        return static function (mixed $a, mixed $b) use ($asc) : int {
             if ($a === $b) {
                 return 0;
             }
+
             return ($a < $b) ? ($asc ? -1 : 1) : ($asc ? 1 : -1);
         };
-
-        $stringCmp = static function ($a, $b) use ($asc) {
-            $tmp = strcmp($a, $b);
-            return $asc ? $tmp : -$tmp;
-        };
-
-        if (Format::STRING === $format) {
-            return $stringCmp;
-        } else {
-            return $genericFunc;
-        }
     }
 }
