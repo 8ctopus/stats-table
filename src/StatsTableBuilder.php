@@ -17,14 +17,14 @@ class StatsTableBuilder
     private array $defaultValues;
 
     /**
-     * @param       $table
-     * @param array $headers
-     * @param array $formats
-     * @param array $aggregations
-     * @param array $columnNames
-     * @param array $defaultValues
-     * @param null  $indexes
-     * @param array $metaData
+     * @param array  $table
+     * @param array  $headers
+     * @param array  $formats
+     * @param array  $aggregations
+     * @param array  $columnNames
+     * @param array  $defaultValues
+     * @param ?array $indexes
+     * @param array  $metaData
      *
      * @throws InvalidArgumentException
      */
@@ -44,7 +44,7 @@ class StatsTableBuilder
     }
 
     /**
-     * Retrieve existing indexes
+     * Get indexes
      *
      * @return ?array
      */
@@ -87,7 +87,7 @@ class StatsTableBuilder
     }
 
     /**
-     * Append columns given a table
+     * Append columns
      *
      * @param array                  $table
      * @param string[]               $headers
@@ -131,7 +131,7 @@ class StatsTableBuilder
     }
 
     /**
-     * Returns an associative table only with selected column.
+     * Returns an associative table only with selected column
      * Fill with default value if column not in a row
      *
      * @param array  $table
@@ -143,6 +143,7 @@ class StatsTableBuilder
     public function getAssocColumn(array $table, string $columnName, mixed $defaultValue = null) : array
     {
         $values = [];
+
         foreach ($table as $key => $line) {
             if (array_key_exists($columnName, $line)) {
                 $values[$key] = $line[$columnName];
@@ -155,21 +156,21 @@ class StatsTableBuilder
     }
 
     /**
-     * Retrieve a column
+     * Get column
      *
-     * @param string $columnName
+     * @param string $column
      *
      * @return StatsColumnBuilder
      *
      * @throws InvalidArgumentException
      */
-    public function getColumn(string $columnName) : StatsColumnBuilder
+    public function getColumn(string $column) : StatsColumnBuilder
     {
-        if (!array_key_exists($columnName, $this->columns)) {
-            throw new InvalidArgumentException('Unable to find column ' . $columnName . ' in columns ' . implode(',', array_keys($this->columns)));
+        if (!array_key_exists($column, $this->columns)) {
+            throw new InvalidArgumentException("Unable to find column {$column} in columns - " . implode(',', array_keys($this->columns)));
         }
 
-        return $this->columns[$columnName];
+        return $this->columns[$column];
     }
 
     /**
@@ -205,24 +206,24 @@ class StatsTableBuilder
     /**
      * Add a column
      *
-     * @param string                $columnName
+     * @param string                $column
      * @param array                 $values
      * @param string                $header
-     * @param string                $format
+     * @param ?string               $format
      * @param ?AggregationInterface $aggregation
      * @param array                 $metaData
      *
      * @return self
      */
-    public function addColumn(string $columnName, array $values, string $header = '', ?string $format = null, ?AggregationInterface $aggregation = null, array $metaData = []) : self
+    public function addColumn(string $column, array $values, string $header = '', ?string $format = null, ?AggregationInterface $aggregation = null, array $metaData = []) : self
     {
-        $this->columns[$columnName] = new StatsColumnBuilder($values, $header, $format, $aggregation, $metaData);
+        $this->columns[$column] = new StatsColumnBuilder($values, $header, $format, $aggregation, $metaData);
 
         return $this;
     }
 
     /**
-     * Build the data
+     * Build table
      *
      * @param array $columns Desired columns
      *
@@ -230,17 +231,13 @@ class StatsTableBuilder
      */
     public function build(array $columns = []) : StatsTable
     {
-        $headers = [];
         $data = [];
-        $dataFormats = [];
-        $aggregations = [];
-        $aggregationsFormats = [];
-        $metaData = [];
 
         foreach ($this->indexes as $index) {
             $columnsNames = array_keys($this->columns);
 
             $line = [];
+
             foreach ($columnsNames as $columnName) {
                 $columnValues = $this->columns[$columnName]->getValues();
 
@@ -250,6 +247,12 @@ class StatsTableBuilder
             $data[$index] = $this->orderColumns($line, $columns);
         }
 
+        $headers = [];
+        $dataFormats = [];
+        $aggregations = [];
+        $aggregationsFormats = [];
+        $metaData = [];
+
         foreach ($this->columns as $columnName => $column) {
             $dataFormats[$columnName] = $column->getFormat();
 
@@ -257,12 +260,14 @@ class StatsTableBuilder
             $metaData = array_merge($metaData, [$columnName => $column->getMetaData()]);
 
             $columnAggregation = $column->getAggregation();
+
             if ($columnAggregation) {
                 $aggregationValue = $columnAggregation->aggregate($this);
                 $aggregationsFormats[$columnName] = $columnAggregation->getFormat();
             } else {
                 $aggregationValue = null;
             }
+
             $aggregations = array_merge($aggregations, [$columnName => $aggregationValue]);
         }
 
