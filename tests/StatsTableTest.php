@@ -37,7 +37,7 @@ class StatsTableTest extends TestCase
     public function testSortOneColumn(string $columnName, $asc, $expected) : void
     {
         $statsTable = $this->_getSimpleTestData();
-        $statsTable->sortColumn($columnName, $asc);
+        $statsTable->sortByColumn($columnName, $asc);
         self::assertSame($expected, $statsTable->getData());
     }
 
@@ -91,7 +91,7 @@ class StatsTableTest extends TestCase
     public function testSortMultipleColumn($params, $expected) : void
     {
         $statsTable = $this->_getSimpleTestData();
-        $statsTable->sortMultipleColumn($params);
+        $statsTable->sortByColumns($params);
         self::assertSame($expected, $statsTable->getData());
     }
 
@@ -141,7 +141,7 @@ class StatsTableTest extends TestCase
     public function testSortMultipleColumnWithFunc($params, $expected) : void
     {
         $statsTable = $this->_getAdvancedTestData();
-        $statsTable->uSortMultipleColumn($params);
+        $statsTable->uSortByColumns($params);
         self::assertSame($expected, $statsTable->getData());
     }
 
@@ -176,7 +176,7 @@ class StatsTableTest extends TestCase
     public function testSortOneColumnWithFunc(string $columnName, $customCompareFunc, $expected) : void
     {
         $statsTable = $this->_getAdvancedTestData();
-        $statsTable->uSortColumn($columnName, $customCompareFunc);
+        $statsTable->uSortByColumn($columnName, $customCompareFunc);
 
         // We have an egality for the last rows
         self::assertSame(

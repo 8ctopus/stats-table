@@ -84,9 +84,9 @@ class StatsTable
      *
      * @return self
      */
-    public function sortColumn(string $column, bool $asc = true) : self
+    public function sortByColumn(string $column, bool $asc = true) : self
     {
-        $this->sortMultipleColumn([$column => $asc]);
+        $this->sortByColumns([$column => $asc]);
         return $this;
     }
 
@@ -98,20 +98,20 @@ class StatsTable
      *
      * @return self
      */
-    public function uSortColumn(string $column, callable $function) : self
+    public function uSortByColumn(string $column, callable $function) : self
     {
-        $this->uSortMultipleColumn([$column => $function]);
+        $this->uSortByColumns([$column => $function]);
         return $this;
     }
 
     /**
-     * Sort by multiple columns
+     * Sort by columns
      *
      * @param array $columns Associative array : KEY => column name, VALUE => Sort direction (boolean)
      *
      * @return self
      */
-    public function sortMultipleColumn(array $columns) : self
+    public function sortByColumns(array $columns) : self
     {
         $compareFuncList = [];
 
@@ -120,18 +120,18 @@ class StatsTable
             $compareFuncList[$colName] = $this->getCompareFunction($columnFormat, $asc);
         }
 
-        $this->uSortMultipleColumn($compareFuncList);
+        $this->uSortByColumns($compareFuncList);
         return $this;
     }
 
     /**
-     * Sort by multiple columns with a custom compare function
+     * Sort by columns with a custom compare function
      *
      * @param array $columns Associative array : KEY => column name, VALUE => Custom function
      *
      * @return self
      */
-    public function uSortMultipleColumn(array $columns) : self
+    public function uSortByColumns(array $columns) : self
     {
         $sort = static function (mixed $a, mixed $b) use ($columns) : int {
             foreach ($columns as $colName => $fn) {

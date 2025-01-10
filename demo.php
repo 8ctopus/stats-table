@@ -69,7 +69,7 @@ $table = $builder
     ->addDynamicColumn('BMI', $dynamicColumn, 'BMI', Format::FLOAT2)
     ->build();
 
-$table->sortMultipleColumn([
+$table->sortByColumns([
     'age' => true,
     'height' => true,
 ]);
