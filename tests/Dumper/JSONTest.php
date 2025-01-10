@@ -15,13 +15,19 @@ class JSONTest extends DumperTestAbstract
     {
         $jsonDumper = new JSONDumper();
 
-        // With all values
+        $formats = $this->getFormats();
+
+        foreach ($formats as &$format) {
+            $format = $format->value;
+        }
+
+        // with all values
         self::assertEquals([
             'headers' => $this->getHeaders(),
             'data' => $this->getData(),
             'aggregations' => ['hits' => 'value'],
-            'aggregationsFormats' => ['hits' => Format::STRING],
-            'formats' => $this->getFormats(),
+            'aggregationsFormats' => ['hits' => Format::STRING->value],
+            'formats' => $formats,
         ], json_decode($jsonDumper->dump($this->getStatsTable()), true));
     }
 
@@ -42,7 +48,7 @@ class JSONTest extends DumperTestAbstract
             'data' => [['pct' => 31]],
             'aggregations' => [],
             'aggregationsFormats' => [],
-            'formats' => ['pct' => Format::PCT],
+            'formats' => ['pct' => Format::PCT->value],
         ], json_decode($jsonDumper->dump($statsTable), true));
     }
 
@@ -50,7 +56,12 @@ class JSONTest extends DumperTestAbstract
     {
         $jsonDumper = new JSONDumper();
 
-        $data = [['pct' => .3123]];
+        $data = [
+            [
+                'pct' => .3123,
+            ]
+        ];
+
         $statsTable = new StatsTable(
             $data,
             array_keys(current($data)),
@@ -63,7 +74,7 @@ class JSONTest extends DumperTestAbstract
             'data' => [['pct' => 31.23]],
             'aggregations' => [],
             'aggregationsFormats' => [],
-            'formats' => ['pct' => Format::PCT2],
+            'formats' => ['pct' => Format::PCT2->value],
         ], json_decode($jsonDumper->dump($statsTable), true));
     }
 

@@ -100,12 +100,12 @@ class HTMLDumper extends Dumper
     /**
      * Format values for HTML View
      *
-     * @param string $format
+     * @param Format $format
      * @param mixed $value
      *
      * @return string
      */
-    protected function formatValue(string $format, mixed $value) : string
+    protected function formatValue(Format $format, mixed $value) : string
     {
         // TODO : Put in parameters
         $decimals = 2;

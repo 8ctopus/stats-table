@@ -13,9 +13,9 @@ use Oct8pus\StatsTable\StatsTableBuilder;
 class StaticAggregation implements AggregationInterface
 {
     private $value;
-    private string $format;
+    private Format $format;
 
-    public function __construct($value, string $format = Format::STRING)
+    public function __construct($value, Format $format = Format::STRING)
     {
         $this->value = $value;
         $this->format = $format;
@@ -26,7 +26,7 @@ class StaticAggregation implements AggregationInterface
         return $this->value;
     }
 
-    public function getFormat() : string
+    public function getFormat() : Format
     {
         return $this->format;
     }

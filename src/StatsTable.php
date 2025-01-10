@@ -199,12 +199,12 @@ class StatsTable
     /**
      * Get compare function
      *
-     * @param  string $format
+     * @param  Format $format
      * @param  bool   $asc
      *
      * @return callable
      */
-    private function getCompareFunction(string $format, bool $asc) : callable
+    private function getCompareFunction(Format $format, bool $asc) : callable
     {
         if (Format::STRING === $format) {
             return static function (string $a, string $b) use ($asc) {

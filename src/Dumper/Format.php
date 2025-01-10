@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Oct8pus\StatsTable\Dumper;
 
-class Format
+enum Format : string
 {
-    public const DATE = 'date';
-    public const DATETIME = 'datetime';
-    public const FLOAT2 = 'float2';
-    public const INTEGER = 'integer';
-    public const MONEY = 'money';
-    public const MONEY2 = 'money2';
-    public const PCT = 'percent';
-    public const PCT2 = 'percent2';
-    public const STRING = 'string';
-    public const LINK = 'link';
+    case DATE = 'date';
+    case DATETIME = 'datetime';
+    case FLOAT2 = 'float2';
+    case INTEGER = 'integer';
+    case MONEY = 'money';
+    case MONEY2 = 'money2';
+    case PCT = 'percent';
+    case PCT2 = 'percent2';
+    case STRING = 'string';
+    case LINK = 'link';
 }

@@ -10,9 +10,9 @@ use Oct8pus\StatsTable\StatsTableBuilder;
 class AverageAggregation implements AggregationInterface
 {
     private string $columnName;
-    private string $format;
+    private Format $format;
 
-    public function __construct(string $columnName, string $format = Format::INTEGER)
+    public function __construct(string $columnName, Format $format = Format::INTEGER)
     {
         $this->columnName = $columnName;
         $this->format = $format;
@@ -27,7 +27,7 @@ class AverageAggregation implements AggregationInterface
         return $count ? $sum / $count : 0;
     }
 
-    public function getFormat() : string
+    public function getFormat() : Format
     {
         return $this->format;
     }

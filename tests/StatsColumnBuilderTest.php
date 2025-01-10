@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests;
 
 use Oct8pus\StatsTable\Aggregation\CountAggregation;
+use Oct8pus\StatsTable\Dumper\Format;
 use Oct8pus\StatsTable\StatsColumnBuilder;
 use PHPUnit\Framework\TestCase;
 
@@ -15,11 +16,11 @@ class StatsColumnBuilderTest extends TestCase
         $aggregation = new CountAggregation('Hits');
 
         $values = [3, 5];
-        $column = new StatsColumnBuilder($values, 'Hits', 'format', $aggregation);
+        $column = new StatsColumnBuilder($values, 'Hits', Format::INTEGER, $aggregation);
 
         self::assertSame($values, $column->getValues());
         self::assertSame('Hits', $column->getHeaderName());
-        self::assertSame('format', $column->getFormat());
+        self::assertSame(Format::INTEGER, $column->getFormat());
         self::assertSame($aggregation, $column->getAggregation());
     }
 

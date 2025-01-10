@@ -288,12 +288,12 @@ class ExcelDumper extends Dumper
      * @param int       $col        The selected column
      * @param int       $row        The selected row
      * @param mixed     $value      The values to insert
-     * @param string    $format
+     * @param Format    $format
      * @param array     $styleArray An array representing the style
      *
      * @throws Exception
      */
-    protected function applyValue(Worksheet $sheet, int $col, int $row, mixed $value, string $format, array $styleArray = []) : void
+    protected function applyValue(Worksheet $sheet, int $col, int $row, mixed $value, Format $format, array $styleArray = []) : void
     {
         if (0 === count($styleArray)) {
             $styleArray = $this->getDefaultStyleArrayForRow($row);

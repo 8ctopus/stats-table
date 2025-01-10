@@ -35,7 +35,7 @@ class JSONDumper extends Dumper
 
         $result['formats'] = $statsTable->getDataFormats();
 
-        // Format value for each line of dataset
+        // format value for each line of dataset
         foreach ($result['data'] as &$line) {
             foreach ($line as $id => &$val) {
                 if (array_key_exists($id, $result['formats'])) {
@@ -44,7 +44,7 @@ class JSONDumper extends Dumper
             }
         }
 
-        // Format value for each value of aggregations
+        // format value for each value of aggregations
         foreach ($result['aggregations'] as $id => &$val) {
             if (array_key_exists($id, $result['aggregationsFormats'])) {
                 $val = $this->formatValue($result['aggregationsFormats'][$id], $val);
@@ -67,12 +67,12 @@ class JSONDumper extends Dumper
     /**
      * Format values for JSON
      *
-     * @param string $format
+     * @param Format $format
      * @param mixed $value
      *
      * @return string|float|int
      */
-    protected function formatValue(string $format, mixed $value) : string|float|int
+    protected function formatValue(Format $format, mixed $value) : string|float|int
     {
         switch ($format) {
             case Format::DATE:

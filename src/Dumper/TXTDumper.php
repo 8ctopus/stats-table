@@ -81,12 +81,12 @@ class TXTDumper extends Dumper
     /**
      * Format values
      *
-     * @param string $format
+     * @param Format $format
      * @param mixed $value
      *
      * @return string
      */
-    protected function formatValue(string $format, mixed $value) : string
+    protected function formatValue(Format $format, mixed $value) : string
     {
         $decimals = 2;
         $dec_point = ',';

@@ -34,12 +34,12 @@ abstract class Dumper implements DumperInterface
     /**
      * Default value formatter
      *
-     * @param string $format
+     * @param Format $format
      * @param mixed $value
      *
      * @return mixed
      */
-    protected function formatValue(string $format, mixed $value) : mixed
+    protected function formatValue(Format $format, mixed $value) : mixed
     {
         switch ($format) {
             case Format::DATE:

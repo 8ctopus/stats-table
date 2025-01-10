@@ -11,9 +11,9 @@ class RatioAggregation implements AggregationInterface
 {
     private $valueInternalName;
     private $overInternalName;
-    private string $format;
+    private Format $format;
 
-    public function __construct($overInternalName, $valueInternalName, string $format = Format::PCT2)
+    public function __construct($overInternalName, $valueInternalName, Format $format = Format::PCT2)
     {
         $this->valueInternalName = $valueInternalName;
         $this->overInternalName = $overInternalName;
@@ -31,7 +31,7 @@ class RatioAggregation implements AggregationInterface
         return $sumOver ? $sumValue / $sumOver : $sumValue;
     }
 
-    public function getFormat() : string
+    public function getFormat() : Format
     {
         return $this->format;
     }

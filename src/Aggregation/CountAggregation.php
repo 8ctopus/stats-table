@@ -10,9 +10,9 @@ use Oct8pus\StatsTable\StatsTableBuilder;
 class CountAggregation implements AggregationInterface
 {
     private string $columnName;
-    private string $format;
+    private Format $format;
 
-    public function __construct(string $columnName, string $format = Format::INTEGER)
+    public function __construct(string $columnName, Format $format = Format::INTEGER)
     {
         $this->columnName = $columnName;
         $this->format = $format;
@@ -25,7 +25,7 @@ class CountAggregation implements AggregationInterface
         return count($column);
     }
 
-    public function getFormat() : string
+    public function getFormat() : Format
     {
         return $this->format;
     }

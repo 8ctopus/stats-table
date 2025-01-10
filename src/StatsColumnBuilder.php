@@ -5,23 +5,24 @@ declare(strict_types=1);
 namespace Oct8pus\StatsTable;
 
 use Oct8pus\StatsTable\Aggregation\AggregationInterface;
+use Oct8pus\StatsTable\Dumper\Format;
 
 class StatsColumnBuilder
 {
     private array $values;
-    private ?string $format;
+    private ?Format $format;
     private ?AggregationInterface $aggregation;
     private string $headerName;
     private array $metaData;
 
     /**
      * @param array                 $values      Associative array like index => { name => value }
-     * @param string                $headerName  Header name
-     * @param ?string               $format      Format
-     * @param ?AggregationInterface $aggregation Aggregation
+     * @param string                $headerName
+     * @param ?Format               $format
+     * @param ?AggregationInterface $aggregation
      * @param array                 $metaData
      */
-    public function __construct(array $values, string $headerName = '', ?string $format = null, ?AggregationInterface $aggregation = null, array $metaData = [])
+    public function __construct(array $values, string $headerName = '', ?Format $format = null, ?AggregationInterface $aggregation = null, array $metaData = [])
     {
         $this->values = $values;
         $this->headerName = $headerName;
@@ -59,7 +60,7 @@ class StatsColumnBuilder
         return $this;
     }
 
-    public function getFormat() : ?string
+    public function getFormat() : ?Format
     {
         return $this->format;
     }

@@ -58,13 +58,13 @@ class StatsTableBuilder
      *
      * @param string                $columnName
      * @param ?string               $headerName
-     * @param ?string               $format
+     * @param ?Format               $format
      * @param ?AggregationInterface $aggregation
      * @param array                 $metaData
      *
      * @return self
      */
-    public function addIndexesAsColumn(string $columnName, ?string $headerName = null, ?string $format = null, ?AggregationInterface $aggregation = null, array $metaData = []) : self
+    public function addIndexesAsColumn(string $columnName, ?string $headerName = null, ?Format $format = null, ?AggregationInterface $aggregation = null, array $metaData = []) : self
     {
         $values = [];
         foreach ($this->indexes as $index) {
@@ -91,7 +91,7 @@ class StatsTableBuilder
      *
      * @param array                  $table
      * @param string[]               $headers
-     * @param string[]               $formats
+     * @param Format[]               $formats
      * @param AggregationInterface[] $aggregations
      * @param string[]               $columnNames
      * @param array[]                $defaultValues
@@ -189,13 +189,13 @@ class StatsTableBuilder
      * @param string                        $columnName
      * @param DynamicColumnBuilderInterface $dynamicColumn
      * @param string                        $header
-     * @param string                        $format
+     * @param Format                        $format
      * @param ?AggregationInterface         $aggregation
      * @param array                         $metaData
      *
      * @return self
      */
-    public function addDynamicColumn(string $columnName, DynamicColumnBuilderInterface $dynamicColumn, string $header = '', ?string $format = null, ?AggregationInterface $aggregation = null, array $metaData = []) : self
+    public function addDynamicColumn(string $columnName, DynamicColumnBuilderInterface $dynamicColumn, string $header = '', ?Format $format = null, ?AggregationInterface $aggregation = null, array $metaData = []) : self
     {
         $values = $dynamicColumn->buildColumnValues($this);
         $this->columns[$columnName] = new StatsColumnBuilder($values, $header, $format, $aggregation, $metaData);
@@ -209,13 +209,13 @@ class StatsTableBuilder
      * @param string                $column
      * @param array                 $values
      * @param string                $header
-     * @param ?string               $format
+     * @param ?Format               $format
      * @param ?AggregationInterface $aggregation
      * @param array                 $metaData
      *
      * @return self
      */
-    public function addColumn(string $column, array $values, string $header = '', ?string $format = null, ?AggregationInterface $aggregation = null, array $metaData = []) : self
+    public function addColumn(string $column, array $values, string $header = '', ?Format $format = null, ?AggregationInterface $aggregation = null, array $metaData = []) : self
     {
         $this->columns[$column] = new StatsColumnBuilder($values, $header, $format, $aggregation, $metaData);
 
@@ -359,7 +359,7 @@ class StatsTableBuilder
 
         $formats = $filterLine(
             array_map(
-                static function (StatsColumnBuilder $c) : string {
+                static function (StatsColumnBuilder $c) : Format {
                     return $c->getFormat();
                 },
                 $this->columns
