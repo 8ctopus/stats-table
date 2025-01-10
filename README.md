@@ -8,7 +8,7 @@
 ![code coverage badge](https://raw.githubusercontent.com/8ctopus/stats-table/image-data/coverage.svg)
 ![lines of code](https://raw.githubusercontent.com/8ctopus/stats-table/image-data/lines.svg)
 
-Create statistic tables and export them to text, JSON, CSV or Excel.
+Create statistics tables and export them to text, JSON, CSV or Excel.
 
 This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-table)
 
