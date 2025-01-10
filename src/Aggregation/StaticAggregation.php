@@ -8,7 +8,6 @@ use Oct8pus\StatsTable\Dumper\Format;
 use Oct8pus\StatsTable\StatsTableBuilder;
 
 /**
- * Class StaticAggregation
  * Returns a static value. Useful for first column
  */
 class StaticAggregation implements AggregationInterface

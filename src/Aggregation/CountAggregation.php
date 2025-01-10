@@ -7,10 +7,6 @@ namespace Oct8pus\StatsTable\Aggregation;
 use Oct8pus\StatsTable\Dumper\Format;
 use Oct8pus\StatsTable\StatsTableBuilder;
 
-/**
- * Class CountAggregation
- * Returns number of element in dataset
- */
 class CountAggregation implements AggregationInterface
 {
     private string $columnName;
