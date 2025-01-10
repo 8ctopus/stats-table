@@ -130,9 +130,9 @@ class ExcelDumper extends Dumper
     }
 
     /**
-     * Gets an option
+     * Get option
      *
-     * @param $optionName
+     * @param string $optionName
      *
      * @return mixed
      */
