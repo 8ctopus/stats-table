@@ -7,10 +7,6 @@ namespace Oct8pus\StatsTable\Aggregation;
 use Oct8pus\StatsTable\Dumper\Format;
 use Oct8pus\StatsTable\StatsTableBuilder;
 
-/**
- * Class SumAggregation
- * Returns the sum of all elements in the column
- */
 class SumAggregation implements AggregationInterface
 {
     private string $columnName;
@@ -29,9 +25,6 @@ class SumAggregation implements AggregationInterface
         return array_sum($column);
     }
 
-    /**
-     * @return string
-     */
     public function getFormat() : string
     {
         return $this->format;

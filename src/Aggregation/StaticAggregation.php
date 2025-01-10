@@ -26,9 +26,6 @@ class StaticAggregation implements AggregationInterface
         return $this->value;
     }
 
-    /**
-     * @return string
-     */
     public function getFormat() : string
     {
         return $this->format;

@@ -25,9 +25,6 @@ class CountAggregation implements AggregationInterface
         return count($column);
     }
 
-    /**
-     * @return string
-     */
     public function getFormat() : string
     {
         return $this->format;

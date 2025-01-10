@@ -22,7 +22,6 @@ class RatioAggregation implements AggregationInterface
 
     public function aggregate(StatsTableBuilder $statsTable) : mixed
     {
-        // Use sum
         $sumValueAggregation = new SumAggregation($this->valueInternalName);
         $sumOverAggregation = new SumAggregation($this->overInternalName);
 
@@ -32,9 +31,6 @@ class RatioAggregation implements AggregationInterface
         return $sumOver ? $sumValue / $sumOver : $sumValue;
     }
 
-    /**
-     * @return string
-     */
     public function getFormat() : string
     {
         return $this->format;

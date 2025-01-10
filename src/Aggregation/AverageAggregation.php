@@ -27,9 +27,6 @@ class AverageAggregation implements AggregationInterface
         return $count ? $sum / $count : 0;
     }
 
-    /**
-     * @return string
-     */
     public function getFormat() : string
     {
         return $this->format;
