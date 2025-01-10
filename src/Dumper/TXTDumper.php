@@ -93,35 +93,35 @@ class TXTDumper extends Dumper
         $thousands_sep = ' ';
 
         switch ($format) {
-            case Format::DATE:
+            case Format::fDate:
                 if ($value instanceof DateTimeInterface) {
                     return $value->format('d/m/Y');
                 }
                 break;
 
-            case Format::DATETIME:
+            case Format::fDateTime:
                 if ($value instanceof DateTimeInterface) {
                     return $value->format('d/m/Y H:i:s');
                 }
                 break;
 
-            case Format::FLOAT2:
+            case Format::fFloat:
                 return str_replace($dec_point . '00', '', number_format((float) $value, $decimals, $dec_point, $thousands_sep));
 
-            case Format::INTEGER:
+            case Format::fInteger:
                 return number_format((int) $value, 0, $dec_point, $thousands_sep);
 
-            case Format::PCT:
-                return $this->formatValue(Format::INTEGER, $value * 100) . '%';
+            case Format::fPercent:
+                return $this->formatValue(Format::fInteger, $value * 100) . '%';
 
-            case Format::PCT2:
-                return $this->formatValue(Format::FLOAT2, $value * 100) . '%';
+            case Format::fPercent2:
+                return $this->formatValue(Format::fFloat, $value * 100) . '%';
 
-            case Format::MONEY:
-                return $this->formatValue(Format::INTEGER, $value) . '€';
+            case Format::fMoney:
+                return $this->formatValue(Format::fInteger, $value) . '€';
 
-            case Format::MONEY2:
-                return $this->formatValue(Format::FLOAT2, $value) . '€';
+            case Format::fMoney2:
+                return $this->formatValue(Format::fFloat, $value) . '€';
         }
 
         return $value;

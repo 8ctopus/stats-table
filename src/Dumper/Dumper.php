@@ -42,35 +42,35 @@ abstract class Dumper implements DumperInterface
     protected function formatValue(Format $format, mixed $value) : mixed
     {
         switch ($format) {
-            case Format::DATE:
+            case Format::fDate:
                 if ($value instanceof DateTimeInterface) {
                     return $value->format('Y-m-d');
                 }
                 break;
 
-            case Format::DATETIME:
+            case Format::fDateTime:
                 if ($value instanceof DateTimeInterface) {
                     return $value->format('Y-m-d H:i:s');
                 }
                 break;
 
-            case Format::FLOAT2:
+            case Format::fFloat:
                 return sprintf('%.2f', $value);
 
-            case Format::INTEGER:
+            case Format::fInteger:
                 return sprintf('%d', $value);
 
-            case Format::PCT:
-                return $this->formatValue(Format::INTEGER, $value) . ' %';
+            case Format::fPercent:
+                return $this->formatValue(Format::fInteger, $value) . ' %';
 
-            case Format::PCT2:
-                return $this->formatValue(Format::FLOAT2, $value) . ' %';
+            case Format::fPercent2:
+                return $this->formatValue(Format::fFloat, $value) . ' %';
 
-            case Format::MONEY:
-                return $this->formatValue(Format::INTEGER, $value) . ' €';
+            case Format::fMoney:
+                return $this->formatValue(Format::fInteger, $value) . ' €';
 
-            case Format::MONEY2:
-                return $this->formatValue(Format::FLOAT2, $value) . ' €';
+            case Format::fMoney2:
+                return $this->formatValue(Format::fFloat, $value) . ' €';
         }
 
         return $value;

@@ -26,7 +26,7 @@ class JSONTest extends DumperTestAbstract
             'headers' => $this->getHeaders(),
             'data' => $this->getData(),
             'aggregations' => ['hits' => 'value'],
-            'aggregationsFormats' => ['hits' => Format::STRING->value],
+            'aggregationsFormats' => ['hits' => Format::fString->value],
             'formats' => $formats,
         ], json_decode($jsonDumper->dump($this->getStatsTable()), true));
     }
@@ -40,7 +40,7 @@ class JSONTest extends DumperTestAbstract
             $data,
             array_keys(current($data)),
             [],
-            ['pct' => Format::PCT]
+            ['pct' => Format::fPercent]
         );
 
         self::assertEquals([
@@ -48,7 +48,7 @@ class JSONTest extends DumperTestAbstract
             'data' => [['pct' => 31]],
             'aggregations' => [],
             'aggregationsFormats' => [],
-            'formats' => ['pct' => Format::PCT->value],
+            'formats' => ['pct' => Format::fPercent->value],
         ], json_decode($jsonDumper->dump($statsTable), true));
     }
 
@@ -66,7 +66,7 @@ class JSONTest extends DumperTestAbstract
             $data,
             array_keys(current($data)),
             [],
-            ['pct' => Format::PCT2]
+            ['pct' => Format::fPercent2]
         );
 
         self::assertEquals([
@@ -74,7 +74,7 @@ class JSONTest extends DumperTestAbstract
             'data' => [['pct' => 31.23]],
             'aggregations' => [],
             'aggregationsFormats' => [],
-            'formats' => ['pct' => Format::PCT2->value],
+            'formats' => ['pct' => Format::fPercent2->value],
         ], json_decode($jsonDumper->dump($statsTable), true));
     }
 

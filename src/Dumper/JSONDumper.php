@@ -75,25 +75,25 @@ class JSONDumper extends Dumper
     protected function formatValue(Format $format, mixed $value) : string|float|int
     {
         switch ($format) {
-            case Format::DATE:
-            case Format::DATETIME:
+            case Format::fDate:
+            case Format::fDateTime:
                 if ($value instanceof DateTimeInterface) {
                     return $value->format('c');
                 }
                 break;
 
-            case Format::FLOAT2:
-            case Format::MONEY2:
+            case Format::fFloat:
+            case Format::fMoney2:
                 return (float) sprintf('%.2f', $value);
 
-            case Format::PCT2:
+            case Format::fPercent2:
                 return (float) sprintf('%.2f', $value * 100);
 
-            case Format::PCT:
+            case Format::fPercent:
                 return (int) sprintf('%d', $value * 100);
 
-            case Format::INTEGER:
-            case Format::MONEY:
+            case Format::fInteger:
+            case Format::fMoney:
                 return (int) sprintf('%d', $value);
         }
 

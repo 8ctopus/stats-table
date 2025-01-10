@@ -23,55 +23,55 @@ class CSVTest extends DumperTestAbstract
         // DATE
         self::assertSame(
             "2014-01-01\n2014-01-01\n",
-            $csvDumper->dump(new StatsTable([['date' => '2014-01-01'], ['date' => new DateTime('2014-01-01')]], [], [], ['date' => Format::DATE]))
+            $csvDumper->dump(new StatsTable([['date' => '2014-01-01'], ['date' => new DateTime('2014-01-01')]], [], [], ['date' => Format::fDate]))
         );
 
         // DATETIME
         self::assertSame(
             "\"2014-01-01 00:00:00\"\n\"2014-01-01 00:00:00\"\n",
-            $csvDumper->dump(new StatsTable([['date' => '2014-01-01 00:00:00'], ['date' => new DateTimeImmutable('2014-01-01 00:00:00')]], [], [], ['date' => Format::DATETIME]))
+            $csvDumper->dump(new StatsTable([['date' => '2014-01-01 00:00:00'], ['date' => new DateTimeImmutable('2014-01-01 00:00:00')]], [], [], ['date' => Format::fDateTime]))
         );
 
         // INTEGER
         self::assertSame(
             "132\n133\n",
-            $csvDumper->dump(new StatsTable([['test' => 132], ['test' => 133.3]], [], [], ['test' => Format::INTEGER]))
+            $csvDumper->dump(new StatsTable([['test' => 132], ['test' => 133.3]], [], [], ['test' => Format::fInteger]))
         );
 
         // FLOAT2
         self::assertSame(
             "132.00\n133.35\n",
-            $csvDumper->dump(new StatsTable([['test' => 132], ['test' => 133.351]], [], [], ['test' => Format::FLOAT2]))
+            $csvDumper->dump(new StatsTable([['test' => 132], ['test' => 133.351]], [], [], ['test' => Format::fFloat]))
         );
 
         // MONEY
         self::assertSame(
             "\"132 €\"\n\"133 €\"\n",
-            $csvDumper->dump(new StatsTable([['test' => 132], ['test' => 133.351]], [], [], ['test' => Format::MONEY]))
+            $csvDumper->dump(new StatsTable([['test' => 132], ['test' => 133.351]], [], [], ['test' => Format::fMoney]))
         );
 
         // MONEY2
         self::assertSame(
             "\"132.00 €\"\n\"133.35 €\"\n",
-            $csvDumper->dump(new StatsTable([['test' => 132], ['test' => 133.351]], [], [], ['test' => Format::MONEY2]))
+            $csvDumper->dump(new StatsTable([['test' => 132], ['test' => 133.351]], [], [], ['test' => Format::fMoney2]))
         );
 
         // PCT
         self::assertSame(
             "\"132 %\"\n\"133 %\"\n",
-            $csvDumper->dump(new StatsTable([['test' => 132], ['test' => 133.351]], [], [], ['test' => Format::PCT]))
+            $csvDumper->dump(new StatsTable([['test' => 132], ['test' => 133.351]], [], [], ['test' => Format::fPercent]))
         );
 
         // PCT2
         self::assertSame(
             "\"132.00 %\"\n\"133.35 %\"\n",
-            $csvDumper->dump(new StatsTable([['test' => 132], ['test' => 133.351]], [], [], ['test' => Format::PCT2]))
+            $csvDumper->dump(new StatsTable([['test' => 132], ['test' => 133.351]], [], [], ['test' => Format::fPercent2]))
         );
 
         // String
         self::assertSame(
             "132\n133.351\n",
-            $csvDumper->dump(new StatsTable([['test' => 132], ['test' => 133.351]], [], [], ['test' => Format::STRING]))
+            $csvDumper->dump(new StatsTable([['test' => 132], ['test' => 133.351]], [], [], ['test' => Format::fString]))
         );
 
         $csvDumper->enableAggregation(true);

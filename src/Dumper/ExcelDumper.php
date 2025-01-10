@@ -276,7 +276,7 @@ class ExcelDumper extends Dumper
     {
         $col = self::FIRST_COLUMN;
         foreach ($values as $index => $value) {
-            $this->applyValue($sheet, $col, $row, $value, array_key_exists($index, $formats) ? $formats[$index] : Format::STRING, $styleArray);
+            $this->applyValue($sheet, $col, $row, $value, array_key_exists($index, $formats) ? $formats[$index] : Format::fString, $styleArray);
             ++$col;
         }
     }
@@ -303,7 +303,7 @@ class ExcelDumper extends Dumper
         $style->applyFromArray($styleArray);
 
         switch ($format) {
-            case Format::DATE:
+            case Format::fDate:
                 if (!$value instanceof DateTimeInterface) {
                     $date = new DateTimeImmutable($value);
                 } else {
@@ -314,7 +314,7 @@ class ExcelDumper extends Dumper
                 $style->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_DATE_YYYYMMDD2);
                 break;
 
-            case Format::DATETIME:
+            case Format::fDateTime:
                 if (!$value instanceof DateTimeInterface) {
                     $date = new DateTimeImmutable($value);
                 } else {
@@ -325,29 +325,29 @@ class ExcelDumper extends Dumper
                 $style->getNumberFormat()->setFormatCode(self::FORMAT_DATETIME);
                 break;
 
-            case Format::FLOAT2:
+            case Format::fFloat:
                 $style->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
                 break;
 
-            case Format::INTEGER:
+            case Format::fInteger:
                 $style->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_NUMBER);
                 break;
 
-            case Format::MONEY:
-            case Format::MONEY2:
+            case Format::fMoney:
+            case Format::fMoney2:
                 $style->getNumberFormat()->setFormatCode(self::FORMAT_EUR);
                 break;
 
-            case Format::PCT:
+            case Format::fPercent:
                 $style->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_PERCENTAGE);
                 break;
 
-            case Format::PCT2:
+            case Format::fPercent2:
                 $style->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_PERCENTAGE_00);
                 break;
 
-            case Format::STRING:
-            case Format::LINK:
+            case Format::fString:
+            case Format::fLink:
                 $style->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_TEXT);
                 break;
         }
@@ -355,11 +355,11 @@ class ExcelDumper extends Dumper
         $sheet->duplicateStyle($style, Coordinate::stringFromColumnIndex($col) . $row);
 
         switch ($format) {
-            case Format::STRING:
+            case Format::fString:
                 $sheet->setCellValueExplicitByColumnAndRow($col, $row, $value, DataType::TYPE_STRING);
 
                 // no break
-            case Format::LINK:
+            case Format::fLink:
                 $sheet->setCellValueByColumnAndRow($col, $row, $value);
                 if (filter_var($value, FILTER_VALIDATE_URL)) {
                     $sheet->getCellByColumnAndRow($col, $row)->getHyperlink()->setUrl($value);

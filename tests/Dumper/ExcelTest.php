@@ -21,11 +21,11 @@ class ExcelTest extends DumperTestAbstract
             ['date' => '2014-02-01', 'hits' => '20', 'subscribers' => 7, 'ratio' => .35, 'revenues' => 80.754],
         ];
         $dataTypes = [
-            'date' => Format::DATE,
-            'hits' => Format::INTEGER,
-            'subscribers' => Format::INTEGER,
-            'ratio' => Format::PCT2,
-            'revenues' => Format::MONEY2,
+            'date' => Format::fDate,
+            'hits' => Format::fInteger,
+            'subscribers' => Format::fInteger,
+            'ratio' => Format::fPercent2,
+            'revenues' => Format::fMoney2,
         ];
 
         $aggregations = [
@@ -37,8 +37,8 @@ class ExcelTest extends DumperTestAbstract
         ];
 
         $aggregationsTypes = $dataTypes;
-        $aggregationsTypes['date'] = Format::STRING;
-        $aggregationsTypes['ratio'] = Format::PCT;
+        $aggregationsTypes['date'] = Format::fString;
+        $aggregationsTypes['ratio'] = Format::fPercent;
 
         $statsTable = new StatsTable($data, $headers, $aggregations, $dataTypes, $aggregationsTypes);
         $excelDumper = new ExcelDumper();
@@ -49,8 +49,8 @@ class ExcelTest extends DumperTestAbstract
 
         file_put_contents(sys_get_temp_dir() . '/test.xls', $excelContents);
 
-        $dataTypes['date'] = Format::DATETIME;
-        $dataTypes['revenues'] = Format::FLOAT2;
+        $dataTypes['date'] = Format::fDateTime;
+        $dataTypes['revenues'] = Format::fFloat;
         $statsTable = new StatsTable($data, $headers, $aggregations, $dataTypes, $aggregationsTypes);
         $excelDumper->setOptions([ExcelDumper::OPTION_ZEBRA => false]);
         $excelContents = $excelDumper->dump($statsTable);

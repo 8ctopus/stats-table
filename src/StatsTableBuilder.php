@@ -393,7 +393,7 @@ class StatsTableBuilder
             foreach ($columns as $column) {
                 $oneLine = current($lines);
                 $value = $oneLine[$column];
-                $tmpAggregations[$column] = new StaticAggregation($value, Format::STRING);
+                $tmpAggregations[$column] = new StaticAggregation($value, Format::fString);
             }
 
             $tmpTableBuilder = new self(

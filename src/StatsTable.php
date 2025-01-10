@@ -116,7 +116,7 @@ class StatsTable
         $compareFuncList = [];
 
         foreach ($columns as $colName => $asc) {
-            $columnFormat = array_key_exists($colName, $this->dataFormats) ? $this->dataFormats[$colName] : Format::STRING;
+            $columnFormat = array_key_exists($colName, $this->dataFormats) ? $this->dataFormats[$colName] : Format::fString;
             $compareFuncList[$colName] = $this->getCompareFunction($columnFormat, $asc);
         }
 
@@ -206,7 +206,7 @@ class StatsTable
      */
     private function getCompareFunction(Format $format, bool $asc) : callable
     {
-        if (Format::STRING === $format) {
+        if (Format::fString === $format) {
             return static function (string $a, string $b) use ($asc) {
                 $tmp = strcmp($a, $b);
                 return $asc ? $tmp : -$tmp;

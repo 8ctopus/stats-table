@@ -12,7 +12,7 @@ class AverageAggregation implements AggregationInterface
     private string $columnName;
     private Format $format;
 
-    public function __construct(string $columnName, Format $format = Format::INTEGER)
+    public function __construct(string $columnName, Format $format = Format::fInteger)
     {
         $this->columnName = $columnName;
         $this->format = $format;

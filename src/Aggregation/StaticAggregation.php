@@ -15,7 +15,7 @@ class StaticAggregation implements AggregationInterface
     private $value;
     private Format $format;
 
-    public function __construct($value, Format $format = Format::STRING)
+    public function __construct($value, Format $format = Format::fString)
     {
         $this->value = $value;
         $this->format = $format;
