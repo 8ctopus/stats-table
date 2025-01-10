@@ -7,7 +7,6 @@ namespace Oct8pus\StatsTable\Dumper;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Exception;
-use Oct8pus\StatsTable\Dumper\Dumper;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;

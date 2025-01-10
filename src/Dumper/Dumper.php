@@ -36,7 +36,7 @@ abstract class Dumper implements DumperInterface
      * Default value formatter
      *
      * @param Format $format
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return mixed
      */

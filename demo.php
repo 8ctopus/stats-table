@@ -5,8 +5,8 @@ declare(strict_types=1);
 use Oct8pus\StatsTable\Aggregation\AverageAggregation;
 use Oct8pus\StatsTable\Aggregation\SumAggregation;
 use Oct8pus\StatsTable\Dumper\TXTDumper;
-use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\DynamicColumn\CallbackColumnBuilder;
+use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTableBuilder;
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -61,7 +61,7 @@ $aggregationsFormats = [
 
 $builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
 
-$dynamicColumn = new CallbackColumnBuilder(function($row) : float {
+$dynamicColumn = new CallbackColumnBuilder(function ($row) : float {
     return $row['weight'] / ($row['height'] * $row['height']);
 });
 

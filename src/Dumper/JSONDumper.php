@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Oct8pus\StatsTable\Dumper;
 
 use DateTimeInterface;
-use Oct8pus\StatsTable\Dumper\Dumper;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 
@@ -68,11 +67,11 @@ class JSONDumper extends Dumper
      * Format values for JSON
      *
      * @param Format $format
-     * @param mixed $value
+     * @param mixed  $value
      *
-     * @return string|float|int
+     * @return float|int|string
      */
-    protected function formatValue(Format $format, mixed $value) : string|float|int
+    protected function formatValue(Format $format, mixed $value) : float|int|string
     {
         switch ($format) {
             case Format::Date:

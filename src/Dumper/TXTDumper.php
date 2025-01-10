@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Oct8pus\StatsTable\Dumper;
 
 use DateTimeInterface;
-use Oct8pus\StatsTable\Dumper\Dumper;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 
@@ -82,7 +81,7 @@ class TXTDumper extends Dumper
      * Format values
      *
      * @param Format $format
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return string
      */

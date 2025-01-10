@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Oct8pus\StatsTable;
 
-use Oct8pus\StatsTable\Format;
-
 class StatsTable
 {
     private array $data;
@@ -182,7 +180,7 @@ class StatsTable
     /**
      * Remove columns from line
      *
-     * @param array $line       Referenced line to filter
+     * @param array $line    Referenced line to filter
      * @param array $columns An array indexed by columns to exclude. Value doesn't matter.
      *
      * @return void
@@ -199,8 +197,8 @@ class StatsTable
     /**
      * Get compare function
      *
-     * @param  Format $format
-     * @param  bool   $asc
+     * @param Format $format
+     * @param bool   $asc
      *
      * @return callable
      */
