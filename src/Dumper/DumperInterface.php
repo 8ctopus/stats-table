@@ -9,16 +9,16 @@ use Oct8pus\StatsTable\StatsTable;
 interface DumperInterface
 {
     /**
-     * Dump the stats table
+     * Dump table
      *
-     * @param StatsTable $statsTable The stats table to dump
+     * @param StatsTable $statsTable
      *
-     * @return string The stats table dumped
+     * @return string|array
      */
-    public function dump(StatsTable $statsTable) : string;
+    public function dump(StatsTable $statsTable) : string|array;
 
     /**
-     * Retrieve mime-type
+     * Get mime type
      *
      * @return string
      */

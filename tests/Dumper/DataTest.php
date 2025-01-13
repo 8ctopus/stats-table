@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\Dumper;
 
+use Oct8pus\StatsTable\Dumper\DataDumper;
 use Oct8pus\StatsTable\Dumper\DumperInterface;
-use Oct8pus\StatsTable\Dumper\TXTDumper;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 
-class TXTTest extends DumperTestAbstract
+class DataTest extends DumperTestAbstract
 {
     public function testDump() : void
     {
@@ -18,7 +18,7 @@ class TXTTest extends DumperTestAbstract
             'hits' => 'Nb de visites',
             'subscribers' => 'Nb inscrits',
             'ratio' => 'Taux de transfo',
-            'revenues' => 'Revenus générés'
+            'revenues' => 'Revenus générés',
         ];
 
         $data = [
@@ -53,22 +53,42 @@ class TXTTest extends DumperTestAbstract
 
         $statsTable = new StatsTable($data, $headers, $aggregations, $dataTypes, $aggregationsTypes, $metaData);
 
-        $dumper = new TXTDumper();
-        $text = $dumper->dump($statsTable);
+        $dumper = new DataDumper();
+        $data = $dumper->dump($statsTable);
 
-        $excepted = <<<'TXT'
-        Date       Nb de visites Nb inscrits Taux de transfo Revenus générés 
-         2014-01-01            10           2             20%           45,32€
-         2014-01-01            20           7             35%           80,75€
-              Total            30           9              .3            126.075
+        $excepted = [
+            [
+                'date' => 'Date',
+                'hits' => 'Nb de visites',
+                'subscribers' => 'Nb inscrits',
+                'ratio' => 'Taux de transfo',
+                'revenues' => 'Revenus générés',
+            ], [
+                'date' => '2014-01-01',
+                'hits' => '10',
+                'subscribers' => '2',
+                'ratio' => '20%',
+                'revenues' => '45,32€',
+            ], [
+                'date' => '2014-01-01',
+                'hits' => '20',
+                'subscribers' => '7',
+                'ratio' => '35%',
+                'revenues' => '80,75€',
+            ], [
+                'date' => 'Total',
+                'hits' => '30',
+                'subscribers' => '9',
+                'ratio' => '.3',
+                'revenues' => 126.075,
+            ],
+        ];
 
-        TXT;
-
-        self::assertEquals($excepted, $text);
+        self::assertEquals($excepted, $data);
     }
 
     protected function getDumper() : DumperInterface
     {
-        return new TXTDumper();
+        return new DataDumper();
     }
 }
