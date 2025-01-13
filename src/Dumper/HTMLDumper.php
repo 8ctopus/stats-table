@@ -18,7 +18,7 @@ class HTMLDumper extends Dumper
     protected readonly array $templateOptions;
     protected Twig $twig;
 
-    public function __construct($options = [])
+    public function __construct(ParameterBag|array $options = [])
     {
         $options = new ParameterBag($options);
 
@@ -82,7 +82,7 @@ class HTMLDumper extends Dumper
     }
 
     /**
-     * Format values for HTML View
+     * Format values
      *
      * @param Format $format
      * @param mixed  $value

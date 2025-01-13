@@ -13,7 +13,7 @@ class CSVDumper extends Dumper
     private readonly string $enclosure;
     private readonly string $charset;
 
-    public function __construct(array $options = [])
+    public function __construct(ParameterBag|array $options = [])
     {
         $bag = new ParameterBag($options);
 

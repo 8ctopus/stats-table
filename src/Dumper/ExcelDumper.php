@@ -9,6 +9,7 @@ use DateTimeInterface;
 use Exception;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
+use Oct8pus\StatsTable\Tools\ParameterBag;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\Cell\DataType;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
@@ -31,37 +32,16 @@ class ExcelDumper extends Dumper
     public const FORMAT_DATETIME = 'dd/mm/yy hh:mm';
     private const FIRST_COLUMN = 1;
 
-    protected array $options = [];
+    private ParameterBag $options;
 
     /**
      * Constructor
      *
-     * @param array $options An array with options
+     * @param ParameterBag|array $options
      */
-    public function __construct(array $options = [])
+    public function __construct(ParameterBag|array $options = [])
     {
-        $this->options = $options;
-    }
-
-    /**
-     * Set options defined in array. Does not replace existing ones
-     *
-     * @param array $options
-     */
-    public function setOptions(array $options) : void
-    {
-        $this->options = array_merge($this->options, $options);
-    }
-
-    /**
-     * Set specific option
-     *
-     * @param string $optionName
-     * @param mixed  $optionValue
-     */
-    public function setOption(string $optionName, mixed $optionValue) : void
-    {
-        $this->options[$optionName] = $optionValue;
+        $this->options = new ParameterBag($options);
     }
 
     /**
@@ -128,22 +108,6 @@ class ExcelDumper extends Dumper
         return $contents;
     }
 
-    /**
-     * Get option
-     *
-     * @param string $optionName
-     *
-     * @return mixed
-     */
-    public function getOption(string $optionName) : mixed
-    {
-        if (array_key_exists($optionName, $this->options)) {
-            return $this->options[$optionName];
-        } else {
-            return null;
-        }
-    }
-
     public function getMimeType() : string
     {
         return 'application/vnd.ms-office; charset=binary';
@@ -192,11 +156,11 @@ class ExcelDumper extends Dumper
     {
         $style = $this->getDefaultStyleForFilledCells();
 
-        if ($this->getOption(self::OPTION_ZEBRA)) {
+        if ($this->options->get(self::OPTION_ZEBRA)) {
             if (($row % 2) === 0) {
-                $bgColor = $this->getOption(self::OPTION_ZEBRA_COLOR_EVEN);
+                $bgColor = $this->options->get(self::OPTION_ZEBRA_COLOR_EVEN);
             } else {
-                $bgColor = $this->getOption(self::OPTION_ZEBRA_COLOR_ODD);
+                $bgColor = $this->options->get(self::OPTION_ZEBRA_COLOR_ODD);
             }
 
             if ($bgColor) {

@@ -11,7 +11,7 @@ use Oct8pus\StatsTable\StatsTable;
 class JSONDumper extends Dumper
 {
     /**
-     * Dump Data
+     * Dump data
      *
      * @param StatsTable $statsTable
      *

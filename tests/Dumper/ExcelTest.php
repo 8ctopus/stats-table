@@ -41,9 +41,10 @@ class ExcelTest extends DumperTestAbstract
         $aggregationsTypes['ratio'] = Format::Percent;
 
         $statsTable = new StatsTable($data, $headers, $aggregations, $dataTypes, $aggregationsTypes);
-        $excelDumper = new ExcelDumper();
-        $excelDumper->setOption(ExcelDumper::OPTION_ZEBRA, true);
-        $excelDumper->setOption(ExcelDumper::OPTION_ZEBRA_COLOR_ODD, 'eeeeee');
+        $excelDumper = new ExcelDumper([
+            ExcelDumper::OPTION_ZEBRA => true,
+            ExcelDumper::OPTION_ZEBRA_COLOR_ODD => 'eeeeee',
+        ]);
 
         $excelContents = $excelDumper->dump($statsTable);
 
@@ -52,7 +53,13 @@ class ExcelTest extends DumperTestAbstract
         $dataTypes['date'] = Format::DateTime;
         $dataTypes['revenues'] = Format::Float;
         $statsTable = new StatsTable($data, $headers, $aggregations, $dataTypes, $aggregationsTypes);
-        $excelDumper->setOptions([ExcelDumper::OPTION_ZEBRA => false]);
+
+        $excelDumper = new ExcelDumper([
+            ExcelDumper::OPTION_ZEBRA => true,
+            ExcelDumper::OPTION_ZEBRA_COLOR_ODD => 'eeeeee',
+            ExcelDumper::OPTION_ZEBRA => false,
+        ]);
+
         $excelContents = $excelDumper->dump($statsTable);
 
         file_put_contents(sys_get_temp_dir() . '/test2.xls', $excelContents);
