@@ -16,9 +16,8 @@ class CSVTest extends DumperTestAbstract
     public function testFormats() : void
     {
         $csvDumper = new CSVDumper();
-        $csvDumper->setLocale('');
-        $csvDumper->enableAggregation(false);
         $csvDumper->enableHeaders(false);
+        $csvDumper->enableAggregation(false);
 
         // DATE
         self::assertSame(

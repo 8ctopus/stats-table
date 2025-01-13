@@ -9,8 +9,6 @@ use Oct8pus\StatsTable\Tools\ParameterBag;
 
 class CSVDumper extends Dumper
 {
-    /** @var string The current locale */
-    private string $locale;
     private readonly string $delimiter;
     private readonly string $enclosure;
     private readonly string $charset;
@@ -18,20 +16,10 @@ class CSVDumper extends Dumper
     public function __construct(array $options = [])
     {
         $bag = new ParameterBag($options);
+
         $this->delimiter = $bag->get('delimiter', ',');
         $this->enclosure = $bag->get('enclosure', '"');
-        $this->locale = $bag->get('locale', '');
         $this->charset = $bag->get('charset', 'utf-8');
-    }
-
-    /**
-     * The locale to use
-     *
-     * @param string $locale
-     */
-    public function setLocale(string $locale) : void
-    {
-        $this->locale = $locale;
     }
 
     public function dump(StatsTable $statsTable) : string
