@@ -11,53 +11,6 @@ class ParameterBagTest extends TestCase
 {
     public function testConstructorWithArray() : void
     {
-        $bag = new ParameterBag($this->getSampleData());
-
-        $excepted = [
-            'decimals_count' => 2,
-            'decimals_separator' => ',',
-            'thousands_separator' => ' ',
-            'distance' => 'meter',
-            'speed' => 'km/h',
-        ];
-
-        self::assertSame($excepted, $bag->toArray());
-    }
-
-    public function testConstructorWithParameterBag() : void
-    {
-        $bag = new ParameterBag($this->getSampleData());
-        $bag = new ParameterBag($bag);
-
-        $excepted = [
-            'decimals_count' => 2,
-            'decimals_separator' => ',',
-            'thousands_separator' => ' ',
-            'distance' => 'meter',
-            'speed' => 'km/h',
-        ];
-
-        self::assertSame($excepted, $bag->toArray());
-    }
-
-    public function testHasKey() : void
-    {
-        $bag = new ParameterBag($this->getSampleData());
-
-        self::assertTrue($bag->has('distance'));
-        self::assertFalse($bag->has('time'));
-    }
-
-    public function testGet() : void
-    {
-        $bag = new ParameterBag($this->getSampleData());
-
-        self::assertSame('meter', $bag->get('distance', 'One value'));
-        self::assertSame('Three', $bag->get('3', 'Three'));
-    }
-
-    public function testSet() : void
-    {
         $bag = new ParameterBag([
             'decimals_count' => 3,
             'added' => 1,
@@ -73,11 +26,56 @@ class ParameterBagTest extends TestCase
         self::assertSame($excepted, $bag->toArray());
     }
 
-    private function getSampleData() : array
+    public function testConstructorWithParameterBag() : void
     {
-        return [
-            'distance' => 'meter',
-            'speed' => 'km/h',
+        $bag = new ParameterBag(new ParameterBag([
+            'decimals_count' => 3,
+            'added' => 1,
+        ]));
+
+        $excepted = [
+            'decimals_count' => 3,
+            'decimals_separator' => ',',
+            'thousands_separator' => ' ',
+            'added' => 1,
         ];
+
+        self::assertSame($excepted, $bag->toArray());
+    }
+
+    public function testHas() : void
+    {
+        $bag = new ParameterBag([
+            'decimals_count' => 3,
+            'added' => 1,
+        ]);
+
+        self::assertTrue($bag->has('decimals_count'));
+        self::assertTrue($bag->has('added'));
+        self::assertFalse($bag->has('time'));
+    }
+
+    public function testGet() : void
+    {
+        $bag = new ParameterBag();
+
+        self::assertSame(2, $bag->get('decimals_count', 3));
+        self::assertSame('Three', $bag->get('3', 'Three'));
+    }
+
+    public function testSet() : void
+    {
+        $bag = new ParameterBag();
+        $bag->set('decimals_count', 3);
+        $bag->set('added', 1);
+
+        $excepted = [
+            'decimals_count' => 3,
+            'decimals_separator' => ',',
+            'thousands_separator' => ' ',
+            'added' => 1,
+        ];
+
+        self::assertSame($excepted, $bag->toArray());
     }
 }
