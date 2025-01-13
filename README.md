@@ -33,14 +33,16 @@ $headers = [
 
 $table = new StatsTable($data, $headers);
 
+$table->sortByColumn('date', false);
+
 $dumper = new TXTDumper();
 echo $dumper->dump($table);
 ```
 
 ```txt
 Date       Number of hits
- 2014-01-01          32500
  2014-01-02          48650
+ 2014-01-01          32500
 ```
 
 ### Table builder
