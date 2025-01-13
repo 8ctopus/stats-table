@@ -14,7 +14,7 @@ class StatsTable
     private readonly array $metaData;
 
     /**
-     * Constructs a new stats table
+     * Construct a new stats table
      *
      * @param array $data
      * @param array $headers

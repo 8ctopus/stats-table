@@ -11,7 +11,7 @@ class ParameterBag
     /**
      * Constructor
      *
-     * @param ParameterBag|array $options
+     * @param self|array $options
      */
     public function __construct(self|array $options = [])
     {
