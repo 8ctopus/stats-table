@@ -13,7 +13,7 @@ class CSVDumper extends Dumper
     private readonly string $enclosure;
     private readonly string $charset;
 
-    public function __construct(ParameterBag|array $options = [])
+    public function __construct(ParameterBag|array $options = null)
     {
         $bag = new ParameterBag($options);
 
@@ -22,6 +22,13 @@ class CSVDumper extends Dumper
         $this->charset = $bag->get('charset', 'utf-8');
     }
 
+    /**
+     * Dump table
+     *
+     * @param  StatsTable $statsTable
+     *
+     * @return string
+     */
     public function dump(StatsTable $statsTable) : string
     {
         $fileHandler = fopen('php://temp', 'w');

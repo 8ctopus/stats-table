@@ -10,6 +10,13 @@ use Oct8pus\StatsTable\StatsTable;
 
 class DataDumper extends Dumper
 {
+    /**
+     * Dump table
+     *
+     * @param  StatsTable $statsTable
+     *
+     * @return array
+     */
     public function dump(StatsTable $statsTable) : array
     {
         $data = $statsTable->getData();

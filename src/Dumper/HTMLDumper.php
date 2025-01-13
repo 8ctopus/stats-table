@@ -18,7 +18,7 @@ class HTMLDumper extends Dumper
     protected readonly array $templateOptions;
     protected Twig $twig;
 
-    public function __construct(ParameterBag|array $options = [])
+    public function __construct(ParameterBag|array $options = null)
     {
         $options = new ParameterBag($options);
 
@@ -33,6 +33,13 @@ class HTMLDumper extends Dumper
         $this->twig = $twig;
     }
 
+    /**
+     * Dump table
+     *
+     * @param  StatsTable $statsTable
+     *
+     * @return string
+     */
     public function dump(StatsTable $statsTable) : string
     {
         $data = $statsTable->getData();

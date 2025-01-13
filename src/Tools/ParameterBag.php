@@ -11,17 +11,17 @@ class ParameterBag
     /**
      * Constructor
      *
-     * @param array|ParameterBag $bag
+     * @param null|ParameterBag|array $options
      */
-    public function __construct(array|self $bag = [])
+    public function __construct(null|self|array $options = null)
     {
-        if ($bag instanceof self) {
-            $value = $bag->toArray();
-        } else {
-            $value = $bag;
+        if ($options instanceof self) {
+            $options = $options->toArray();
+        } elseif (is_null($options)) {
+            $options = [];
         }
 
-        $this->bag = $value;
+        $this->bag = $options;
     }
 
     /**

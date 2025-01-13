@@ -39,13 +39,13 @@ class ExcelDumper extends Dumper
      *
      * @param ParameterBag|array $options
      */
-    public function __construct(ParameterBag|array $options = [])
+    public function __construct(ParameterBag|array $options = null)
     {
         $this->options = new ParameterBag($options);
     }
 
     /**
-     * Dumps the stats table
+     * Dump table
      *
      * @param StatsTable $statsTable
      *
