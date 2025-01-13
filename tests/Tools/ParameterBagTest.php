@@ -56,6 +56,23 @@ class ParameterBagTest extends TestCase
         self::assertSame('Three', $bag->get('3', 'Three'));
     }
 
+    public function testSet() : void
+    {
+        $bag = new ParameterBag([
+            'decimals_count' => 3,
+            'added' => 1,
+        ]);
+
+        $excepted = [
+            'decimals_count' => 3,
+            'decimals_separator' => ',',
+            'thousands_separator' => ' ',
+            'added' => 1,
+        ];
+
+        self::assertSame($excepted, $bag->toArray());
+    }
+
     private function getSampleData() : array
     {
         return [
