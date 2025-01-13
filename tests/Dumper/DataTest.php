@@ -58,29 +58,23 @@ class DataTest extends DumperTestAbstract
 
         $excepted = [
             [
-                'date' => 'Date',
-                'hits' => 'Nb de visites',
-                'subscribers' => 'Nb inscrits',
-                'ratio' => 'Taux de transfo',
-                'revenues' => 'Revenus générés',
+                'Date' => '2014-01-01',
+                'Nb de visites' => '10',
+                'Nb inscrits' => '2',
+                'Taux de transfo' => '20%',
+                'Revenus générés' => '45,32€',
             ], [
-                'date' => '2014-01-01',
-                'hits' => '10',
-                'subscribers' => '2',
-                'ratio' => '20%',
-                'revenues' => '45,32€',
+                'Date' => '2014-01-01',
+                'Nb de visites' => '20',
+                'Nb inscrits' => '7',
+                'Taux de transfo' => '35%',
+                'Revenus générés' => '80,75€',
             ], [
-                'date' => '2014-01-01',
-                'hits' => '20',
-                'subscribers' => '7',
-                'ratio' => '35%',
-                'revenues' => '80,75€',
-            ], [
-                'date' => 'Total',
-                'hits' => '30',
-                'subscribers' => '9',
-                'ratio' => '.3',
-                'revenues' => 126.075,
+                'Date' => 'Total',
+                'Nb de visites' => '30',
+                'Nb inscrits' => '9',
+                'Taux de transfo' => '.3',
+                'Revenus générés' => 126.075,
             ],
         ];
 

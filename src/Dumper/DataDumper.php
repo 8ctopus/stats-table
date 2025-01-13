@@ -25,12 +25,15 @@ class DataDumper extends Dumper
         $headers = $statsTable->getHeaders();
 
         if (!empty($headers)) {
-            array_unshift($data, $headers);
+            foreach ($data as &$line) {
+                $line = array_combine($headers, $line);
+            }
         }
 
         $aggregations = $statsTable->getAggregations();
 
         if (!empty($aggregations)) {
+            $aggregations = array_combine($headers, $aggregations);
             $data[] = $aggregations;
         }
 
