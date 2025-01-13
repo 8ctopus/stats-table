@@ -93,8 +93,8 @@ class HTMLDumper extends Dumper
     {
         // TODO : Put in parameters
         $decimals = 2;
-        $dec_point = ',';
-        $thousands_sep = ' ';
+        $decimalSep = ',';
+        $thousandsSep = ' ';
 
         switch ($format) {
             case Format::Date:
@@ -110,10 +110,10 @@ class HTMLDumper extends Dumper
                 break;
 
             case Format::Float:
-                return str_replace($dec_point . '00', '', number_format((float) $value, $decimals, $dec_point, $thousands_sep));
+                return str_replace($decimalSep . '00', '', number_format((float) $value, $decimals, $decimalSep, $thousandsSep));
 
             case Format::Integer:
-                return number_format((int) $value, 0, $dec_point, $thousands_sep);
+                return number_format((int) $value, 0, $decimalSep, $thousandsSep);
 
             case Format::Percent:
                 return $this->formatValue(Format::Integer, $value * 100) . '%';
