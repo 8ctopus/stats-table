@@ -54,10 +54,12 @@ $aggregations = [
     'height' => new AverageAggregation('height', Format::Float),
 ];
 
+/*
 $aggregationsFormats = [
     'age' => Format::Integer,
     'height' => Format::Float,
 ];
+*/
 
 $builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
 

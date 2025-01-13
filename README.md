@@ -28,7 +28,7 @@ $data = [
 
 $headers = [
     'date' => 'Date',
-    'hits' => 'Number of hits'
+    'hits' => 'Number of hits',
 ];
 
 $table = new StatsTable($data, $headers);
@@ -98,11 +98,6 @@ $formats = [
 $aggregations = [
     'age' => new SumAggregation('age', Format::Integer),
     'height' => new AverageAggregation('height', Format::Float),
-];
-
-$aggregationsFormats = [
-    'age' => Format::Integer,
-    'height' => Format::Float,
 ];
 
 $builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
