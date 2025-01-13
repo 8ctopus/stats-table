@@ -30,8 +30,6 @@ class DataDumper extends Dumper
             }
         }
 
-        $aggregations = $statsTable->getAggregations();
-
         if (!empty($aggregations)) {
             $aggregations = array_combine($headers, $aggregations);
             $data[] = $aggregations;

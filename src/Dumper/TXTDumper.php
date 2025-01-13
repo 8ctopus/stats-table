@@ -28,8 +28,6 @@ class TXTDumper extends Dumper
             array_unshift($data, $headers);
         }
 
-        $aggregations = $statsTable->getAggregations();
-
         if (!empty($aggregations)) {
             $data[] = $aggregations;
         }

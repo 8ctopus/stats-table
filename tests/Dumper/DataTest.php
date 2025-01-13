@@ -73,8 +73,8 @@ class DataTest extends DumperTestAbstract
                 'Date' => 'Total',
                 'Nb de visites' => '30',
                 'Nb inscrits' => '9',
-                'Taux de transfo' => '.3',
-                'Revenus générés' => 126.075,
+                'Taux de transfo' => '30%',
+                'Revenus générés' => '126,08€',
             ],
         ];
 
