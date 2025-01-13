@@ -15,11 +15,19 @@ class ExcelTest extends DumperTestAbstract
     {
         self::expectNotToPerformAssertions();
 
-        $headers = ['date' => 'Date', 'hits' => 'Nb de visites', 'subscribers' => 'Nb inscrits', 'ratio' => 'Taux de transfo', 'revenues' => 'Revenus générés'];
+        $headers = [
+            'date' => 'Date',
+            'hits' => 'Nb de visites',
+            'subscribers' => 'Nb inscrits',
+            'ratio' => 'Taux de transfo',
+            'revenues' => 'Revenus générés'
+        ];
+
         $data = [
             ['date' => '2014-01-01', 'hits' => '10', 'subscribers' => 2, 'ratio' => .2, 'revenues' => 45.321],
             ['date' => '2014-02-01', 'hits' => '20', 'subscribers' => 7, 'ratio' => .35, 'revenues' => 80.754],
         ];
+
         $dataTypes = [
             'date' => Format::Date,
             'hits' => Format::Integer,
@@ -42,8 +50,8 @@ class ExcelTest extends DumperTestAbstract
 
         $statsTable = new StatsTable($data, $headers, $aggregations, $dataTypes, $aggregationsTypes);
         $excelDumper = new ExcelDumper([
-            ExcelDumper::OPTION_ZEBRA => true,
-            ExcelDumper::OPTION_ZEBRA_COLOR_ODD => 'eeeeee',
+            'zebra' => true,
+            'zebra_color_odd' => 'eeeeee',
         ]);
 
         $excelContents = $excelDumper->dump($statsTable);
@@ -55,9 +63,8 @@ class ExcelTest extends DumperTestAbstract
         $statsTable = new StatsTable($data, $headers, $aggregations, $dataTypes, $aggregationsTypes);
 
         $excelDumper = new ExcelDumper([
-            ExcelDumper::OPTION_ZEBRA => true,
-            ExcelDumper::OPTION_ZEBRA_COLOR_ODD => 'eeeeee',
-            ExcelDumper::OPTION_ZEBRA => false,
+            'zebra' => false,
+            'zebra_color_odd' => 'eeeeee',
         ]);
 
         $excelContents = $excelDumper->dump($statsTable);

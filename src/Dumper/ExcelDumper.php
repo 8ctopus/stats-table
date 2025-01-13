@@ -23,15 +23,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ExcelDumper extends Dumper
 {
-    public const OPTION_ZEBRA = 'zebra';
-    public const OPTION_ZEBRA_COLOR_ODD = 'zebra_color_odd';
-    public const OPTION_ZEBRA_COLOR_EVEN = 'zebra_color_even';
-    public const OPTION_HEADER_FORMAT = 'header_format';
-
-    public const FORMAT_EUR = '# ##0.00 €';
-    public const FORMAT_DATETIME = 'dd/mm/yy hh:mm';
     private const FIRST_COLUMN = 1;
-
     private readonly ParameterBag $options;
 
     /**
@@ -41,7 +33,10 @@ class ExcelDumper extends Dumper
      */
     public function __construct(array $options = [])
     {
-        $this->options = new ParameterBag($options);
+        $this->options = new ParameterBag(array_merge([
+            'money_format' => '# ##0.00 €',
+            'datetime_format' => 'dd/mm/yy hh:mm',
+        ], $options));
     }
 
     /**
@@ -156,11 +151,11 @@ class ExcelDumper extends Dumper
     {
         $style = $this->getDefaultStyleForFilledCells();
 
-        if ($this->options->get(self::OPTION_ZEBRA)) {
+        if ($this->options->get('zebra')) {
             if (($row % 2) === 0) {
-                $bgColor = $this->options->get(self::OPTION_ZEBRA_COLOR_EVEN);
+                $bgColor = $this->options->get('zebra_color_even');
             } else {
-                $bgColor = $this->options->get(self::OPTION_ZEBRA_COLOR_ODD);
+                $bgColor = $this->options->get('zebra_color_odd');
             }
 
             if ($bgColor) {
@@ -286,7 +281,7 @@ class ExcelDumper extends Dumper
                 }
 
                 $value = Date::PHPToExcel($date);
-                $style->getNumberFormat()->setFormatCode(self::FORMAT_DATETIME);
+                $style->getNumberFormat()->setFormatCode($this->options->get('datetime_format'));
                 break;
 
             case Format::Float:
@@ -299,7 +294,7 @@ class ExcelDumper extends Dumper
 
             case Format::Money:
             case Format::Money2:
-                $style->getNumberFormat()->setFormatCode(self::FORMAT_EUR);
+                $style->getNumberFormat()->setFormatCode($this->options->get('money_format'));
                 break;
 
             case Format::Percent:

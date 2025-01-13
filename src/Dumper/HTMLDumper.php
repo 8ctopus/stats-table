@@ -13,8 +13,8 @@ use Twig\Loader\FilesystemLoader as TwigFilesystemLoader;
 
 class HTMLDumper extends Dumper
 {
-    private Twig $twig;
     private readonly ParameterBag $options;
+    private Twig $twig;
 
     public function __construct(array $options = [])
     {
