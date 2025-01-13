@@ -4,36 +4,28 @@ declare(strict_types=1);
 
 namespace Oct8pus\StatsTable\Tools;
 
-use InvalidArgumentException;
-
 class ParameterBag
 {
     private array $bag;
 
     /**
-     * Constructor. Take either an array of a ParameterBag
+     * Constructor
      *
      * @param array|ParameterBag $bag
-     *
-     * @throws InvalidArgumentException
      */
     public function __construct(array|self $bag = [])
     {
-        if (!is_array($bag) && !($bag instanceof self)) {
-            throw new InvalidArgumentException('Bad constructor call');
-        }
-
         if ($bag instanceof self) {
-            $array = $bag->toArray();
+            $value = $bag->toArray();
         } else {
-            $array = $bag;
+            $value = $bag;
         }
 
-        $this->bag = $array;
+        $this->bag = $value;
     }
 
     /**
-     * Check if key exists in bag
+     * Check if key exists
      *
      * @param string $key
      *
@@ -45,19 +37,21 @@ class ParameterBag
     }
 
     /**
-     * Retrieve value for key $key, returns $defaultValue if not found.
+     * Get value for key
      *
      * @param string $key
-     * @param null   $defaultValue
+     * @param mixed  $defaultValue
      *
      * @return mixed
      */
-    public function get(string $key, $defaultValue = null) : mixed
+    public function get(string $key, mixed $defaultValue = null) : mixed
     {
         return $this->has($key) ? $this->bag[$key] : $defaultValue;
     }
 
     /**
+     * Convert to array
+     *
      * @return array
      */
     public function toArray() : array
