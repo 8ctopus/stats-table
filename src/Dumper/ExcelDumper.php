@@ -26,11 +26,6 @@ class ExcelDumper extends Dumper
     private const FIRST_COLUMN = 1;
     private readonly ParameterBag $options;
 
-    /**
-     * Constructor
-     *
-     * @param array $options
-     */
     public function __construct(array $options = [])
     {
         $this->options = new ParameterBag(array_merge([

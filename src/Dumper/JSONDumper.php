@@ -54,7 +54,7 @@ class JSONDumper extends Dumper
     }
 
     /**
-     * Get mime type of dumper
+     * Get mime type
      *
      * @return string
      */
