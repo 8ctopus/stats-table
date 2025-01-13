@@ -32,14 +32,14 @@ class ExcelDumper extends Dumper
     public const FORMAT_DATETIME = 'dd/mm/yy hh:mm';
     private const FIRST_COLUMN = 1;
 
-    private ParameterBag $options;
+    private readonly ParameterBag $options;
 
     /**
      * Constructor
      *
-     * @param ParameterBag|array $options
+     * @param array $options
      */
-    public function __construct(ParameterBag|array $options = null)
+    public function __construct(array $options = [])
     {
         $this->options = new ParameterBag($options);
     }
@@ -238,6 +238,7 @@ class ExcelDumper extends Dumper
     protected function applyValues(Worksheet $sheet, int $row, array $values, array $formats, array $styleArray = []) : void
     {
         $col = self::FIRST_COLUMN;
+
         foreach ($values as $index => $value) {
             $this->applyValue($sheet, $col, $row, $value, array_key_exists($index, $formats) ? $formats[$index] : Format::String, $styleArray);
             ++$col;

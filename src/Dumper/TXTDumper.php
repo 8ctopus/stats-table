@@ -7,9 +7,17 @@ namespace Oct8pus\StatsTable\Dumper;
 use DateTimeInterface;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
+use Oct8pus\StatsTable\Tools\ParameterBag;
 
 class TXTDumper extends Dumper
 {
+    private readonly ParameterBag $options;
+
+    public function __construct(array $options = [])
+    {
+        $this->options = new ParameterBag($options);
+    }
+
     /**
      * Dump table
      *
@@ -92,9 +100,9 @@ class TXTDumper extends Dumper
      */
     protected function formatValue(Format $format, mixed $value) : string
     {
-        $decimals = 2;
-        $decimalSep = ',';
-        $thousandsSep = ' ';
+        $decimals = $this->options->get('decimals_count');
+        $decimalSep = $this->options->get('decimals_separator');
+        $thousandsSep = $this->options->get('thousands_separator');
 
         switch ($format) {
             case Format::Date:

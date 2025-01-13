@@ -9,17 +9,16 @@ use Oct8pus\StatsTable\Tools\ParameterBag;
 
 class CSVDumper extends Dumper
 {
-    private readonly string $delimiter;
-    private readonly string $enclosure;
-    private readonly string $charset;
+    private readonly ParameterBag $options;
 
-    public function __construct(ParameterBag|array $options = null)
+    public function __construct(array $options = [])
     {
-        $bag = new ParameterBag($options);
-
-        $this->delimiter = $bag->get('delimiter', ',');
-        $this->enclosure = $bag->get('enclosure', '"');
-        $this->charset = $bag->get('charset', 'utf-8');
+        $this->options = new ParameterBag(array_merge([
+            'delimiter' => ',',
+            'enclosure' => '"',
+            'escape' => '\\',
+            'charset' => 'utf-8',
+        ], $options));
     }
 
     /**
@@ -53,7 +52,7 @@ class CSVDumper extends Dumper
 
     public function getMimeType() : string
     {
-        return sprintf('text/csv; charset=%s', $this->charset);
+        return sprintf('text/csv; charset=%s', $this->options->get('charset'));
     }
 
     private function writeLine($fileHandler, array $line, array $formats = []) : void
@@ -64,6 +63,6 @@ class CSVDumper extends Dumper
             }
         }
 
-        fputcsv($fileHandler, $line, $this->delimiter, $this->enclosure, '\\');
+        fputcsv($fileHandler, $line, $this->options->get('delimiter'), $this->options->get('enclosure'), $this->options->get('escape'));
     }
 }

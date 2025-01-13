@@ -13,24 +13,22 @@ use Twig\Loader\FilesystemLoader as TwigFilesystemLoader;
 
 class HTMLDumper extends Dumper
 {
-    protected readonly string $template;
-    protected readonly string $templateFolder;
-    protected readonly array $templateOptions;
-    protected Twig $twig;
+    private Twig $twig;
+    private readonly ParameterBag $options;
 
-    public function __construct(ParameterBag|array $options = null)
+    public function __construct(array $options = [])
     {
-        $options = new ParameterBag($options);
+        $this->options = new ParameterBag(array_merge([
+            'delimiter' => ',',
+            'enclosure' => '"',
+            'escape' => '\\',
+            'charset' => 'utf-8',
+            'templateFolder' => __DIR__ . '/../Resources/views',
+            'template' => 'statsTable.html.twig',
+            'templateOptions' => [],
+        ], $options));
 
-        $this->template = $options->get('template', $this->getDefaultTemplate());
-        $this->templateFolder = $options->get('templateFolder', $this->getDefaultTemplateFolder());
-        $this->twig = new Twig(new TwigFilesystemLoader($this->templateFolder));
-        $this->templateOptions = $options->get('templateOptions', []);
-    }
-
-    public function setTwig(Twig $twig) : void
-    {
-        $this->twig = $twig;
+        $this->twig = new Twig(new TwigFilesystemLoader($this->options->get('templateFolder')));
     }
 
     /**
@@ -58,9 +56,9 @@ class HTMLDumper extends Dumper
             'metaData' => $metaData,
         ];
 
-        $params = array_merge($params, $this->templateOptions);
+        $params = array_merge($params, $this->options->get('templateOptions'));
 
-        return $this->twig->render($this->template, $params);
+        return $this->twig->render($this->options->get('template'), $params);
     }
 
     public function getMimeType() : string
@@ -98,10 +96,9 @@ class HTMLDumper extends Dumper
      */
     protected function formatValue(Format $format, mixed $value) : string
     {
-        // TODO : Put in parameters
-        $decimals = 2;
-        $decimalSep = ',';
-        $thousandsSep = ' ';
+        $decimals = $this->options->get('decimals_count');
+        $decimalSep = $this->options->get('decimals_separator');
+        $thousandsSep = $this->options->get('thousands_separator');
 
         switch ($format) {
             case Format::Date:
@@ -138,13 +135,8 @@ class HTMLDumper extends Dumper
         return $value;
     }
 
-    protected function getDefaultTemplateFolder() : string
+    public function setTwig(Twig $twig) : void
     {
-        return __DIR__ . '/../Resources/views';
-    }
-
-    protected function getDefaultTemplate() : string
-    {
-        return 'statsTable.html.twig';
+        $this->twig = $twig;
     }
 }

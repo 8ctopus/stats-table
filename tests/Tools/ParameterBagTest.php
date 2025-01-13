@@ -11,47 +11,56 @@ class ParameterBagTest extends TestCase
 {
     public function testConstructorWithArray() : void
     {
-        $data = $this->getSampleData();
-        $bag = $this->getSampleBag();
+        $bag = new ParameterBag($this->getSampleData());
 
-        self::assertSame($data, $bag->toArray());
+        $excepted = [
+            'decimals_count' => 2,
+            'decimals_separator' => ',',
+            'thousands_separator' => ' ',
+            'distance' => 'meter',
+            'speed' => 'km/h',
+        ];
+
+        self::assertSame($excepted, $bag->toArray());
     }
 
     public function testConstructorWithParameterBag() : void
     {
-        $data = $this->getSampleData();
-        $bag = $this->getSampleBag();
+        $bag = new ParameterBag($this->getSampleData());
+        $bag = new ParameterBag($bag);
 
-        $bag2 = new ParameterBag($bag);
-        self::assertSame($data, $bag2->toArray());
+        $excepted = [
+            'decimals_count' => 2,
+            'decimals_separator' => ',',
+            'thousands_separator' => ' ',
+            'distance' => 'meter',
+            'speed' => 'km/h',
+        ];
+
+        self::assertSame($excepted, $bag->toArray());
     }
 
     public function testHasKey() : void
     {
-        $bag = $this->getSampleBag();
+        $bag = new ParameterBag($this->getSampleData());
 
-        self::assertTrue($bag->has('1'));
-        self::assertFalse($bag->has('3'));
+        self::assertTrue($bag->has('distance'));
+        self::assertFalse($bag->has('time'));
     }
 
     public function testGet() : void
     {
-        $bag = $this->getSampleBag();
+        $bag = new ParameterBag($this->getSampleData());
 
-        self::assertSame('One', $bag->get('1', 'One value'));
+        self::assertSame('meter', $bag->get('distance', 'One value'));
         self::assertSame('Three', $bag->get('3', 'Three'));
     }
 
     private function getSampleData() : array
     {
         return [
-            '1' => 'One',
-            '2' => 'Two',
+            'distance' => 'meter',
+            'speed' => 'km/h',
         ];
-    }
-
-    private function getSampleBag() : ParameterBag
-    {
-        return new ParameterBag($this->getSampleData());
     }
 }

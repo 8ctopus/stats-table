@@ -6,22 +6,24 @@ namespace Oct8pus\StatsTable\Tools;
 
 class ParameterBag
 {
-    private array $bag;
+    private array $options;
 
     /**
      * Constructor
      *
-     * @param null|ParameterBag|array $options
+     * @param ParameterBag|array $options
      */
-    public function __construct(null|self|array $options = null)
+    public function __construct(self|array $options = [])
     {
         if ($options instanceof self) {
             $options = $options->toArray();
-        } elseif (is_null($options)) {
-            $options = [];
         }
 
-        $this->bag = $options;
+        $this->options = array_merge([
+            'decimals_count' => 2,
+            'decimals_separator' => ',',
+            'thousands_separator' => ' ',
+        ], $options);
     }
 
     /**
@@ -33,7 +35,7 @@ class ParameterBag
      */
     public function has(string $key) : bool
     {
-        return array_key_exists($key, $this->bag);
+        return array_key_exists($key, $this->options);
     }
 
     /**
@@ -46,7 +48,22 @@ class ParameterBag
      */
     public function get(string $key, mixed $defaultValue = null) : mixed
     {
-        return $this->has($key) ? $this->bag[$key] : $defaultValue;
+        return $this->has($key) ? $this->options[$key] : $defaultValue;
+    }
+
+    /**
+     * Set value for key
+     *
+     * @param  string $key
+     * @param  mixed  $value
+     *
+     * @return self
+     */
+    public function set(string $key, mixed $value) : self
+    {
+        $this->options[$key] = $value;
+
+        return $this;
     }
 
     /**
@@ -56,6 +73,6 @@ class ParameterBag
      */
     public function toArray() : array
     {
-        return $this->bag;
+        return $this->options;
     }
 }
