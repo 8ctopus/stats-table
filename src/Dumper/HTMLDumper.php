@@ -8,13 +8,12 @@ use DateTimeInterface;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 use Oct8pus\StatsTable\Tools\ParameterBag;
-use Twig\Environment as Twig;
-use Twig\Loader\FilesystemLoader as TwigFilesystemLoader;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 class HTMLDumper extends Dumper
 {
-    private readonly ParameterBag $options;
-    private Twig $twig;
+    private Environment $twig;
 
     public function __construct(array $options = [])
     {
@@ -28,7 +27,7 @@ class HTMLDumper extends Dumper
             'templateOptions' => [],
         ], $options));
 
-        $this->twig = new Twig(new TwigFilesystemLoader($this->options->get('templateFolder')));
+        $this->twig = new Environment(new FilesystemLoader($this->options->get('templateFolder')));
     }
 
     /**
@@ -135,7 +134,7 @@ class HTMLDumper extends Dumper
         return $value;
     }
 
-    public function setTwig(Twig $twig) : void
+    public function setTwig(Environment $twig) : void
     {
         $this->twig = $twig;
     }

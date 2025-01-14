@@ -6,30 +6,17 @@ namespace Oct8pus\StatsTable\Dumper;
 
 use DateTimeInterface;
 use Oct8pus\StatsTable\Format;
+use Oct8pus\StatsTable\Tools\ParameterBag;
 
 abstract class Dumper implements DumperInterface
 {
+    protected ParameterBag $options;
     protected bool $enableHeaders = true;
     protected bool $enableAggregation = true;
 
-    /**
-     * Enable headers
-     *
-     * @param bool $enableHeaders
-     */
-    public function enableHeaders(bool $enableHeaders = true) : void
+    public function __construct(array $options = [])
     {
-        $this->enableHeaders = $enableHeaders;
-    }
-
-    /**
-     * Enable aggregation
-     *
-     * @param bool $enableAggregation
-     */
-    public function enableAggregation(bool $enableAggregation = true) : void
-    {
-        $this->enableAggregation = $enableAggregation;
+        $this->options = new ParameterBag($options);
     }
 
     /**
@@ -75,5 +62,25 @@ abstract class Dumper implements DumperInterface
         }
 
         return $value;
+    }
+
+    /**
+     * Enable headers
+     *
+     * @param bool $enableHeaders
+     */
+    public function enableHeaders(bool $enableHeaders = true) : void
+    {
+        $this->enableHeaders = $enableHeaders;
+    }
+
+    /**
+     * Enable aggregation
+     *
+     * @param bool $enableAggregation
+     */
+    public function enableAggregation(bool $enableAggregation = true) : void
+    {
+        $this->enableAggregation = $enableAggregation;
     }
 }

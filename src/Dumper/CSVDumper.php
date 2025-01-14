@@ -9,8 +9,6 @@ use Oct8pus\StatsTable\Tools\ParameterBag;
 
 class CSVDumper extends Dumper
 {
-    private readonly ParameterBag $options;
-
     public function __construct(array $options = [])
     {
         $this->options = new ParameterBag(array_merge([

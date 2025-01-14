@@ -7,17 +7,9 @@ namespace Oct8pus\StatsTable\Dumper;
 use DateTimeInterface;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
-use Oct8pus\StatsTable\Tools\ParameterBag;
 
 class DataDumper extends Dumper
 {
-    private readonly ParameterBag $options;
-
-    public function __construct(array $options = [])
-    {
-        $this->options = new ParameterBag($options);
-    }
-
     /**
      * Dump table
      *

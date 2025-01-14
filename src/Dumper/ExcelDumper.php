@@ -24,7 +24,6 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class ExcelDumper extends Dumper
 {
     private const FIRST_COLUMN = 1;
-    private readonly ParameterBag $options;
 
     public function __construct(array $options = [])
     {
