@@ -8,10 +8,9 @@ use Oct8pus\StatsTable\StatsTableBuilder;
 
 class CallbackColumnBuilder implements DynamicColumnBuilderInterface
 {
-    /** @var callable */
     private $callback;
 
-    public function __construct($callback)
+    public function __construct(callable $callback)
     {
         $this->callback = $callback;
     }
@@ -21,12 +20,14 @@ class CallbackColumnBuilder implements DynamicColumnBuilderInterface
         $values = [];
 
         foreach ($statsTable->getIndexes() as $index) {
-            // Recreate line
+            // recreate line
             $line = [];
+
             foreach ($statsTable->getColumns() as $columnName => $column) {
                 $columnValues = $column->getValues();
                 $line = array_merge($line, [$columnName => $columnValues[$index]]);
             }
+
             $values[$index] = call_user_func_array($this->callback, [$line]);
         }
 

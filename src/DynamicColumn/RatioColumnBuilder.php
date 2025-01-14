@@ -8,9 +8,9 @@ use Oct8pus\StatsTable\StatsTableBuilder;
 
 class RatioColumnBuilder implements DynamicColumnBuilderInterface
 {
-    private $valueInternalName;
-    private $overInternalName;
-    private $defaultValue;
+    private string $valueInternalName;
+    private string $overInternalName;
+    private mixed $defaultValue;
 
     /**
      * @param string $valueInternalName The small value
@@ -29,6 +29,7 @@ class RatioColumnBuilder implements DynamicColumnBuilderInterface
         $column = [];
         $values = $statsTable->getColumn($this->valueInternalName)->getValues();
         $overs = $statsTable->getColumn($this->overInternalName)->getValues();
+
         foreach ($statsTable->getIndexes() as $index) {
             $value = $values[$index];
             $over = $overs[$index];
