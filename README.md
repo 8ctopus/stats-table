@@ -127,5 +127,5 @@ Name    Age Weight Height BMI
  Jacques  28     60   1,67 21,51
   Pierre  32    100   1,87 28,60
     Jean  32     80   1,98 20,41
-         117         1.835
+         117          1,84
 ```
