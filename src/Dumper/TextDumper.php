@@ -9,7 +9,7 @@ use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 use Oct8pus\StatsTable\Tools\ParameterBag;
 
-class TXTDumper extends Dumper
+class TextDumper extends Dumper
 {
     private readonly ParameterBag $options;
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Dumper;
 
 use Oct8pus\StatsTable\Dumper\DumperInterface;
-use Oct8pus\StatsTable\Dumper\TXTDumper;
+use Oct8pus\StatsTable\Dumper\TextDumper;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 
@@ -53,7 +53,7 @@ class TXTTest extends DumperTestAbstract
 
         $statsTable = new StatsTable($data, $headers, $aggregations, $dataTypes, $aggregationsTypes, $metaData);
 
-        $dumper = new TXTDumper();
+        $dumper = new TextDumper();
         $text = $dumper->dump($statsTable);
 
         $excepted = <<<'TXT'
@@ -69,6 +69,6 @@ class TXTTest extends DumperTestAbstract
 
     protected function getDumper() : DumperInterface
     {
-        return new TXTDumper();
+        return new TextDumper();
     }
 }
