@@ -71,7 +71,7 @@ class DataDumper extends Dumper
     }
 
     /**
-     * Format values
+     * Format value
      *
      * @param Format $format
      * @param mixed  $value

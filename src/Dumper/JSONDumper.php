@@ -64,7 +64,7 @@ class JSONDumper extends Dumper
     }
 
     /**
-     * Format values for JSON
+     * Format value
      *
      * @param Format $format
      * @param mixed  $value
