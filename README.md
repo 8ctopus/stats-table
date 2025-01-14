@@ -106,11 +106,11 @@ $aggregations = [
 
 $builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
 
-$dynamicColumn = new CallbackColumnBuilder(function($row) : float {
+$dynamicColumn = new CallbackColumnBuilder(function(array $row) : float {
     return $row['weight'] / ($row['height'] * $row['height']);
 });
 
-$builder->addDynamicColumn('BMI', $dynamicColumn, 'BMI', Format::FLOAT2);
+$builder->addDynamicColumn('BMI', $dynamicColumn, 'BMI', Format::Float2);
 
 $table = $builder->build();
 
