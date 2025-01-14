@@ -10,6 +10,10 @@
 
 Create statistics tables and export them to text, JSON, CSV or Excel.
 
+## introduction
+
+The `stats-table` project facilitates the creation of statistical tables from datasets. It provides features including data aggregation (sum, count, average), dynamic column calculations, and data sorting. The generated tables can be exported to text, JSON, CSV, or Excel. Streamline the process of building and exporting comprehensive statistical tables, enhancing data analysis and reporting capabilities.
+
 This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-table). Migrating from the parent package shouldn't be too hard, but except a bit of work.
 
 ## installation
