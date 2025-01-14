@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Dumper;
 
-use Oct8pus\StatsTable\Dumper\Dumper;
+use Oct8pus\StatsTable\Dumper\DumperInterface;
 use Oct8pus\StatsTable\Dumper\TextDumper;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
@@ -67,7 +67,7 @@ class TextDumperTest extends DumperTestAbstract
         self::assertEquals($excepted, $text);
     }
 
-    protected function getDumper() : Dumper
+    protected function getDumper() : DumperInterface
     {
         return new TextDumper();
     }

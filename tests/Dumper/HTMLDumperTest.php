@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Dumper;
 
 use DOMDocument;
-use Oct8pus\StatsTable\Dumper\Dumper;
+use Oct8pus\StatsTable\Dumper\DumperInterface;
 use Oct8pus\StatsTable\Dumper\HTMLDumper;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
@@ -94,7 +94,7 @@ class HTMLDumperTest extends DumperTestAbstract
         self::assertEquals($expectedDoc, $doc);
     }
 
-    protected function getDumper() : Dumper
+    protected function getDumper() : DumperInterface
     {
         return new HTMLDumper();
     }

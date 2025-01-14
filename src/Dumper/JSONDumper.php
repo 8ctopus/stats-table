@@ -8,7 +8,7 @@ use DateTimeInterface;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 
-class JSONDumper extends Dumper
+class JSONDumper extends AbstractDumper
 {
     /**
      * Dump table

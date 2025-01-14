@@ -20,7 +20,7 @@ use PhpOffice\PhpSpreadsheet\Style\Style;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-class ExcelDumper extends Dumper
+class ExcelDumper extends AbstractDumper
 {
     private const FIRST_COLUMN = 1;
 

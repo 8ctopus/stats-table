@@ -6,7 +6,7 @@ namespace Oct8pus\StatsTable\Dumper;
 
 use Oct8pus\StatsTable\StatsTable;
 
-class TextDumper extends Dumper
+class TextDumper extends AbstractDumper
 {
     /**
      * Dump table

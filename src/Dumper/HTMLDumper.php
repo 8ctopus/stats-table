@@ -8,7 +8,7 @@ use Oct8pus\StatsTable\StatsTable;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-class HTMLDumper extends Dumper
+class HTMLDumper extends AbstractDumper
 {
     private Environment $twig;
 

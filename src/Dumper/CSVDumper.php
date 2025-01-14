@@ -6,7 +6,7 @@ namespace Oct8pus\StatsTable\Dumper;
 
 use Oct8pus\StatsTable\StatsTable;
 
-class CSVDumper extends Dumper
+class CSVDumper extends AbstractDumper
 {
     public function __construct(array $options = [])
     {
