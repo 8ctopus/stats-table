@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use Oct8pus\StatsTable\Direction;
 use Oct8pus\StatsTable\StatsTable;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
@@ -34,10 +35,10 @@ class StatsTableTest extends TestCase
     }
 
     #[DataProvider('dataProviderForOneColumn')]
-    public function testSortOneColumn(string $columnName, $asc, $expected) : void
+    public function testSortOneColumn(string $columnName, $direction, $expected) : void
     {
         $statsTable = $this->_getSimpleTestData();
-        $statsTable->sortByColumn($columnName, $asc);
+        $statsTable->sortByColumn($columnName, $direction);
         self::assertSame($expected, $statsTable->getData());
     }
 
@@ -46,7 +47,7 @@ class StatsTableTest extends TestCase
         return [
             [
                 'age',
-                true,
+                Direction::Ascending,
                 [
                     3 => ['name' => 'Paul', 'age' => '25'],
                     1 => ['name' => 'Jacques', 'age' => '28'],
@@ -56,7 +57,7 @@ class StatsTableTest extends TestCase
             ],
             [
                 'name',
-                true,
+                Direction::Ascending,
                 [
                     1 => ['name' => 'Jacques', 'age' => '28'],
                     2 => ['name' => 'Jean', 'age' => '32'],
@@ -66,7 +67,7 @@ class StatsTableTest extends TestCase
             ],
             [
                 'age',
-                false,
+                Direction::Descending,
                 [
                     0 => ['name' => 'Pierre', 'age' => '32'],
                     2 => ['name' => 'Jean', 'age' => '32'],
@@ -76,7 +77,7 @@ class StatsTableTest extends TestCase
             ],
             [
                 'name',
-                false,
+                Direction::Descending,
                 [
                     0 => ['name' => 'Pierre', 'age' => '32'],
                     3 => ['name' => 'Paul', 'age' => '25'],
@@ -92,6 +93,7 @@ class StatsTableTest extends TestCase
     {
         $statsTable = $this->_getSimpleTestData();
         $statsTable->sortByColumns($params);
+
         self::assertSame($expected, $statsTable->getData());
     }
 
@@ -99,35 +101,40 @@ class StatsTableTest extends TestCase
     {
         return [
             [
-                ['age' => true, 'name' => true],
                 [
+                    'age' => Direction::Ascending,
+                    'name' => Direction::Ascending,
+                ], [
                     3 => ['name' => 'Paul', 'age' => '25'],
                     1 => ['name' => 'Jacques', 'age' => '28'],
                     2 => ['name' => 'Jean', 'age' => '32'],
                     0 => ['name' => 'Pierre', 'age' => '32'],
                 ],
-            ],
-            [
-                ['age' => true, 'name' => false],
+            ], [
                 [
+                    'age' => Direction::Ascending,
+                    'name' => Direction::Descending,
+                ], [
                     3 => ['name' => 'Paul', 'age' => '25'],
                     1 => ['name' => 'Jacques', 'age' => '28'],
                     0 => ['name' => 'Pierre', 'age' => '32'],
                     2 => ['name' => 'Jean', 'age' => '32'],
                 ],
-            ],
-            [
-                ['age' => false, 'name' => true],
+            ], [
                 [
+                    'age' => Direction::Descending,
+                    'name' => Direction::Ascending,
+                ], [
                     2 => ['name' => 'Jean', 'age' => '32'],
                     0 => ['name' => 'Pierre', 'age' => '32'],
                     1 => ['name' => 'Jacques', 'age' => '28'],
                     3 => ['name' => 'Paul', 'age' => '25'],
                 ],
-            ],
-            [
-                ['age' => false, 'name' => false],
+            ], [
                 [
+                    'age' => Direction::Descending,
+                    'name' => Direction::Descending,
+                ], [
                     0 => ['name' => 'Pierre', 'age' => '32'],
                     2 => ['name' => 'Jean', 'age' => '32'],
                     1 => ['name' => 'Jacques', 'age' => '28'],
@@ -218,7 +225,11 @@ class StatsTableTest extends TestCase
                 ['name' => 'Jean', 'age' => '32'],
                 ['name' => 'Paul', 'age' => '25'],
             ],
-            ['name' => 'Name', 'age' => 'Age', 'order' => 'Order']
+            [
+                'name' => 'Name',
+                'age' => 'Age',
+                'order' => 'Order'
+            ]
         );
     }
 
@@ -232,7 +243,11 @@ class StatsTableTest extends TestCase
                 ['name' => 'Paul', 'age' => '25', 'order' => ['nb' => 24, 'id' => '5214681']],
                 ['name' => 'Celine', 'age' => '25', 'order' => ['nb' => 24, 'id' => '5214680']],
             ],
-            ['name' => 'Name', 'age' => 'Age', 'order' => 'Order']
+            [
+                'name' => 'Name',
+                'age' => 'Age',
+                'order' => 'Order'
+            ]
         );
     }
 }

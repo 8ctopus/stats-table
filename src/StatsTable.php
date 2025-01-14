@@ -78,13 +78,13 @@ class StatsTable
      * Sort by column
      *
      * @param string $column
-     * @param bool   $asc
+     * @param Direction $direction
      *
      * @return self
      */
-    public function sortByColumn(string $column, bool $asc = true) : self
+    public function sortByColumn(string $column, Direction $direction) : self
     {
-        $this->sortByColumns([$column => $asc]);
+        $this->sortByColumns([$column => $direction]);
         return $this;
     }
 
@@ -105,7 +105,7 @@ class StatsTable
     /**
      * Sort by columns
      *
-     * @param array $columns Associative array : KEY => column name, VALUE => Sort direction (boolean)
+     * @param array $columns Associative array : KEY => column name, VALUE => Sort direction
      *
      * @return self
      */
@@ -113,9 +113,9 @@ class StatsTable
     {
         $compareFuncList = [];
 
-        foreach ($columns as $colName => $asc) {
+        foreach ($columns as $colName => $direction) {
             $columnFormat = array_key_exists($colName, $this->dataFormats) ? $this->dataFormats[$colName] : Format::String;
-            $compareFuncList[$colName] = $this->getCompareFunction($columnFormat, $asc);
+            $compareFuncList[$colName] = $this->getCompareFunction($columnFormat, $direction);
         }
 
         $this->uSortByColumns($compareFuncList);
@@ -198,25 +198,25 @@ class StatsTable
      * Get compare function
      *
      * @param Format $format
-     * @param bool   $asc
+     * @param Direction $direction
      *
      * @return callable
      */
-    private function getCompareFunction(Format $format, bool $asc) : callable
+    private function getCompareFunction(Format $format, Direction $direction) : callable
     {
         if (Format::String === $format) {
-            return static function (string $a, string $b) use ($asc) {
+            return static function (string $a, string $b) use ($direction) {
                 $tmp = strcmp($a, $b);
-                return $asc ? $tmp : -$tmp;
+                return $direction === Direction::Ascending ? $tmp : -$tmp;
             };
         }
 
-        return static function (mixed $a, mixed $b) use ($asc) : int {
+        return static function (mixed $a, mixed $b) use ($direction) : int {
             if ($a === $b) {
                 return 0;
             }
 
-            return ($a < $b) ? ($asc ? -1 : 1) : ($asc ? 1 : -1);
+            return ($a < $b) ? ($direction === Direction::Ascending ? -1 : 1) : ($direction === Direction::Ascending ? 1 : -1);
         };
     }
 }
