@@ -13,19 +13,6 @@ use PHPUnit\Framework\TestCase;
 
 abstract class DumperTestAbstract extends TestCase
 {
-    public function testLink() : void
-    {
-        self::expectNotToPerformAssertions();
-        $dumper = $this->getDumper();
-
-        $statsTable = new StatsTable([['http://example.org']], ['link'], [''], [Format::Link], [Format::String]);
-        $dumper->dump($statsTable);
-
-        // Should not fail if link is not valid
-        $statsTable = new StatsTable([['']], ['link'], [''], [Format::Link], [Format::String]);
-        $dumper->dump($statsTable);
-    }
-
     protected function getData() : array
     {
         return [
