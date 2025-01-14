@@ -36,6 +36,7 @@ class JSONDumperTest extends DumperTestAbstract
         $jsonDumper = new JSONDumper();
 
         $data = [['pct' => .3123]];
+
         $statsTable = new StatsTable(
             $data,
             array_keys(current($data)),
