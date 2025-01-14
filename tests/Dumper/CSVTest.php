@@ -7,7 +7,7 @@ namespace Tests\Dumper;
 use DateTime;
 use DateTimeImmutable;
 use Oct8pus\StatsTable\Dumper\CSVDumper;
-use Oct8pus\StatsTable\Dumper\DumperInterface;
+use Oct8pus\StatsTable\Dumper\Dumper;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 
@@ -127,7 +127,7 @@ class CSVTest extends DumperTestAbstract
         );
     }
 
-    protected function getDumper() : DumperInterface
+    protected function getDumper() : Dumper
     {
         return new CSVDumper();
     }

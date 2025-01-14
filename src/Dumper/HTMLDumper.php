@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Oct8pus\StatsTable\Dumper;
 
-use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
-use Oct8pus\StatsTable\Tools\ParameterBag;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -16,7 +14,7 @@ class HTMLDumper extends Dumper
 
     public function __construct(array $options = [])
     {
-        $this->options = new ParameterBag(array_merge([
+        parent::__construct(array_merge([
             'delimiter' => ',',
             'enclosure' => '"',
             'escape' => '\\',

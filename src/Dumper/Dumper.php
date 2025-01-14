@@ -8,7 +8,7 @@ use DateTimeInterface;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\Tools\ParameterBag;
 
-abstract class Dumper implements DumperInterface
+abstract class Dumper
 {
     protected ParameterBag $options;
     protected bool $enableHeaders = true;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Dumper;
 
-use Oct8pus\StatsTable\Dumper\DumperInterface;
+use Oct8pus\StatsTable\Dumper\Dumper;
 use Oct8pus\StatsTable\Dumper\ExcelDumper;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
@@ -81,7 +81,7 @@ class ExcelTest extends DumperTestAbstract
         $excelDumper->dump($statsTable);
     }
 
-    protected function getDumper() : DumperInterface
+    protected function getDumper() : Dumper
     {
         return new ExcelDumper();
     }

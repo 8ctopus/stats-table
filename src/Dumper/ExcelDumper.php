@@ -9,7 +9,6 @@ use DateTimeInterface;
 use Exception;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
-use Oct8pus\StatsTable\Tools\ParameterBag;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\Cell\DataType;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
@@ -27,7 +26,7 @@ class ExcelDumper extends Dumper
 
     public function __construct(array $options = [])
     {
-        $this->options = new ParameterBag(array_merge([
+        parent::__construct(array_merge([
             'money_format' => '# ##0.00 €',
             'datetime_format' => 'dd/mm/yy hh:mm',
         ], $options));

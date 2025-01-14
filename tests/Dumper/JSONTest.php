@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Dumper;
 
-use Oct8pus\StatsTable\Dumper\DumperInterface;
+use Oct8pus\StatsTable\Dumper\Dumper;
 use Oct8pus\StatsTable\Dumper\JSONDumper;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
@@ -78,7 +78,7 @@ class JSONTest extends DumperTestAbstract
         ], json_decode($jsonDumper->dump($statsTable), true));
     }
 
-    protected function getDumper() : DumperInterface
+    protected function getDumper() : Dumper
     {
         return new JSONDumper();
     }
