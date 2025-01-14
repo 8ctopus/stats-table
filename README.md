@@ -98,10 +98,10 @@ echo $dumper->dump($table);
 ```
 
 ```txt
-    Name Age Weight Height   BMI
-    Paul  25  75.00   1.82 22.64
- Jacques  28  60.00   1.67 21.51
-  Pierre  32 100.00   1.87 28.60
-    Jean  32  80.00   1.98 20.41
-         117          1.84 23.29
+     Name  Age  Weight  Height    BMI
+     Paul   25   75.00    1.82  22.64
+  Jacques   28   60.00    1.67  21.51
+   Pierre   32  100.00    1.87  28.60
+     Jean   32   80.00    1.98  20.41
+           117            1.84  23.29
 ```
