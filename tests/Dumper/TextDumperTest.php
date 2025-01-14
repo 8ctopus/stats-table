@@ -57,7 +57,7 @@ class TextDumperTest extends DumperTestAbstract
         $text = $dumper->dump($statsTable);
 
         $excepted = <<<'TXT'
-        Date       Nb de visites Nb inscrits Taux de transfo Revenus générés 
+               Date Nb de visites Nb inscrits Taux de transfo Revenus générés
          2014-01-01            10           2             20%          45.32 €
          2014-01-01            20           7             35%          80.75 €
               Total            30           9             30%         126.08 €

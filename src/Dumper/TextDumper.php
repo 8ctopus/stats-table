@@ -41,11 +41,11 @@ class TextDumper extends AbstractDumper
 
         $output = '';
 
-        foreach ($data as $rowIndex => $row) {
+        foreach ($data as $row) {
             $index = 0;
 
             foreach ($row as $cell) {
-                $output .= str_pad((string) $cell, $widths[$index] + 1, ' ', $rowIndex ? STR_PAD_LEFT : STR_PAD_RIGHT);
+                $output .= str_pad((string) $cell, $widths[$index] + 1, ' ', STR_PAD_LEFT);
                 ++$index;
             }
 
