@@ -33,7 +33,7 @@ class TextDumper extends AbstractDumper
             array_unshift($data, $headers);
         }
 
-        if ($this->enableAggregation && !empty($aggregations)) {
+        if ($this->enableAggregation && !empty($aggregations) && count($data)) {
             $data[] = $aggregations;
         }
 
