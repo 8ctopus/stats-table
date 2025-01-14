@@ -106,15 +106,15 @@ $aggregations = [
 
 $builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
 
-$dynamicColumn = new CallbackColumnBuilder(function(array $row) : float {
+$dynamicColumn = new CallbackColumnBuilder(function (array $row) : float {
     return $row['weight'] / ($row['height'] * $row['height']);
 });
 
-$builder->addDynamicColumn('BMI', $dynamicColumn, 'BMI', Format::Float2);
+$table = $builder
+    ->addDynamicColumn('BMI', $dynamicColumn, 'BMI', Format::Float, new AverageAggregation('BMI', Format::Float))
+    ->build();
 
-$table = $builder->build();
-
-$table->sortMultipleColumn([
+$table->sortByColumns([
     'age' => Direction::Ascending,
     'height' => Direction::Ascending,
 ]);
@@ -129,5 +129,5 @@ echo $dumper->dump($table);
  Jacques  28  60.00   1.67 21.51
   Pierre  32 100.00   1.87 28.60
     Jean  32  80.00   1.98 20.41
-         117          1.84
+         117          1.84 23.29
 ```

@@ -62,7 +62,7 @@ $dynamicColumn = new CallbackColumnBuilder(function (array $row) : float {
 });
 
 $table = $builder
-    ->addDynamicColumn('BMI', $dynamicColumn, 'BMI', Format::Float)
+    ->addDynamicColumn('BMI', $dynamicColumn, 'BMI', Format::Float, new AverageAggregation('BMI', Format::Float))
     ->build();
 
 $table->sortByColumns([
