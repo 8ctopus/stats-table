@@ -21,7 +21,7 @@ class CSVDumper extends Dumper
     /**
      * Dump table
      *
-     * @param  StatsTable $statsTable
+     * @param StatsTable $statsTable
      *
      * @return string
      */

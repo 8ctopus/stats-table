@@ -30,7 +30,7 @@ class HTMLDumper extends Dumper
     /**
      * Dump table
      *
-     * @param  StatsTable $statsTable
+     * @param StatsTable $statsTable
      *
      * @return string
      */
@@ -62,6 +62,11 @@ class HTMLDumper extends Dumper
         return 'text/html; charset=utf-8';
     }
 
+    public function setTwig(Environment $twig) : void
+    {
+        $this->twig = $twig;
+    }
+
     protected function formatData(array $data, array $format) : array
     {
         foreach ($data as &$line) {
@@ -80,10 +85,5 @@ class HTMLDumper extends Dumper
         }
 
         return $line;
-    }
-
-    public function setTwig(Environment $twig) : void
-    {
-        $this->twig = $twig;
     }
 }

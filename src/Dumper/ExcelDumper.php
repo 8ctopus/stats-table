@@ -124,7 +124,8 @@ class ExcelDumper extends Dumper
     protected function getDefaultStyleForFilledCells() : array
     {
         return array_merge_recursive(
-            $this->getDefaultStyleArray(), [
+            $this->getDefaultStyleArray(),
+            [
                 'borders' => [
                     'allBorders' => [
                         'borderStyle' => Border::BORDER_THIN,

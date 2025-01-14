@@ -11,7 +11,7 @@ class DataDumper extends Dumper
     /**
      * Dump table
      *
-     * @param  StatsTable $statsTable
+     * @param StatsTable $statsTable
      *
      * @return array
      */

@@ -19,17 +19,20 @@ class CSVTest extends DumperTestAbstract
         $csvDumper->enableHeaders(false);
         $csvDumper->enableAggregation(false);
 
-        $table = new StatsTable([
+        $table = new StatsTable(
+            [
                 ['date' => '2014-01-01'],
                 ['date' => new DateTime('2014-01-01')],
             ],
             [],
-            [], [
-                'date' => Format::Date
-            ]);
+            [],
+            [
+                'date' => Format::Date,
+            ]
+        );
 
         self::assertSame(
-            <<<TXT
+            <<<'TXT'
             2014-01-01
             2014-01-01
 
@@ -38,7 +41,7 @@ class CSVTest extends DumperTestAbstract
         );
 
         self::assertSame(
-            <<<TXT
+            <<<'TXT'
             "2014-01-01 00:00:00"
             "2014-01-01 00:00:00"
 
@@ -47,7 +50,7 @@ class CSVTest extends DumperTestAbstract
         );
 
         self::assertSame(
-            <<<TXT
+            <<<'TXT'
             132
             133
 
@@ -56,7 +59,7 @@ class CSVTest extends DumperTestAbstract
         );
 
         self::assertSame(
-            <<<TXT
+            <<<'TXT'
             132.00
             133.35
 
@@ -65,7 +68,7 @@ class CSVTest extends DumperTestAbstract
         );
 
         self::assertSame(
-            <<<TXT
+            <<<'TXT'
             "132 €"
             "133 €"
 
@@ -74,7 +77,7 @@ class CSVTest extends DumperTestAbstract
         );
 
         self::assertSame(
-            <<<TXT
+            <<<'TXT'
             "132.00 €"
             "133.35 €"
 
@@ -83,7 +86,7 @@ class CSVTest extends DumperTestAbstract
         );
 
         self::assertSame(
-            <<<TXT
+            <<<'TXT'
             132%
             133%
 
@@ -92,7 +95,7 @@ class CSVTest extends DumperTestAbstract
         );
 
         self::assertSame(
-            <<<TXT
+            <<<'TXT'
             132.00%
             133.35%
 
@@ -101,7 +104,7 @@ class CSVTest extends DumperTestAbstract
         );
 
         self::assertSame(
-            <<<TXT
+            <<<'TXT'
             132
             133.351
 
@@ -113,7 +116,7 @@ class CSVTest extends DumperTestAbstract
         $csvDumper->enableHeaders(true);
 
         self::assertSame(
-            <<<TXT
+            <<<'TXT'
             Date,Hits
             2014-01-01,3
             Total,3

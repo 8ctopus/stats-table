@@ -20,6 +20,26 @@ abstract class Dumper
     }
 
     /**
+     * Enable headers
+     *
+     * @param bool $enableHeaders
+     */
+    public function enableHeaders(bool $enableHeaders = true) : void
+    {
+        $this->enableHeaders = $enableHeaders;
+    }
+
+    /**
+     * Enable aggregation
+     *
+     * @param bool $enableAggregation
+     */
+    public function enableAggregation(bool $enableAggregation = true) : void
+    {
+        $this->enableAggregation = $enableAggregation;
+    }
+
+    /**
      * Format value
      *
      * @param Format $format
@@ -66,25 +86,5 @@ abstract class Dumper
         }
 
         return $value;
-    }
-
-    /**
-     * Enable headers
-     *
-     * @param bool $enableHeaders
-     */
-    public function enableHeaders(bool $enableHeaders = true) : void
-    {
-        $this->enableHeaders = $enableHeaders;
-    }
-
-    /**
-     * Enable aggregation
-     *
-     * @param bool $enableAggregation
-     */
-    public function enableAggregation(bool $enableAggregation = true) : void
-    {
-        $this->enableAggregation = $enableAggregation;
     }
 }

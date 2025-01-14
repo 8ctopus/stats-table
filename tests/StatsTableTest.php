@@ -228,7 +228,7 @@ class StatsTableTest extends TestCase
             [
                 'name' => 'Name',
                 'age' => 'Age',
-                'order' => 'Order'
+                'order' => 'Order',
             ]
         );
     }
@@ -246,7 +246,7 @@ class StatsTableTest extends TestCase
             [
                 'name' => 'Name',
                 'age' => 'Age',
-                'order' => 'Order'
+                'order' => 'Order',
             ]
         );
     }

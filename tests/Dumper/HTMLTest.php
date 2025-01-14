@@ -19,7 +19,7 @@ class HTMLTest extends DumperTestAbstract
             'hits' => 'Nb de visites',
             'subscribers' => 'Nb inscrits',
             'ratio' => 'Taux de transfo',
-            'revenues' => 'Revenus générés'
+            'revenues' => 'Revenus générés',
         ];
 
         $data = [

@@ -11,9 +11,9 @@ class ParameterBag
     /**
      * Constructor
      *
-     * @param self|array $options
+     * @param array|self $options
      */
-    public function __construct(self|array $options = [])
+    public function __construct(array|self $options = [])
     {
         if ($options instanceof self) {
             $options = $options->toArray();
@@ -54,8 +54,8 @@ class ParameterBag
     /**
      * Set value for key
      *
-     * @param  string $key
-     * @param  mixed  $value
+     * @param string $key
+     * @param mixed  $value
      *
      * @return self
      */

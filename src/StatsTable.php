@@ -77,7 +77,7 @@ class StatsTable
     /**
      * Sort by column
      *
-     * @param string $column
+     * @param string    $column
      * @param Direction $direction
      *
      * @return self
@@ -197,7 +197,7 @@ class StatsTable
     /**
      * Get compare function
      *
-     * @param Format $format
+     * @param Format    $format
      * @param Direction $direction
      *
      * @return callable
