@@ -29,11 +29,11 @@ class TextDumper extends Dumper
 
         $headers = $statsTable->getHeaders();
 
-        if (!empty($headers)) {
+        if ($this->enableHeaders && !empty($headers)) {
             array_unshift($data, $headers);
         }
 
-        if (!empty($aggregations)) {
+        if ($this->enableAggregation && !empty($aggregations)) {
             $data[] = $aggregations;
         }
 

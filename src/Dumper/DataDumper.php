@@ -29,13 +29,13 @@ class DataDumper extends Dumper
 
         $headers = $statsTable->getHeaders();
 
-        if (!empty($headers)) {
+        if ($this->enableHeaders && !empty($headers)) {
             foreach ($data as &$line) {
                 $line = array_combine($headers, $line);
             }
         }
 
-        if (!empty($aggregations)) {
+        if ($this->enableAggregation && !empty($aggregations)) {
             $aggregations = array_combine($headers, $aggregations);
             $data[] = $aggregations;
         }
