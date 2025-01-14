@@ -55,11 +55,6 @@ class TextDumper extends AbstractDumper
         return $output;
     }
 
-    public function getMimeType() : string
-    {
-        return 'text/plain; charset=utf-8';
-    }
-
     protected function formatData(array $data, array $format) : array
     {
         foreach ($data as &$line) {

@@ -57,11 +57,6 @@ class HTMLDumper extends AbstractDumper
         return $this->twig->render($this->options->get('template'), $params);
     }
 
-    public function getMimeType() : string
-    {
-        return 'text/html; charset=utf-8';
-    }
-
     public function setTwig(Environment $twig) : void
     {
         $this->twig = $twig;

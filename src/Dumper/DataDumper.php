@@ -43,11 +43,6 @@ class DataDumper extends AbstractDumper
         return $data;
     }
 
-    public function getMimeType() : string
-    {
-        return '';
-    }
-
     protected function formatData(array $data, array $format) : array
     {
         foreach ($data as &$line) {

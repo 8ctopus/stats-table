@@ -54,16 +54,6 @@ class JSONDumper extends AbstractDumper
     }
 
     /**
-     * Get mime type
-     *
-     * @return string
-     */
-    public function getMimeType() : string
-    {
-        return 'application/json';
-    }
-
-    /**
      * Format value
      *
      * @param Format $format

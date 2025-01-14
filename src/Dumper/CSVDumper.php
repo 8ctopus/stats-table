@@ -47,11 +47,6 @@ class CSVDumper extends AbstractDumper
         return fread($fileHandler, $len);
     }
 
-    public function getMimeType() : string
-    {
-        return sprintf('text/csv; charset=%s', $this->options->get('charset'));
-    }
-
     private function writeLine($fileHandler, array $line, array $formats = []) : void
     {
         foreach ($formats as $index => $format) {

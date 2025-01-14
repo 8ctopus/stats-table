@@ -96,11 +96,6 @@ class ExcelDumper extends AbstractDumper
         return $contents;
     }
 
-    public function getMimeType() : string
-    {
-        return 'application/vnd.ms-office; charset=binary';
-    }
-
     /**
      * Get default style
      *
