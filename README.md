@@ -19,6 +19,7 @@ This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-tab
 ## Usage
 
 ```php
+use Oct8pus\StatsTable\Direction;
 use Oct8pus\StatsTable\StatsTable;
 
 $data = [
@@ -33,7 +34,7 @@ $headers = [
 
 $table = new StatsTable($data, $headers);
 
-$table->sortByColumn('date', false);
+$table->sortByColumn('date', Direction::Descending);
 
 $dumper = new TextDumper();
 echo $dumper->dump($table);
@@ -52,9 +53,10 @@ The `StatsTableBuilder` class helps combine data from multiple tables, create au
 ```php
 use Oct8pus\StatsTable\Aggregation\AverageAggregation;
 use Oct8pus\StatsTable\Aggregation\SumAggregation;
+use Oct8pus\StatsTable\Direction;
 use Oct8pus\StatsTable\Dumper\TextDumper;
-use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\DynamicColumn\CallbackColumnBuilder;
+use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTableBuilder;
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -113,8 +115,8 @@ $builder->addDynamicColumn('BMI', $dynamicColumn, 'BMI', Format::FLOAT2);
 $table = $builder->build();
 
 $table->sortMultipleColumn([
-    'age' => true,
-    'height' => true,
+    'age' => Direction::Ascending,
+    'height' => Direction::Ascending,
 ]);
 
 $dumper = new TextDumper();
