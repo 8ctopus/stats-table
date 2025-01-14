@@ -22,36 +22,6 @@ This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-tab
 
 ## usage
 
-```php
-use Oct8pus\StatsTable\Direction;
-use Oct8pus\StatsTable\StatsTable;
-
-$data = [
-    ['date' => '2014-01-01', 'hits' => 32500],
-    ['date' => '2014-01-02', 'hits' => 48650],
-];
-
-$headers = [
-    'date' => 'Date',
-    'hits' => 'Number of hits',
-];
-
-$table = new StatsTable($data, $headers);
-
-$table->sortByColumn('date', Direction::Descending);
-
-$dumper = new TextDumper();
-echo $dumper->dump($table);
-```
-
-```txt
-Date       Number of hits
- 2014-01-02          48650
- 2014-01-01          32500
-```
-
-### table builder
-
 The `StatsTableBuilder` class helps combine data from multiple tables, build aggregations (sum, count, average, ...), and create automatic calculated columns.
 
 ```php
