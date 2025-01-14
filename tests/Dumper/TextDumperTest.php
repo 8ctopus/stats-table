@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\Dumper;
 
-use DOMDocument;
 use Oct8pus\StatsTable\Dumper\Dumper;
-use Oct8pus\StatsTable\Dumper\HTMLDumper;
+use Oct8pus\StatsTable\Dumper\TextDumper;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 
-class HTMLTest extends DumperTestAbstract
+class TextDumperTest extends DumperTestAbstract
 {
     public function testDump() : void
     {
@@ -54,35 +53,22 @@ class HTMLTest extends DumperTestAbstract
 
         $statsTable = new StatsTable($data, $headers, $aggregations, $dataTypes, $aggregationsTypes, $metaData);
 
-        $dumper = new HTMLDumper();
-        $html = $dumper->dump($statsTable);
-        $doc = new DOMDocument();
-        $doc->loadXML($html);
+        $dumper = new TextDumper();
+        $text = $dumper->dump($statsTable);
 
-        $expectedDoc = new DOMDocument();
-        $expectedDoc->load(__DIR__ . '/Fixtures/test.html');
+        $excepted = <<<'TXT'
+        Date       Nb de visites Nb inscrits Taux de transfo Revenus générés 
+         2014-01-01            10           2             20%          45.32 €
+         2014-01-01            20           7             35%          80.75 €
+              Total            30           9             30%         126.08 €
 
-        self::assertEquals($expectedDoc, $doc);
+        TXT;
 
-        // Test with a custom template
-        $dumper = new HTMLDumper([
-            'template' => 'custom.html.twig',
-            'templateFolder' => __DIR__ . '/Fixtures/template',
-            'templateOptions' => ['title' => 'My title test'],
-        ]);
-        $html = $dumper->dump($statsTable);
-
-        $doc = new DOMDocument();
-        $doc->loadXML($html);
-
-        $expectedDoc = new DOMDocument();
-        $expectedDoc->load(__DIR__ . '/Fixtures/test-custom.html');
-
-        self::assertEquals($expectedDoc, $doc);
+        self::assertEquals($excepted, $text);
     }
 
     protected function getDumper() : Dumper
     {
-        return new HTMLDumper();
+        return new TextDumper();
     }
 }

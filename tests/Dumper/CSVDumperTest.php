@@ -11,7 +11,7 @@ use Oct8pus\StatsTable\Dumper\Dumper;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 
-class CSVTest extends DumperTestAbstract
+class CSVDumperTest extends DumperTestAbstract
 {
     public function testFormats() : void
     {

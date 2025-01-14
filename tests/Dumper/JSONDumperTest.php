@@ -9,7 +9,7 @@ use Oct8pus\StatsTable\Dumper\JSONDumper;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 
-class JSONTest extends DumperTestAbstract
+class JSONDumperTest extends DumperTestAbstract
 {
     public function testJSON() : void
     {

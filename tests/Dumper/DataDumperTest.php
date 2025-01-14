@@ -9,7 +9,7 @@ use Oct8pus\StatsTable\Dumper\Dumper;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 
-class DataTest extends DumperTestAbstract
+class DataDumperTest extends DumperTestAbstract
 {
     public function testDump() : void
     {

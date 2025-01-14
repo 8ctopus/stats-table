@@ -9,7 +9,7 @@ use Oct8pus\StatsTable\Dumper\ExcelDumper;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 
-class ExcelTest extends DumperTestAbstract
+class ExcelDumperTest extends DumperTestAbstract
 {
     public function test() : void
     {
