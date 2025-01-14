@@ -12,11 +12,11 @@ Create statistics tables and export them to text, JSON, CSV or Excel.
 
 This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-table). Migrating from the parent package shouldn't be too hard, but except a bit of work.
 
-## Installation
+## installation
 
     composer require 8ctopus/stats-table
 
-## Usage
+## usage
 
 ```php
 use Oct8pus\StatsTable\Direction;
@@ -46,9 +46,9 @@ Date       Number of hits
  2014-01-01          32500
 ```
 
-### Table builder
+### table builder
 
-The `StatsTableBuilder` class helps combine data from multiple tables, create automatic calculated columns, and build aggregations (sum, count, average, ...).
+The `StatsTableBuilder` class helps combine data from multiple tables, build aggregations (sum, count, average, ...), and create automatic calculated columns.
 
 ```php
 use Oct8pus\StatsTable\Aggregation\AverageAggregation;
@@ -124,10 +124,10 @@ echo $dumper->dump($table);
 ```
 
 ```txt
-Name    Age Weight Height BMI
-    Paul  25     75   1,82 22,64
- Jacques  28     60   1,67 21,51
-  Pierre  32    100   1,87 28,60
-    Jean  32     80   1,98 20,41
-         117          1,84
+    Name Age Weight Height   BMI
+    Paul  25  75.00   1.82 22.64
+ Jacques  28  60.00   1.67 21.51
+  Pierre  32 100.00   1.87 28.60
+    Jean  32  80.00   1.98 20.41
+         117          1.84
 ```
