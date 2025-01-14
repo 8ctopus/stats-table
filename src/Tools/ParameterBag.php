@@ -21,8 +21,8 @@ class ParameterBag
 
         $this->options = array_merge([
             'decimals_count' => 2,
-            'decimals_separator' => ',',
-            'thousands_separator' => ' ',
+            'decimals_separator' => '.',
+            'thousands_separator' => '\'',
         ], $options);
     }
 

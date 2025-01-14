@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Oct8pus\StatsTable\Dumper;
 
-use DateTimeInterface;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTable;
 
@@ -80,55 +79,6 @@ class TextDumper extends Dumper
         }
 
         return $line;
-    }
-
-    /**
-     * Format value
-     *
-     * @param Format $format
-     * @param mixed  $value
-     *
-     * @return string
-     */
-    protected function formatValue(Format $format, mixed $value) : string
-    {
-        $decimals = $this->options->get('decimals_count');
-        $decimalSep = $this->options->get('decimals_separator');
-        $thousandsSep = $this->options->get('thousands_separator');
-
-        switch ($format) {
-            case Format::Date:
-                if ($value instanceof DateTimeInterface) {
-                    return $value->format('d/m/Y');
-                }
-                break;
-
-            case Format::DateTime:
-                if ($value instanceof DateTimeInterface) {
-                    return $value->format('d/m/Y H:i:s');
-                }
-                break;
-
-            case Format::Float:
-                return str_replace($decimalSep . '00', '', number_format((float) $value, $decimals, $decimalSep, $thousandsSep));
-
-            case Format::Integer:
-                return number_format((int) $value, 0, $decimalSep, $thousandsSep);
-
-            case Format::Percent:
-                return $this->formatValue(Format::Integer, $value * 100) . '%';
-
-            case Format::Percent2:
-                return $this->formatValue(Format::Float, $value * 100) . '%';
-
-            case Format::Money:
-                return $this->formatValue(Format::Integer, $value) . '€';
-
-            case Format::Money2:
-                return $this->formatValue(Format::Float, $value) . '€';
-        }
-
-        return $value;
     }
 
     protected function measure(array $data) : array

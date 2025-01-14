@@ -110,7 +110,10 @@ class ExcelDumper extends Dumper
     protected function getDefaultStyleArray() : array
     {
         return [
-            'font' => ['name' => 'Arial', 'size' => 9],
+            'font' => [
+                'name' => 'Arial',
+                'size' => 9,
+            ],
         ];
     }
 
@@ -122,12 +125,13 @@ class ExcelDumper extends Dumper
     protected function getDefaultStyleForFilledCells() : array
     {
         return array_merge_recursive(
-            $this->getDefaultStyleArray(),
-            [
+            $this->getDefaultStyleArray(), [
                 'borders' => [
                     'allBorders' => [
                         'borderStyle' => Border::BORDER_THIN,
-                        'color' => ['argb' => 'FF000000'],
+                        'color' => [
+                            'argb' => 'FF000000',
+                        ],
                     ],
                 ],
             ]
@@ -176,14 +180,20 @@ class ExcelDumper extends Dumper
                 'borders' => [
                     'bottom' => [
                         'style' => Border::BORDER_MEDIUM,
-                        'color' => ['argb' => 'FF000000'],
+                        'color' => [
+                            'argb' => 'FF000000',
+                        ],
                     ],
                 ],
                 'fill' => [
                     'fillType' => Fill::FILL_SOLID,
-                    'color' => ['argb' => 'FFD0D0D0'],
+                    'color' => [
+                        'argb' => 'FFD0D0D0',
+                    ],
                 ],
-                'font' => ['bold' => true],
+                'font' => [
+                    'bold' => true,
+                ],
             ]
         );
     }
@@ -201,14 +211,20 @@ class ExcelDumper extends Dumper
                 'borders' => [
                     'top' => [
                         'style' => Border::BORDER_MEDIUM,
-                        'color' => ['argb' => 'FF000000'],
+                        'color' => [
+                            'argb' => 'FF000000',
+                        ],
                     ],
                 ],
                 'fill' => [
                     'fillType' => Fill::FILL_SOLID,
-                    'color' => ['argb' => 'FFD0D0D0'],
+                    'color' => [
+                        'argb' => 'FFD0D0D0',
+                    ],
                 ],
-                'font' => ['bold' => true],
+                'font' => [
+                    'bold' => true,
+                ],
             ]
         );
     }

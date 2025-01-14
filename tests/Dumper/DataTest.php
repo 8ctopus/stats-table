@@ -30,7 +30,7 @@ class DataTest extends DumperTestAbstract
             'date' => Format::Date,
             'hits' => Format::Integer,
             'subscribers' => Format::Integer,
-            'ratio' => Format::Percent2,
+            'ratio' => Format::Percent,
             'revenues' => Format::Money2,
         ];
 
@@ -62,19 +62,19 @@ class DataTest extends DumperTestAbstract
                 'Nb de visites' => '10',
                 'Nb inscrits' => '2',
                 'Taux de transfo' => '20%',
-                'Revenus générés' => '45,32€',
+                'Revenus générés' => '45.32 €',
             ], [
                 'Date' => '2014-01-01',
                 'Nb de visites' => '20',
                 'Nb inscrits' => '7',
                 'Taux de transfo' => '35%',
-                'Revenus générés' => '80,75€',
+                'Revenus générés' => '80.75 €',
             ], [
                 'Date' => 'Total',
                 'Nb de visites' => '30',
                 'Nb inscrits' => '9',
                 'Taux de transfo' => '30%',
-                'Revenus générés' => '126,08€',
+                'Revenus générés' => '126.08 €',
             ],
         ];
 

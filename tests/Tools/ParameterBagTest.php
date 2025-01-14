@@ -18,8 +18,8 @@ class ParameterBagTest extends TestCase
 
         $excepted = [
             'decimals_count' => 3,
-            'decimals_separator' => ',',
-            'thousands_separator' => ' ',
+            'decimals_separator' => '.',
+            'thousands_separator' => '\'',
             'added' => 1,
         ];
 
@@ -35,8 +35,8 @@ class ParameterBagTest extends TestCase
 
         $excepted = [
             'decimals_count' => 3,
-            'decimals_separator' => ',',
-            'thousands_separator' => ' ',
+            'decimals_separator' => '.',
+            'thousands_separator' => '\'',
             'added' => 1,
         ];
 
@@ -71,8 +71,8 @@ class ParameterBagTest extends TestCase
 
         $excepted = [
             'decimals_count' => 3,
-            'decimals_separator' => ',',
-            'thousands_separator' => ' ',
+            'decimals_separator' => '.',
+            'thousands_separator' => '\'',
             'added' => 1,
         ];
 

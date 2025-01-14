@@ -20,15 +20,19 @@ abstract class Dumper implements DumperInterface
     }
 
     /**
-     * Default value formatter
+     * Format value
      *
      * @param Format $format
      * @param mixed  $value
      *
-     * @return mixed
+     * @return float|int|string
      */
-    protected function formatValue(Format $format, mixed $value) : mixed
+    protected function formatValue(Format $format, mixed $value) : float|int|string
     {
+        $decimals = $this->options->get('decimals_count');
+        $decimalSep = $this->options->get('decimals_separator');
+        $thousandsSep = $this->options->get('thousands_separator');
+
         switch ($format) {
             case Format::Date:
                 if ($value instanceof DateTimeInterface) {
@@ -43,16 +47,16 @@ abstract class Dumper implements DumperInterface
                 break;
 
             case Format::Float:
-                return sprintf('%.2f', $value);
+                return number_format((float) $value, $decimals, $decimalSep, $thousandsSep);
 
             case Format::Integer:
-                return sprintf('%d', $value);
+                return number_format((int) $value, 0, $decimalSep, $thousandsSep);
 
             case Format::Percent:
-                return $this->formatValue(Format::Integer, $value) . ' %';
+                return $this->formatValue(Format::Integer, $value * 100) . '%';
 
             case Format::Percent2:
-                return $this->formatValue(Format::Float, $value) . ' %';
+                return $this->formatValue(Format::Float, $value * 100) . '%';
 
             case Format::Money:
                 return $this->formatValue(Format::Integer, $value) . ' €';
