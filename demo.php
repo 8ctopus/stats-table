@@ -46,7 +46,7 @@ $headers = [
 $formats = [
     'name' => Format::String,
     'age' => Format::Integer,
-    'weight' => Format::Float,
+    //'weight' => Format::Float,
     'height' => Format::Float,
 ];
 

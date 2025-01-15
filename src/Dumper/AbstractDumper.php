@@ -42,12 +42,12 @@ abstract class AbstractDumper implements DumperInterface
     /**
      * Format value
      *
-     * @param Format $format
+     * @param ?Format $format
      * @param mixed  $value
      *
      * @return float|int|string
      */
-    protected function formatValue(Format $format, mixed $value) : float|int|string
+    protected function formatValue(?Format $format, mixed $value) : float|int|string
     {
         $decimals = $this->options->get('decimals_count');
         $decimalSep = $this->options->get('decimals_separator');
@@ -83,6 +83,10 @@ abstract class AbstractDumper implements DumperInterface
 
             case Format::Money2:
                 return $this->formatValue(Format::Float, $value) . ' €';
+
+            case Format::String:
+            default:
+                return $value;
         }
 
         return $value;

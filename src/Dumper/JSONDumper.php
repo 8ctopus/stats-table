@@ -56,12 +56,12 @@ class JSONDumper extends AbstractDumper
     /**
      * Format value
      *
-     * @param Format $format
+     * @param ?Format $format
      * @param mixed  $value
      *
      * @return float|int|string
      */
-    protected function formatValue(Format $format, mixed $value) : float|int|string
+    protected function formatValue(?Format $format, mixed $value) : float|int|string
     {
         switch ($format) {
             case Format::Date:
@@ -84,6 +84,10 @@ class JSONDumper extends AbstractDumper
             case Format::Integer:
             case Format::Money:
                 return (int) sprintf('%d', $value);
+
+            case Format::String:
+            default:
+                return $value;
         }
 
         return $value;
