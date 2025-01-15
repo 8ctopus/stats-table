@@ -32,7 +32,7 @@ class DataDumper extends AbstractDumper
         }
 
         if ($this->enableAggregation && !empty($aggregations) && count($data)) {
-            $aggregations = array_combine($headers, $aggregations);
+            $aggregations = array_combine(array_intersect_key($headers, $aggregations), $aggregations);
             $data[] = $aggregations;
         }
 
