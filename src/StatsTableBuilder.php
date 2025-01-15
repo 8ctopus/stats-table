@@ -241,7 +241,7 @@ class StatsTableBuilder
     /**
      * Build table
      *
-     * @param array $columns desired columns
+     * @param array $columns desired output columns
      *
      * @return StatsTable
      */

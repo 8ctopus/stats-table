@@ -22,7 +22,11 @@ This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-tab
 
 ## usage
 
-The `StatsTableBuilder` class helps combine data from multiple tables, build aggregations (sum, count, average, ...), and create automatic calculated columns.
+The `StatsTableBuilder` class helps combine data from multiple tables, build aggregations (column sum, count, average, ...), and create calculated columns. While the second class `StatsTable` allows to sort the table and remove columns.
+
+### example 1
+
+Here's an example which shows aggregation, dynamic column and table sorting. Play with this example in `demo.php`.
 
 ```php
 use Oct8pus\StatsTable\Aggregation\AverageAggregation;
@@ -73,14 +77,15 @@ $formats = [
 ];
 
 $aggregations = [
-    'name' => new CountAggregation('name', Format::Integer),
-    'age' => new AverageAggregation('age', Format::Integer),
-    'weight' => new AverageAggregation('weight', Format::Integer),
-    'height' => new AverageAggregation('height', Format::Float),
+    new CountAggregation('name', Format::Integer),
+    new AverageAggregation('age', Format::Integer),
+    new AverageAggregation('weight', Format::Integer),
+    new AverageAggregation('height', Format::Float),
 ];
 
 $builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
 
+// add body mass index row to table
 $dynamicColumn = new CallbackColumnBuilder(function (array $row) : float {
     return $row['weight'] / ($row['height'] * $row['height']);
 });
@@ -107,6 +112,8 @@ echo $dumper->dump($table);
         4   29      78    1.84  23.29
 ```
 
+### example 2
+
 Here's another example with a dynamic column which depends on the aggregation result.
 
 ```php
@@ -128,13 +135,15 @@ $formats = [
 ];
 
 $aggregations = [
-    'count' => new SumAggregation('count', Format::Integer),
+    new SumAggregation('count', Format::Integer),
 ];
 
 $builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
 
+// get count column total
 $total = $aggregations['count']->aggregate($builder);
 
+// add percentage column
 $dynamicColumn = new CallbackColumnBuilder(function (array $row) use ($total) : float {
     return $row['count'] / $total;
 });
@@ -143,8 +152,8 @@ $table = $builder
     ->addDynamicColumn('percentage', $dynamicColumn, 'percentage', Format::Percent, new SumAggregation('percentage', Format::Percent))
     ->build();
 
-$dumper = new TextDumper();
-echo $dumper->dump($table);
+echo (new TextDumper())
+    ->dump($table);
 ```
 
 ```txt

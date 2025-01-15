@@ -52,10 +52,10 @@ $formats = [
 ];
 
 $aggregations = [
-    'name' => new CountAggregation('name', Format::Integer),
-    'age' => new AverageAggregation('age', Format::Integer),
-    'weight' => new AverageAggregation('weight', Format::Integer),
-    'height' => new AverageAggregation('height', Format::Float),
+    new CountAggregation('name', Format::Integer),
+    new AverageAggregation('age', Format::Integer),
+    new AverageAggregation('weight', Format::Integer),
+    new AverageAggregation('height', Format::Float),
 ];
 
 $builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
