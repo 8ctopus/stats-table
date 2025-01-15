@@ -235,16 +235,31 @@ class StatsTableBuilderTest extends TestCase
     public function testGroupBy() : void
     {
         $table = [
-            ['tag' => 'one', 'subtag' => 'morning', 'hits' => 2],
-            ['tag' => 'one', 'subtag' => 'afternoon', 'hits' => 3],
-            ['tag' => 'two', 'subtag' => 'morning', 'hits' => 4],
+            [
+                'tag' => 'one',
+                'subtag' => 'morning',
+                'hits' => 2,
+            ], [
+                'tag' => 'one',
+                'subtag' => 'afternoon',
+                'hits' => 3,
+            ], [
+                'tag' => 'two',
+                'subtag' => 'morning',
+                'hits' => 4,
+            ],
         ];
 
         $statsTableBuilder = new StatsTableBuilder(
-            $table,
-            ['tag' => 'Tag', 'subtag' => 'When', 'hits' => 'Hits'],
-            ['tag' => Format::String, 'subtag' => Format::String, 'hits' => Format::Integer],
-            [
+            $table, [
+                'tag' => 'Tag',
+                'subtag' => 'When',
+                'hits' => 'Hits'
+            ], [
+                'tag' => Format::String,
+                'subtag' => Format::String,
+                'hits' => Format::Integer
+            ], [
                 'tag' => new StaticAggregation('Tag'),
                 'subtag' => new StaticAggregation('Sub tag'),
                 'hits' => new SumAggregation('hits', Format::Integer),
