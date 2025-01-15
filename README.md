@@ -106,3 +106,50 @@ echo $dumper->dump($table);
      Jean   32   80.00    1.98  20.41
         4   29      78    1.84  23.29
 ```
+
+Here's another example with a dynamic column which depends on the aggregation result.
+
+```php
+$data = [
+    [
+        'status' => 'active',
+        'count' => 80,
+    ], [
+        'status' => 'cancelled',
+        'count' => 20,
+    ],
+];
+
+$headers = [];
+
+$formats = [
+    'status' => Format::String,
+    'count' => Format::Integer,
+];
+
+$aggregations = [
+    'count' => new SumAggregation('count', Format::Integer),
+];
+
+$builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
+
+$total = $aggregations['count']->aggregate($builder);
+
+$dynamicColumn = new CallbackColumnBuilder(function (array $row) use ($total) : float {
+    return $row['count'] / $total;
+});
+
+$table = $builder
+    ->addDynamicColumn('percentage', $dynamicColumn, 'percentage', Format::Percent, new SumAggregation('percentage', Format::Percent))
+    ->build();
+
+$dumper = new TextDumper();
+echo $dumper->dump($table);
+```
+
+```txt
+     status  count  percentage
+     active     80         80%
+  cancelled     20         20%
+               100        100%
+```
