@@ -360,7 +360,7 @@ class StatsTableBuilder
             $groupedData[$key][] = $line;
         }
 
-        $filterLine = static function ($line) use ($excludeColumns) {
+        $filterLine = static function (array $line) use ($excludeColumns) {
             foreach ($excludeColumns as $c) {
                 unset($line[$c]);
             }
@@ -370,8 +370,8 @@ class StatsTableBuilder
 
         $headers = $filterLine(
             array_map(
-                static function (StatsColumnBuilder $c) : string {
-                    return $c->getHeaderName();
+                static function (StatsColumnBuilder $builder) : string {
+                    return $builder->getHeaderName();
                 },
                 $this->columns
             )
@@ -379,8 +379,8 @@ class StatsTableBuilder
 
         $formats = $filterLine(
             array_map(
-                static function (StatsColumnBuilder $c) : Format {
-                    return $c->getFormat();
+                static function (StatsColumnBuilder $builder) : Format {
+                    return $builder->getFormat();
                 },
                 $this->columns
             )
@@ -388,8 +388,8 @@ class StatsTableBuilder
 
         $aggregations = $filterLine(
             array_map(
-                static function (StatsColumnBuilder $c) : ?AggregationInterface {
-                    return $c->getAggregation();
+                static function (StatsColumnBuilder $builder) : ?AggregationInterface {
+                    return $builder->getAggregation();
                 },
                 $this->columns
             )
@@ -397,8 +397,8 @@ class StatsTableBuilder
 
         $metaData = $filterLine(
             array_map(
-                static function (StatsColumnBuilder $c) : array {
-                    return $c->getMetaData();
+                static function (StatsColumnBuilder $builder) : array {
+                    return $builder->getMetaData();
                 },
                 $this->columns
             )
