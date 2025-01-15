@@ -87,6 +87,7 @@ class StatsTableBuilderTest extends TestCase
     public function testBuildWithAggregation() : void
     {
         $data = $this->_getTestData();
+
         $statsTable = new StatsTableBuilder(
             $data,
             ['hits' => 'Hits'],
@@ -94,7 +95,6 @@ class StatsTableBuilderTest extends TestCase
             ['hits' => new SumAggregation('hits')]
         );
 
-        $stats = $statsTable->build();
         self::assertEquals(new StatsTable(
             $data,
             ['hits' => 'Hits'],
@@ -102,18 +102,18 @@ class StatsTableBuilderTest extends TestCase
             ['hits' => Format::Integer],
             ['hits' => Format::Integer],
             ['hits' => []]
-        ), $stats);
+        ), $statsTable->build());
     }
 
     public function testBuildWithoutAggregation() : void
     {
         $data = $this->_getTestData();
+
         $statsTable = new StatsTableBuilder(
             $data,
             ['hits' => 'Hits']
         );
 
-        $stats = $statsTable->build();
         self::assertEquals(new StatsTable(
             $data,
             ['hits' => 'Hits'],
@@ -121,7 +121,7 @@ class StatsTableBuilderTest extends TestCase
             ['hits' => null],
             [],
             ['hits' => []]
-        ), $stats);
+        ), $statsTable->build());
     }
 
     public function testBuildWithoutData() : void
@@ -131,7 +131,6 @@ class StatsTableBuilderTest extends TestCase
             ['hits' => 'Hits']
         );
 
-        $stats = $statsTable->build();
         self::assertEquals(new StatsTable(
             [],
             ['hits' => 'Hits'],
@@ -139,7 +138,7 @@ class StatsTableBuilderTest extends TestCase
             ['hits' => null],
             [],
             ['hits' => []]
-        ), $stats);
+        ), $statsTable->build());
     }
 
     public function testBuildWithoutDataAndWithAggregation() : void
@@ -151,7 +150,6 @@ class StatsTableBuilderTest extends TestCase
             ['hits' => new SumAggregation('hits')]
         );
 
-        $stats = $statsTable->build();
         self::assertEquals(new StatsTable(
             [],
             ['hits' => 'Hits'],
@@ -159,7 +157,7 @@ class StatsTableBuilderTest extends TestCase
             ['hits' => Format::Integer],
             ['hits' => Format::Integer],
             ['hits' => []]
-        ), $stats);
+        ), $statsTable->build());
     }
 
     public function testMissingColumn() : void
@@ -193,9 +191,9 @@ class StatsTableBuilderTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         $table = [['hits' => 0]];
-        $statsTable = new StatsTableBuilder($table);
 
-        $statsTable->getColumn('invalidColumn');
+        (new StatsTableBuilder($table))
+            ->getColumn('invalidColumn');
     }
 
     public function testOrderColumns() : void
@@ -204,7 +202,6 @@ class StatsTableBuilderTest extends TestCase
         $expectedTable = ['c' => 'value3', 'a' => 'value1'];
 
         self::assertEquals($expectedTable, StatsTableBuilder::orderColumns($table, ['c', 'a']));
-
         self::assertEquals($table, StatsTableBuilder::orderColumns($table, []));
     }
 
@@ -214,6 +211,7 @@ class StatsTableBuilderTest extends TestCase
             ['a' => 'a', 'b' => 'b', 'c' => 'c'],
             ['a' => 'A', 'b' => 'B', 'c' => 'C'],
         ];
+
         $headers = [
             'a' => 'Alpha',
             'b' => 'Bravo',
@@ -227,6 +225,7 @@ class StatsTableBuilderTest extends TestCase
         );
 
         $statsTable = $statsTableBuilder->build(['c', 'a']);
+
         self::assertEquals(
             ['c' => 'Charly', 'a' => 'Alpha'],
             $statsTable->getHeaders()
@@ -240,6 +239,7 @@ class StatsTableBuilderTest extends TestCase
             ['tag' => 'one', 'subtag' => 'afternoon', 'hits' => 3],
             ['tag' => 'two', 'subtag' => 'morning', 'hits' => 4],
         ];
+
         $statsTableBuilder = new StatsTableBuilder(
             $table,
             ['tag' => 'Tag', 'subtag' => 'When', 'hits' => 'Hits'],
@@ -269,6 +269,7 @@ class StatsTableBuilderTest extends TestCase
             'Tag',
             $groupedByStatsTableBuilder->getColumn('tag')->getAggregation()->aggregate($groupedByStatsTableBuilder)
         );
+
         self::assertSame(
             9.0,
             $groupedByStatsTableBuilder->getColumn('hits')->getAggregation()->aggregate($groupedByStatsTableBuilder)
