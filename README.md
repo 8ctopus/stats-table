@@ -22,7 +22,7 @@ This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-tab
 
 ## usage
 
-The `StatsTableBuilder` class helps combine data from multiple tables, build aggregations (column sum, count, average, ...), and create calculated columns. While the second class `StatsTable` allows to sort the table and remove columns.
+The `StatsTableBuilder` class helps combine data from multiple tables, build aggregations (column sum, count, average, ...), create calculated columns, and add grouping. While the second class `StatsTable` allows to sort the table and remove columns.
 
 ### example 1
 
