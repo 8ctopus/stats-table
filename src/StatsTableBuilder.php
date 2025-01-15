@@ -197,6 +197,7 @@ class StatsTableBuilder
     public function addDynamicColumn(string $columnName, DynamicColumnBuilderInterface $dynamicColumn, string $header = '', ?Format $format = null, ?AggregationInterface $aggregation = null, array $metaData = []) : self
     {
         $values = $dynamicColumn->buildColumnValues($this);
+
         $this->columns[$columnName] = new StatsColumnBuilder($values, $header, $format, $aggregation, $metaData);
 
         return $this;
@@ -219,6 +220,22 @@ class StatsTableBuilder
         $this->columns[$column] = new StatsColumnBuilder($values, $header, $format, $aggregation, $metaData);
 
         return $this;
+    }
+
+    /**
+     * Calculate column aggregate
+     *
+     * @param  string $column
+     *
+     * @return mixed
+     */
+    public function calculateAggregate(string $column) : mixed
+    {
+        $column = $this->getColumn($column);
+
+        $aggregation = $column->getAggregation();
+
+        return $aggregation?->aggregate($this);
     }
 
     /**

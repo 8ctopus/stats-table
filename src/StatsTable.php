@@ -14,7 +14,7 @@ class StatsTable
     private readonly array $metaData;
 
     /**
-     * Construct a new stats table
+     * Constructor
      *
      * @param array $data
      * @param array $headers
@@ -89,7 +89,7 @@ class StatsTable
     }
 
     /**
-     * Sort by one column with a custom compare function
+     * Sort by column with a custom compare function
      *
      * @param string   $column
      * @param callable $function
@@ -105,7 +105,7 @@ class StatsTable
     /**
      * Sort by columns
      *
-     * @param array $columns Associative array : KEY => column name, VALUE => Sort direction
+     * @param array $columns [column name => Sort direction]
      *
      * @return self
      */
@@ -125,7 +125,7 @@ class StatsTable
     /**
      * Sort by columns with a custom compare function
      *
-     * @param array $columns Associative array : KEY => column name, VALUE => Custom function
+     * @param array $columns [column name => sort function]
      *
      * @return self
      */
