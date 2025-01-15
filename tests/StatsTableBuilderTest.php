@@ -117,7 +117,7 @@ class StatsTableBuilderTest extends TestCase
         self::assertEquals(new StatsTable(
             $data,
             ['hits' => 'Hits'],
-            ['hits' => null],
+            [],
             ['hits' => null],
             [],
             ['hits' => []]
@@ -134,7 +134,7 @@ class StatsTableBuilderTest extends TestCase
         self::assertEquals(new StatsTable(
             [],
             ['hits' => 'Hits'],
-            ['hits' => null],
+            [],
             ['hits' => null],
             [],
             ['hits' => []]

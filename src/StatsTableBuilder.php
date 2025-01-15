@@ -263,11 +263,9 @@ class StatsTableBuilder
             if ($columnAggregation) {
                 $aggregationValue = $columnAggregation->aggregate($this);
                 $aggregationsFormats[$columnName] = $columnAggregation->getFormat();
-            } else {
-                $aggregationValue = null;
-            }
 
-            $aggregations = array_merge($aggregations, [$columnName => $aggregationValue]);
+                $aggregations = array_merge($aggregations, [$columnName => $aggregationValue]);
+            }
         }
 
         $headers = $this->orderColumns($headers, $columns);
