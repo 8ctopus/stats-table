@@ -26,14 +26,13 @@ The `StatsTableBuilder` class helps combine data from multiple tables, build agg
 
 ```php
 use Oct8pus\StatsTable\Aggregation\AverageAggregation;
+use Oct8pus\StatsTable\Aggregation\CountAggregation;
 use Oct8pus\StatsTable\Aggregation\SumAggregation;
 use Oct8pus\StatsTable\Direction;
 use Oct8pus\StatsTable\Dumper\TextDumper;
 use Oct8pus\StatsTable\DynamicColumn\CallbackColumnBuilder;
 use Oct8pus\StatsTable\Format;
 use Oct8pus\StatsTable\StatsTableBuilder;
-
-require_once __DIR__ . '/vendor/autoload.php';
 
 $data = [
     [
@@ -74,7 +73,9 @@ $formats = [
 ];
 
 $aggregations = [
-    'age' => new SumAggregation('age', Format::Integer),
+    'name' => new CountAggregation('name', Format::Integer),
+    'age' => new AverageAggregation('age', Format::Integer),
+    'weight' => new AverageAggregation('weight', Format::Integer),
     'height' => new AverageAggregation('height', Format::Float),
 ];
 
@@ -103,5 +104,5 @@ echo $dumper->dump($table);
   Jacques   28   60.00    1.67  21.51
    Pierre   32  100.00    1.87  28.60
      Jean   32   80.00    1.98  20.41
-           117            1.84  23.29
+        4   29      78    1.84  23.29
 ```

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Oct8pus\StatsTable\Aggregation\AverageAggregation;
+use Oct8pus\StatsTable\Aggregation\CountAggregation;
 use Oct8pus\StatsTable\Aggregation\SumAggregation;
 use Oct8pus\StatsTable\Direction;
 use Oct8pus\StatsTable\Dumper\TextDumper;
@@ -51,7 +52,9 @@ $formats = [
 ];
 
 $aggregations = [
-    'age' => new SumAggregation('age', Format::Integer),
+    'name' => new CountAggregation('name', Format::Integer),
+    'age' => new AverageAggregation('age', Format::Integer),
+    'weight' => new AverageAggregation('weight', Format::Integer),
     'height' => new AverageAggregation('height', Format::Float),
 ];
 
