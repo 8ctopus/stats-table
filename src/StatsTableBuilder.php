@@ -336,12 +336,12 @@ class StatsTableBuilder
     /**
      * Do a groupBy on columns, using aggregations to aggregate data per line
      *
-     * @param array|string $columns        Columns to aggregate
+     * @param array $columns        Columns to aggregate
      * @param array        $excludeColumns Irrelevant columns to exclude
      *
      * @return self
      */
-    public function groupBy(array|string $columns, array $excludeColumns = []) : self
+    public function groupBy(array $columns, array $excludeColumns = []) : self
     {
         $groupedData = [];
         $statsTable = $this->build();
@@ -350,8 +350,8 @@ class StatsTableBuilder
             $key = implode(
                 '-_##_-',
                 array_map(
-                    static function ($c) use ($line) {
-                        return $line[$c];
+                    static function ($key) use ($line) {
+                        return $line[$key];
                     },
                     $columns
                 )
@@ -361,8 +361,8 @@ class StatsTableBuilder
         }
 
         $filterLine = static function (array $line) use ($excludeColumns) {
-            foreach ($excludeColumns as $c) {
-                unset($line[$c]);
+            foreach ($excludeColumns as $excludeColumn) {
+                unset($line[$excludeColumn]);
             }
 
             return $line;
