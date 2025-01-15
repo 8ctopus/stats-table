@@ -30,7 +30,6 @@ class JSONDumper extends AbstractDumper
 
         $result['formats'] = $statsTable->getDataFormats();
 
-        // format dataset
         foreach ($result['data'] as &$line) {
             foreach ($line as $id => &$val) {
                 if (array_key_exists($id, $result['formats'])) {
@@ -39,7 +38,6 @@ class JSONDumper extends AbstractDumper
             }
         }
 
-        // format aggregations
         foreach ($result['aggregations'] as $id => &$val) {
             if (array_key_exists($id, $result['aggregationsFormats'])) {
                 $val = $this->formatValue($result['aggregationsFormats'][$id], $val);

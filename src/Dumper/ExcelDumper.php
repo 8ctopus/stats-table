@@ -47,7 +47,6 @@ class ExcelDumper extends AbstractDumper
         $data = $statsTable->getData();
         $width = max(count(reset($data) ?: []), count($statsTable->getHeaders() ?: []));
 
-        // HEADERS //
         if ($this->enableHeaders) {
             $headerStyle = new Style();
             $headerStyle->applyFromArray($this->getHeadersStyleArray());
@@ -61,18 +60,15 @@ class ExcelDumper extends AbstractDumper
             ++$row;
         }
 
-        // DATA //
         foreach ($statsTable->getData() as $data) {
             $this->applyValues($sheet, $row, $data, $statsTable->getDataFormats());
             ++$row;
         }
 
-        // AGGREGATIONS //
         if ($this->enableAggregation) {
             $this->applyValues($sheet, $row, $statsTable->getAggregations(), $statsTable->getAggregationsFormats(), $this->getAggregationsStyleArray());
         }
 
-        // FINAL FORMATTING //
         for ($col = self::FIRST_COLUMN; $col < self::FIRST_COLUMN + $width; ++$col) {
             $sheet
                 ->getColumnDimension(Coordinate::stringFromColumnIndex($col))
@@ -80,9 +76,11 @@ class ExcelDumper extends AbstractDumper
         }
 
         $xlsDumper = new Xlsx($excel);
+
         $pFilename = @tempnam(sys_get_temp_dir(), 'phpxltmp');
         $xlsDumper->save($pFilename);
         $contents = file_get_contents($pFilename);
+
         @unlink($pFilename);
 
         unset($excel, $xlsDumper);
@@ -113,8 +111,7 @@ class ExcelDumper extends AbstractDumper
     protected function getDefaultStyleForFilledCells() : array
     {
         return array_merge_recursive(
-            $this->getDefaultStyleArray(),
-            [
+            $this->getDefaultStyleArray(), [
                 'borders' => [
                     'allBorders' => [
                         'borderStyle' => Border::BORDER_THIN,
@@ -164,8 +161,7 @@ class ExcelDumper extends AbstractDumper
     protected function getHeadersStyleArray() : array
     {
         return array_merge_recursive(
-            $this->getDefaultStyleForFilledCells(),
-            [
+            $this->getDefaultStyleForFilledCells(), [
                 'borders' => [
                     'bottom' => [
                         'style' => Border::BORDER_MEDIUM,
@@ -195,8 +191,7 @@ class ExcelDumper extends AbstractDumper
     protected function getAggregationsStyleArray() : array
     {
         return array_merge_recursive(
-            $this->getDefaultStyleForFilledCells(),
-            [
+            $this->getDefaultStyleForFilledCells(), [
                 'borders' => [
                     'top' => [
                         'style' => Border::BORDER_MEDIUM,
