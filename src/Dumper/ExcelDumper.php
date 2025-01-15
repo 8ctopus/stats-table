@@ -33,13 +33,7 @@ class ExcelDumper extends AbstractDumper
     }
 
     /**
-     * Dump table
-     *
-     * @param StatsTable $statsTable
-     *
-     * @return string
-     *
-     * @throws Exception
+     * {@inheritdoc}
      */
     public function dump(StatsTable $statsTable) : string
     {

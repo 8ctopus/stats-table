@@ -28,11 +28,7 @@ class HTMLDumper extends AbstractDumper
     }
 
     /**
-     * Dump table
-     *
-     * @param StatsTable $statsTable
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function dump(StatsTable $statsTable) : string
     {

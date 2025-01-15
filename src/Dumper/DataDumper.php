@@ -9,11 +9,7 @@ use Oct8pus\StatsTable\StatsTable;
 class DataDumper extends AbstractDumper
 {
     /**
-     * Dump table
-     *
-     * @param StatsTable $statsTable
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function dump(StatsTable $statsTable) : array
     {

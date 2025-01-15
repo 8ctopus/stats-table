@@ -10,5 +10,12 @@ interface DumperInterface
 {
     public function __construct(array $options = []);
 
-    public function dump(StatsTable $statsTable);
+    /**
+     * Dump table
+     *
+     * @param StatsTable $statsTable
+     *
+     * @return string|array
+     */
+    public function dump(StatsTable $statsTable) : string|array;
 }

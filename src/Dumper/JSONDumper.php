@@ -11,11 +11,7 @@ use Oct8pus\StatsTable\StatsTable;
 class JSONDumper extends AbstractDumper
 {
     /**
-     * Dump table
-     *
-     * @param StatsTable $statsTable
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function dump(StatsTable $statsTable) : string
     {
