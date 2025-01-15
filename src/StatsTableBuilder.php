@@ -173,7 +173,7 @@ class StatsTableBuilder
     }
 
     /**
-     * Get registered column names
+     * Get column names
      *
      * @return string[]
      */
@@ -183,7 +183,7 @@ class StatsTableBuilder
     }
 
     /**
-     * Add a dynamic column
+     * Add dynamic column
      *
      * @param string                        $columnName
      * @param DynamicColumnBuilderInterface $dynamicColumn
@@ -203,7 +203,7 @@ class StatsTableBuilder
     }
 
     /**
-     * Add a column
+     * Add column
      *
      * @param string                $column
      * @param array                 $values
@@ -224,7 +224,7 @@ class StatsTableBuilder
     /**
      * Build table
      *
-     * @param array $columns Desired columns
+     * @param array $columns desired columns
      *
      * @return StatsTable
      */
@@ -285,12 +285,10 @@ class StatsTableBuilder
      */
     public static function orderColumns(array $table, array $columns) : array
     {
-        // if no columns given, return table as-is
         if (!$columns) {
             return $table;
         }
 
-        // order
         $result = [];
 
         foreach ($columns as $column) {
