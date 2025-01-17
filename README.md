@@ -24,19 +24,15 @@ This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-tab
 
 The `StatsTableBuilder` class helps combine data from multiple tables, build aggregations (column sum, count, average, ...), create calculated columns, and add grouping. While the second class `StatsTable` allows to sort the table and remove columns.
 
+## examples
+
+Play with the examples in `demo.php`.
+
 ### example 1
 
-Here's an example which shows aggregation, dynamic column and table sorting. Play with this example in `demo.php`.
+First example shows aggregation, dynamic column and table sorting.
 
 ```php
-use Oct8pus\StatsTable\Aggregation\AverageAggregation;
-use Oct8pus\StatsTable\Aggregation\CountAggregation;
-use Oct8pus\StatsTable\Aggregation\SumAggregation;
-use Oct8pus\StatsTable\Direction;
-use Oct8pus\StatsTable\Dumper\TextDumper;
-use Oct8pus\StatsTable\DynamicColumn\CallbackColumnBuilder;
-use Oct8pus\StatsTable\Format;
-use Oct8pus\StatsTable\StatsTableBuilder;
 
 $data = [
     [
@@ -114,7 +110,7 @@ echo $dumper->dump($table);
 
 ### example 2
 
-Here's another example with a dynamic column which depends on the aggregation result. This is useful when your data comes from a database request as it drastically simplifies the complexity of the query.
+Here's another example with a dynamic column which depends on the aggregation result. We add a column that calculates the percentage of each status. This is useful, for example, when your data comes from a database request, as it drastically simplifies the of the database query.
 
 ```php
 $data = [
@@ -135,7 +131,7 @@ $formats = [
 ];
 
 $aggregations = [
-    new SumAggregation('count', Format::Integer),
+    'count' => new SumAggregation('count', Format::Integer),
 ];
 
 $builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
@@ -165,7 +161,7 @@ echo (new TextDumper())
 
 ### example 3
 
-Here's another example demonstrating consolidated revenue and group by date.
+The third example demonstrates a dynamic column containing consolidated revenue and group by date.
 
 ```php
 <?php
