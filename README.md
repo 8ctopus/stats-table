@@ -12,7 +12,7 @@ Create statistics tables and export them to text, JSON, CSV or Excel.
 
 ## introduction
 
-The `stats-table` project facilitates the creation of statistical tables from datasets. It provides features including data aggregation (sum, count, average), dynamic column calculations, and data sorting. The generated tables can be exported to text, JSON, CSV, or Excel. Streamline the process of building and exporting comprehensive statistical tables, enhancing data analysis and reporting capabilities.
+This package facilitates the creation of statistical tables from datasets. It provides features including data aggregation (sum, count, average), dynamic column calculations, and data sorting. The generated tables can be exported to text, JSON, CSV, or Excel.
 
 This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-table). Migrating from the parent package shouldn't be too hard, but except a bit of work.
 
@@ -114,7 +114,7 @@ echo $dumper->dump($table);
 
 ### example 2
 
-Here's another example with a dynamic column which depends on the aggregation result.
+Here's another example with a dynamic column which depends on the aggregation result. This is useful when your data comes from a database request as it drastically simplifies the complexity of the query.
 
 ```php
 $data = [
