@@ -43,11 +43,11 @@ abstract class AbstractDumper implements DumperInterface
      * Format value
      *
      * @param ?Format $format
-     * @param mixed  $value
+     * @param mixed   $value
      *
-     * @return float|int|string|null
+     * @return null|float|int|string
      */
-    protected function formatValue(?Format $format, mixed $value) : float|int|string|null
+    protected function formatValue(?Format $format, mixed $value) : null|float|int|string
     {
         $decimals = $this->options->get('decimals_count');
         $decimalSep = $this->options->get('decimals_separator');

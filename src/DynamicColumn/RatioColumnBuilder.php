@@ -15,7 +15,7 @@ class RatioColumnBuilder implements DynamicColumnBuilderInterface
     /**
      * @param string $numerator
      * @param string $denominator
-     * @param mixed  $defaultValue      Default value if denominator is null
+     * @param mixed  $defaultValue default value if denominator is null
      */
     public function __construct(string $numerator, string $denominator, mixed $defaultValue)
     {

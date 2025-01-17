@@ -51,7 +51,7 @@ class JSONDumper extends AbstractDumper
      * Format value
      *
      * @param ?Format $format
-     * @param mixed  $value
+     * @param mixed   $value
      *
      * @return float|int|string
      */

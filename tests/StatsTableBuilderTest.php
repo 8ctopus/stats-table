@@ -254,11 +254,11 @@ class StatsTableBuilderTest extends TestCase
             $table, [
                 'tag' => 'Tag',
                 'subtag' => 'When',
-                'hits' => 'Hits'
+                'hits' => 'Hits',
             ], [
                 'tag' => Format::String,
                 'subtag' => Format::String,
-                'hits' => Format::Integer
+                'hits' => Format::Integer,
             ], [
                 'tag' => new StaticAggregation('Tag'),
                 'subtag' => new StaticAggregation('Sub tag'),

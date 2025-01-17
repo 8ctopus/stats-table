@@ -225,7 +225,7 @@ class StatsTableBuilder
     /**
      * Calculate column aggregate
      *
-     * @param  string $column
+     * @param string $column
      *
      * @return mixed
      */
@@ -336,8 +336,8 @@ class StatsTableBuilder
     /**
      * Do a groupBy on columns, using aggregations to aggregate data per line
      *
-     * @param array $columns        Columns to aggregate
-     * @param array        $excludeColumns Irrelevant columns to exclude
+     * @param array $columns        columns to aggregate
+     * @param array $excludeColumns columns to exclude
      *
      * @return self
      */
