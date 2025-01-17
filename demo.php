@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Oct8pus\StatsTable\Aggregation\AverageAggregation;
 use Oct8pus\StatsTable\Aggregation\CountAggregation;
-use Oct8pus\StatsTable\Aggregation\SumAggregation;
 use Oct8pus\StatsTable\Direction;
 use Oct8pus\StatsTable\Dumper\TextDumper;
 use Oct8pus\StatsTable\DynamicColumn\CallbackColumnBuilder;
