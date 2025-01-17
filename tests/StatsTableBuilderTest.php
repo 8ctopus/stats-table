@@ -198,11 +198,19 @@ class StatsTableBuilderTest extends TestCase
 
     public function testOrderColumns() : void
     {
-        $table = ['a' => 'value1', 'b' => 'value2', 'c' => 'value3'];
-        $expectedTable = ['c' => 'value3', 'a' => 'value1'];
+        $table = [
+            'a' => 'value1',
+            'b' => 'value2',
+            'c' => 'value3',
+        ];
 
-        self::assertEquals($expectedTable, StatsTableBuilder::orderColumns($table, ['c', 'a']));
+        $expectedTable = [
+            'c' => 'value3',
+            'a' => 'value1',
+        ];
+
         self::assertEquals($table, StatsTableBuilder::orderColumns($table, []));
+        self::assertEquals($expectedTable, StatsTableBuilder::orderColumns($table, ['c', 'a']));
     }
 
     public function testBuildWithOrder() : void
