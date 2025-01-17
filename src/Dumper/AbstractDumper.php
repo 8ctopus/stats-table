@@ -67,7 +67,7 @@ abstract class AbstractDumper implements DumperInterface
                 break;
 
             case Format::Integer:
-                return number_format((int) $value, 0, $decimalSep, $thousandsSep);
+                return number_format((float) $value, 0, $decimalSep, $thousandsSep);
 
             case Format::Float:
                 return number_format((float) $value, $decimals, $decimalSep, $thousandsSep);
