@@ -23,7 +23,7 @@ class DataDumperTest extends DumperTestAbstract
 
         $data = [
             ['date' => '2014-01-01', 'hits' => '10', 'subscribers' => 2, 'ratio' => .2, 'revenues' => 45.321],
-            ['date' => '2014-01-01', 'hits' => '20', 'subscribers' => 7, 'ratio' => .35, 'revenues' => 80.754],
+            ['date' => '2014-01-01', 'hits' => '20', 'subscribers' => 7, 'ratio' => .356, 'revenues' => 80.754],
         ];
 
         $dataTypes = [
@@ -67,7 +67,7 @@ class DataDumperTest extends DumperTestAbstract
                 'Date' => '2014-01-01',
                 'Nb de visites' => '20',
                 'Nb inscrits' => '7',
-                'Taux de transfo' => '35%',
+                'Taux de transfo' => '36%',
                 'Revenus générés' => '80.75 €',
             ], [
                 'Date' => 'Total',
