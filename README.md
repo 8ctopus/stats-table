@@ -12,7 +12,7 @@ Create statistics tables and export them to text, JSON, CSV or Excel.
 
 ## introduction
 
-This package facilitates the creation of statistical tables from datasets. It provides features including data aggregation (sum, count, average), dynamic column calculations, and data sorting. The generated tables can be exported to text, JSON, CSV, or Excel.
+This package facilitates the creation of statistical tables from datasets. It provides features including data aggregation (sum, count, average), dynamic column calculations, data grouping and sorting. The generated tables can be exported to text, JSON, CSV, or Excel.
 
 This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-table). Migrating from the parent package shouldn't be too hard, but except a bit of work.
 
@@ -161,4 +161,95 @@ echo (new TextDumper())
      active     80         80%
   cancelled     20         20%
                100        100%
+```
+
+### example 3
+
+Here's another example demonstrating consolidated revenue and group by date.
+
+```php
+<?php
+
+use Oct8pus\StatsTable\Aggregation\SumAggregation;
+use Oct8pus\StatsTable\Dumper\TextDumper;
+use Oct8pus\StatsTable\DynamicColumn\CallbackColumnBuilder;
+use Oct8pus\StatsTable\Format;
+use Oct8pus\StatsTable\StatsTableBuilder;
+
+$data = [
+    [
+        'date' => '2025-01',
+        'currency' => 'USD',
+        'amount' => 80,
+    ], [
+        'date' => '2025-01',
+        'currency' => 'USD',
+        'amount' => 40,
+    ], [
+        'date' => '2025-01',
+        'currency' => 'EUR',
+        'amount' => 80,
+    ], [
+        'date' => '2025-01',
+        'currency' => 'EUR',
+        'amount' => 40,
+    ], [
+        'date' => '2024-12',
+        'currency' => 'USD',
+        'amount' => 80,
+    ], [
+        'date' => '2024-12',
+        'currency' => 'USD',
+        'amount' => 20,
+    ], [
+        'date' => '2024-12',
+        'currency' => 'EUR',
+        'amount' => 20,
+    ], [
+        'date' => '2024-12',
+        'currency' => 'EUR',
+        'amount' => 40,
+    ],
+];
+
+$headers = [];
+
+$formats = [
+    'date' => Format::String,
+    'currency' => Format::String,
+    'amount' => Format::Integer,
+];
+
+$aggregations = [
+    'amount' => new SumAggregation('amount', Format::Integer),
+];
+
+$builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
+
+// dynamic column with consolidated revenue in USD
+$dynamicColumn = new CallbackColumnBuilder(function (array $row) : float {
+    if ($row['currency'] === 'USD') {
+        return $row['amount'];
+    }
+
+    $EURtoUSD = 1.0295998;
+    return $row['amount'] * $EURtoUSD;
+});
+
+$builder->addDynamicColumn('consolidated', $dynamicColumn, 'consolidated', Format::Integer, new SumAggregation('consolidated', Format::Integer));
+
+$dumper = new TextDumper();
+
+$table = $builder
+    ->groupBy(['date'], ['currency', 'amount'])
+    ->build();
+
+echo $dumper->dump($table);
+```
+
+```txt
+     date  consolidated
+  2025-01           243
+  2024-12           161
+                    405
 ```
