@@ -188,9 +188,7 @@ function example3() : void
         'amount' => Format::Integer,
     ];
 
-    $aggregations = [
-        'amount' => new SumAggregation('amount', Format::Integer),
-    ];
+    $aggregations = [];
 
     $builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
 
