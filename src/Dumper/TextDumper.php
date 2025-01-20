@@ -14,22 +14,19 @@ class TextDumper extends AbstractDumper
     public function dump(StatsTable $statsTable) : string
     {
         $data = $statsTable->getData();
-        $format = $statsTable->getDataFormats();
-
-        $data = $this->formatData($data, $format);
+        $data = $this->formatData($data, $statsTable->getDataFormats());
+        $count = count($data);
 
         $aggregations = $statsTable->getAggregations();
-        $aggregationsFormats = $statsTable->getAggregationsFormats();
-
-        $aggregations = $this->formatLine($aggregations, $aggregationsFormats);
+        $aggregations = $this->formatLine($aggregations, $statsTable->getAggregationsFormats());
 
         $headers = $statsTable->getHeaders();
 
-        if ($this->enableHeaders && !empty($headers)) {
+        if ($this->enableHeaders && !empty($headers) && $count) {
             array_unshift($data, $headers);
         }
 
-        if ($this->enableAggregation && !empty($aggregations) && count($data)) {
+        if ($this->enableAggregation && !empty($aggregations) && $count) {
             $data[] = $aggregations;
         }
 
