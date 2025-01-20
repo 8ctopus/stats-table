@@ -9,26 +9,26 @@ use Oct8pus\StatsTable\StatsTableBuilder;
 
 class RatioAggregation implements AggregationInterface
 {
-    private readonly string $valueInternalName;
-    private readonly string $overInternalName;
+    private readonly string $numeratorColumn;
+    private readonly string $denominatorColumn;
     private readonly Format $format;
 
-    public function __construct(string $overInternalName, string $valueInternalName, Format $format = Format::Percent2)
+    public function __construct(string $denominatorColumn, string $numeratorColumn, Format $format = Format::Percent2)
     {
-        $this->valueInternalName = $valueInternalName;
-        $this->overInternalName = $overInternalName;
+        $this->denominatorColumn = $denominatorColumn;
+        $this->numeratorColumn = $numeratorColumn;
         $this->format = $format;
     }
 
     public function aggregate(StatsTableBuilder $statsTable) : float
     {
-        $sumValueAggregation = new SumAggregation($this->valueInternalName);
-        $sumOverAggregation = new SumAggregation($this->overInternalName);
+        $sumNumerator = new SumAggregation($this->numeratorColumn);
+        $sumDenominator = new SumAggregation($this->denominatorColumn);
 
-        $sumValue = $sumValueAggregation->aggregate($statsTable);
-        $sumOver = $sumOverAggregation->aggregate($statsTable);
+        $numerator = $sumNumerator->aggregate($statsTable);
+        $denominator = $sumDenominator->aggregate($statsTable);
 
-        return $sumOver ? $sumValue / $sumOver : $sumValue;
+        return $denominator ? $numerator / $denominator : $numerator;
     }
 
     public function getFormat() : Format
