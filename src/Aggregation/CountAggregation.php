@@ -20,7 +20,7 @@ class CountAggregation implements AggregationInterface
 
     public function aggregate(StatsTableBuilder $statsTable) : int
     {
-        $values = $statsTable->getColumn($this->columnName)->getValues();
+        $values = $statsTable->getColumn($this->columnName)?->getValues();
 
         return count($values);
     }

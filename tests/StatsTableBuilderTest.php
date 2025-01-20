@@ -188,12 +188,14 @@ class StatsTableBuilderTest extends TestCase
 
     public function testInvalidColumn() : void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $table = [
+            ['hits' => 0],
+        ];
 
-        $table = [['hits' => 0]];
-
-        (new StatsTableBuilder($table))
+        $column = (new StatsTableBuilder($table))
             ->getColumn('invalidColumn');
+
+        self::assertSame(null, $column);
     }
 
     public function testOrderColumns() : void

@@ -20,7 +20,11 @@ class SumAggregation implements AggregationInterface
 
     public function aggregate(StatsTableBuilder $statsTable) : float
     {
-        $values = $statsTable->getColumn($this->columnName)->getValues();
+        $values = $statsTable->getColumn($this->columnName)?->getValues();
+
+        if ($values === null) {
+            return 0;
+        }
 
         return array_sum($values);
     }

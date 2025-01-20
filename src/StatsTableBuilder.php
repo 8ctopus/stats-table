@@ -159,17 +159,13 @@ class StatsTableBuilder
      *
      * @param string $column
      *
-     * @return StatsColumnBuilder
+     * @return ?StatsColumnBuilder
      *
      * @throws InvalidArgumentException
      */
-    public function getColumn(string $column) : StatsColumnBuilder
+    public function getColumn(string $column) : ?StatsColumnBuilder
     {
-        if (!array_key_exists($column, $this->columns)) {
-            throw new InvalidArgumentException("missing column {$column}");
-        }
-
-        return $this->columns[$column];
+        return $this->columns[$column] ?? null;
     }
 
     /**
