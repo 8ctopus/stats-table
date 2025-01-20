@@ -20,9 +20,10 @@ class AverageAggregation implements AggregationInterface
 
     public function aggregate(StatsTableBuilder $statsTable) : float
     {
-        $column = $statsTable->getColumn($this->columnName)->getValues();
-        $sum = array_sum($column);
-        $count = count($column);
+        $values = $statsTable->getColumn($this->columnName)->getValues();
+
+        $sum = array_sum($values);
+        $count = count($values);
 
         return $count ? $sum / $count : 0;
     }

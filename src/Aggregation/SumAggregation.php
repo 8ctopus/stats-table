@@ -20,9 +20,9 @@ class SumAggregation implements AggregationInterface
 
     public function aggregate(StatsTableBuilder $statsTable) : float
     {
-        $column = $statsTable->getColumn($this->columnName)->getValues();
+        $values = $statsTable->getColumn($this->columnName)->getValues();
 
-        return array_sum($column);
+        return array_sum($values);
     }
 
     public function getFormat() : Format
