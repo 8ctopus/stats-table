@@ -166,7 +166,7 @@ class StatsTableBuilder
     public function getColumn(string $column) : StatsColumnBuilder
     {
         if (!array_key_exists($column, $this->columns)) {
-            throw new InvalidArgumentException("Unable to find column {$column} in columns - " . implode(',', array_keys($this->columns)));
+            throw new InvalidArgumentException("missing column {$column}");
         }
 
         return $this->columns[$column];
