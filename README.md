@@ -20,6 +20,8 @@ This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-tab
 
     composer require 8ctopus/stats-table
 
+_NOTE_: This package requires php 8.4, if you are not using it yet, you can require the `symfony/polyfill-php84` package.
+
 ## usage
 
 The `StatsTableBuilder` class helps combine data from multiple tables, build aggregations (column sum, count, average, ...), create calculated columns, and add grouping. While the second class `StatsTable` allows to sort the table and remove columns.
