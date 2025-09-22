@@ -33,6 +33,7 @@ $fixer = (new PhpCsFixer\Config('', ''))
         'phpdoc_summary' => false,
         'phpdoc_trim' => true,
         'phpdoc_trim_consecutive_blank_line_separation' => true,
+        'php_unit_attributes' => true,
         'php_unit_method_casing' => false,
         'php_unit_internal_class' => false,
         'php_unit_test_class_requires_covers' => false,

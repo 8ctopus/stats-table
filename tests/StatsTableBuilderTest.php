@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use InvalidArgumentException;
 use Oct8pus\StatsTable\Aggregation\StaticAggregation;
 use Oct8pus\StatsTable\Aggregation\SumAggregation;
 use Oct8pus\StatsTable\Format;
@@ -261,15 +260,18 @@ class StatsTableBuilderTest extends TestCase
         ];
 
         $statsTableBuilder = new StatsTableBuilder(
-            $table, [
+            $table,
+            [
                 'tag' => 'Tag',
                 'subtag' => 'When',
                 'hits' => 'Hits',
-            ], [
+            ],
+            [
                 'tag' => Format::String,
                 'subtag' => Format::String,
                 'hits' => Format::Integer,
-            ], [
+            ],
+            [
                 'tag' => new StaticAggregation('Tag'),
                 'subtag' => new StaticAggregation('Sub tag'),
                 'hits' => new SumAggregation('hits', Format::Integer),
