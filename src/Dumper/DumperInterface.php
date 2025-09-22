@@ -15,7 +15,7 @@ interface DumperInterface
      *
      * @param StatsTable $statsTable
      *
-     * @return string|array
+     * @return array|string
      */
-    public function dump(StatsTable $statsTable) : string|array;
+    public function dump(StatsTable $statsTable) : array|string;
 }

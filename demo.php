@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use Oct8pus\StatsTable\Aggregation\AverageAggregation;
 use Oct8pus\StatsTable\Aggregation\CountAggregation;
-use Oct8pus\StatsTable\Direction;
 use Oct8pus\StatsTable\Aggregation\SumAggregation;
+use Oct8pus\StatsTable\Direction;
 use Oct8pus\StatsTable\Dumper\TextDumper;
 use Oct8pus\StatsTable\DynamicColumn\CallbackColumnBuilder;
 use Oct8pus\StatsTable\Format;
@@ -13,7 +13,7 @@ use Oct8pus\StatsTable\StatsTableBuilder;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-echo <<<TXT
+echo <<<'TXT'
 1) example 1
 2) example 2
 3) example 3
