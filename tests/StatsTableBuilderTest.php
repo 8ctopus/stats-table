@@ -194,7 +194,7 @@ class StatsTableBuilderTest extends TestCase
         $column = (new StatsTableBuilder($table))
             ->getColumn('invalidColumn');
 
-        self::assertSame(null, $column);
+        self::assertNull($column);
     }
 
     public function testOrderColumns() : void

@@ -283,7 +283,7 @@ class StatsTableBuilder
             $aggregations = array_merge($aggregations, [$columnName => $aggregationValue]);
         }
 
-        if (array_all($aggregations, function ($value) : bool {
+        if (array_all($aggregations, static function ($value) : bool {
             return $value === null;
         })) {
             $aggregations = [];

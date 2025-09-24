@@ -13,7 +13,7 @@ class CallbackAggregationTest extends AggregationTestAbstract
     {
         $statsTable = $this->getSampleTable();
 
-        $hitsSum = new CallbackAggregation(function (StatsTableBuilder $builder) : float {
+        $hitsSum = new CallbackAggregation(static function (StatsTableBuilder $builder) : float {
             $values = $builder->getColumn('hits')->getValues();
 
             return array_sum($values);

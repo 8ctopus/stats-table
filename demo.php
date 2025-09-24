@@ -84,7 +84,7 @@ function example1() : void
 
     $builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
 
-    $dynamicColumn = new CallbackColumnBuilder(function (array $row) : float {
+    $dynamicColumn = new CallbackColumnBuilder(static function (array $row) : float {
         return $row['weight'] / ($row['height'] * $row['height']);
     });
 
@@ -130,7 +130,7 @@ function example2() : void
     $total = $aggregations['count']->aggregate($builder);
 
     // add percentage column
-    $dynamicColumn = new CallbackColumnBuilder(function (array $row) use ($total) : float {
+    $dynamicColumn = new CallbackColumnBuilder(static function (array $row) use ($total) : float {
         return $row['count'] / $total;
     });
 
@@ -192,7 +192,7 @@ function example3() : void
 
     $builder = new StatsTableBuilder($data, $headers, $formats, $aggregations);
 
-    $dynamicColumn = new CallbackColumnBuilder(function (array $row) : float {
+    $dynamicColumn = new CallbackColumnBuilder(static function (array $row) : float {
         if ($row['currency'] === 'USD') {
             return $row['amount'];
         }

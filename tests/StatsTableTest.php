@@ -34,7 +34,7 @@ class StatsTableTest extends TestCase
         );
     }
 
-    #[DataProvider('dataProviderForOneColumn')]
+    #[DataProvider('provideSortOneColumnCases')]
     public function testSortOneColumn(string $columnName, $direction, $expected) : void
     {
         $statsTable = $this->_getSimpleTestData();
@@ -42,7 +42,7 @@ class StatsTableTest extends TestCase
         self::assertSame($expected, $statsTable->getData());
     }
 
-    public static function dataProviderForOneColumn() : array
+    public static function provideSortOneColumnCases() : iterable
     {
         return [
             [
@@ -88,7 +88,7 @@ class StatsTableTest extends TestCase
         ];
     }
 
-    #[DataProvider('dataProviderForMultipleColumn')]
+    #[DataProvider('provideSortMultipleColumnCases')]
     public function testSortMultipleColumn($params, $expected) : void
     {
         $statsTable = $this->_getSimpleTestData();
@@ -97,7 +97,7 @@ class StatsTableTest extends TestCase
         self::assertSame($expected, $statsTable->getData());
     }
 
-    public static function dataProviderForMultipleColumn() : array
+    public static function provideSortMultipleColumnCases() : iterable
     {
         return [
             [
@@ -144,7 +144,7 @@ class StatsTableTest extends TestCase
         ];
     }
 
-    #[DataProvider('dataProviderForMultipleColumnWithFunc')]
+    #[DataProvider('provideSortMultipleColumnWithFuncCases')]
     public function testSortMultipleColumnWithFunc($params, $expected) : void
     {
         $statsTable = $this->_getAdvancedTestData();
@@ -152,7 +152,7 @@ class StatsTableTest extends TestCase
         self::assertSame($expected, $statsTable->getData());
     }
 
-    public static function dataProviderForMultipleColumnWithFunc() : array
+    public static function provideSortMultipleColumnWithFuncCases() : iterable
     {
         $customSort = static function ($a, $b) : int {
             if ($a['nb'] === $b['nb']) {
@@ -179,7 +179,7 @@ class StatsTableTest extends TestCase
         ];
     }
 
-    #[DataProvider('dataProviderForOneColumnWithFunc')]
+    #[DataProvider('provideSortOneColumnWithFuncCases')]
     public function testSortOneColumnWithFunc(string $columnName, $customCompareFunc, $expected) : void
     {
         $statsTable = $this->_getAdvancedTestData();
@@ -192,7 +192,7 @@ class StatsTableTest extends TestCase
         );
     }
 
-    public static function dataProviderForOneColumnWithFunc() : array
+    public static function provideSortOneColumnWithFuncCases() : iterable
     {
         $customSort = static function ($a, $b) : int {
             if ($a === $b) {
