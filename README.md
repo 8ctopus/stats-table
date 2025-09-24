@@ -20,7 +20,7 @@ This package is a fork of [paxal/stats-table](https://github.com/paxal/stats-tab
 
     composer require 8ctopus/stats-table
 
-_NOTE_: This package requires php 8.4, if you are not using it yet, you can require the `symfony/polyfill-php84` package.
+_NOTE_: This package uses `array_all` which exists only in php 8.4, if you are not using it yet, you must require `symfony/polyfill-php84` package.
 
 ## usage
 
